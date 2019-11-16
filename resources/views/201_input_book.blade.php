@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>
+    <!-- Vue.jsのJS読み込み -->    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <title>家計簿</title>
     </head>
 
@@ -18,13 +20,14 @@
     </div>
   </div><!--row-->
   <div class="row">
-    <div class="container col-md-8 col-md-offset-2">
+    <div class="container col-md-8 col-md-offset-2" id="input_form">
       <form>
       @csrf
-        <div class="row">
+        <div class="row" >
           <div class="col-6">
+            <pre>@{{$data}}</pre>
             <label for="category_balance">収支</label>
-            <select class="form-control" id="category_balance">
+            <select class="form-control" id="category_balance" v-model="category_balance">
             @foreach($category_balance as $item)
               <option>{{$item->name}}</option>
             @endforeach
@@ -34,7 +37,7 @@
         <div class="row">
           <div class="col-6">
             <label for="category_large">大分類</label>
-            <select class="form-control" id="category_large">
+            <select class="form-control" id="category_large" v-model="category_large">
             @foreach($category_large as $item)
               <option>{{$item->name}}</option>
             @endforeach
@@ -44,7 +47,7 @@
         <div class="row">
           <div class="col-6">
             <label for="category_middle">中分類</label>
-            <select class="form-control" id="category_middle">
+            <select class="form-control" id="category_middle" v-model="category_middle">
             @foreach($category_middle as $item)
               <option>{{$item->name}}</option>
             @endforeach
@@ -54,7 +57,7 @@
         <div class="row">
           <div class="col-6">
             <label for="category_small">小分類</label>
-            <select class="form-control" id="category_small">
+            <select class="form-control" id="category_small" v-model="category_small">
             @foreach($category_small as $item)
               <option>{{$item->name}}</option>
             @endforeach
@@ -64,15 +67,14 @@
         <div class="row">
           <div class="col-6">
             <label for="category_balance">メモ</label>
-            <input type="text" class="form-control" id="category_balance">
-
+            <input type="text" class="form-control" id="category_balance" v-model="memo">
           </select>
           </div>
         </div><!--row-->
         <div class="row">
           <div class="col-3">
             <label for="payment">支払額</label>
-            <input type="text" id="payment" class="form-control">
+            <input type="text" id="payment" class="form-control" v-model="payment">
           </div>
         </div><!--row-->
         <div class="row mt-5">
@@ -83,5 +85,10 @@
       </form>
     </div>
   </div><!--row-->
+<script type="text/javascript" src="{{ URL::asset('js/201_input_book.js')}}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </body>
 </html>
