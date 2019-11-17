@@ -40,6 +40,8 @@ class InputBookController extends Controller
                 $balance_code = SQL::select_balance_code($request->category_balance);
             break;
             case "category_large":
+                $balance_code = SQL::select_balance_code($request->category_balance);
+                $large_code = SQL::select_large_code($request->category_large);
             break;
             case "category_middle":
             break;
@@ -49,5 +51,11 @@ class InputBookController extends Controller
         }
         // return redirect()->action('InputBookController@input_book_get2', ['balance_code' => $balance_code]);
         return redirect('input_book'.'?balance_code='.$balance_code);
+    }
+    public function json_test(Request $request){
+        $category_balance = SQL::select_balance();   
+        $category_balance_encorded = json_encode($category_balance,JSON_UNESCAPED_UNICODE);
+        // return response()->json($category_balance_encorded);
+        return $category_balance_encorded;
     }
 }

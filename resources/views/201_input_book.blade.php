@@ -25,8 +25,13 @@
       <form action="input_book" method="post" id="form" >
       @csrf
         <div class="row" >
-          <div class="col-6">
+          <div class="container col-10 col-md-offset-2">
             <pre>@{{$data}}</pre>
+            <!---------------------------test------------------------------>
+            <select  class="form-control">
+              <option v-for="item in test">@{{item.name}}</option>
+            </select>
+            <!---------------------------test------------------------------>
             <label for="category_balance">収支</label>
             <select name="category_balance" class="form-control" id="category_balance" v-model="category_balance">
             @foreach($category_balance as $item)
@@ -36,7 +41,7 @@
           </div>
         </div><!--row-->
         <div class="row">
-          <div class="col-6">
+          <div class="container col-6 col-md-offset-2">
             <label for="category_large">大分類</label>
             <select name="category_large" class="form-control" id="category_large" v-model="category_large">
             @foreach($category_large as $item)
@@ -46,7 +51,7 @@
           </div>
         </div><!--row-->
         <div class="row">
-          <div class="col-6">
+          <div class="container col-6 col-md-offset-2">
             <label for="category_middle">中分類</label>
             <select name="category_middle"  class="form-control" id="category_middle" v-model="category_middle">
             @foreach($category_middle as $item)
@@ -56,7 +61,7 @@
           </div>
         </div><!--row-->
         <div class="row">
-          <div class="col-6">
+          <div class="container col-6 col-md-offset-2">
             <label for="category_small">小分類</label>
             <select name="category_small" class="form-control" id="category_small" v-model="category_small">
             @foreach($category_small as $item)
@@ -66,14 +71,14 @@
           </div>
         </div><!--row-->
         <div class="row">
-          <div class="col-6">
+          <div class="container col-6 col-md-offset-2">
             <label for="category_balance">メモ</label>
             <input type="text"  name="memo" class="form-control" id="category_balance" v-model="memo">
           </select>
           </div>
         </div><!--row-->
         <div class="row">
-          <div class="col-3">
+          <div class="container col-6 col-md-offset-2">
             <label for="payment">支払額</label>
             <input type="text" id="payment"  name="payment" class="form-control" v-model="payment">
           </div>

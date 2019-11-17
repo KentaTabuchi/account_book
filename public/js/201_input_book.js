@@ -7,15 +7,24 @@ var input_form = new Vue({
     category_small:'',
     memo:'',
     payment:0,
-    changed_form:''
+    changed_form:'',
+    test:[],
+  },
+  methods: {
+    fetch: function(){ //←axios.getでTODOリストを取得しています
+      axios.get('http://localhost:8000/json_test').then((res)=>{
+        this.test = res.data //←取得したTODOリストをtodosに格納
+      })
+    }
   },
   watch:{
     category_balance:{
       handler:function(newVal,oldVal){
         this.changed_form='category_balance';
-        setTimeout(function () {
-          $(form).submit()
-      },10);
+        this.fetch();
+      //   setTimeout(function () {
+      //     $(form).submit()
+      // },10);
       }
     },
     category_large:{
