@@ -16,3 +16,4 @@ Route::get( '','IndexController@index_get');
 
 //--家計簿入力画面 
 Route::get( 'input_book','InputBookController@input_book_get');
+Route::post( 'input_book','InputBookController@input_book_post');
