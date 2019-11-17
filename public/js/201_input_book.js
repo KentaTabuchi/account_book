@@ -17,14 +17,14 @@ var input_form = new Vue({
       })
     }
   },
+  mounted:function(){
+    this.fetch();
+  },
   watch:{
     category_balance:{
       handler:function(newVal,oldVal){
         this.changed_form='category_balance';
         this.fetch();
-      //   setTimeout(function () {
-      //     $(form).submit()
-      // },10);
       }
     },
     category_large:{
