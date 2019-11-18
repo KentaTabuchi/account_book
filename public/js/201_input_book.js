@@ -8,39 +8,51 @@ var input_form = new Vue({
     memo:'',
     payment:0,
     changed_form:'',
-    test:[],
+    json_balance:[],
+    json_large:[],
+    json_middle:[],
+    json_small:[],
   },
   methods: {
-    fetch: function(){ //←axios.getでTODOリストを取得しています
-      axios.get('http://localhost:8000/json_test').then((res)=>{
-        this.test = res.data //←取得したTODOリストをtodosに格納
+    fetch: function($category){ 
+      axios.get('json_'+$category).then((res)=>{
+        switch($category){
+          case 'balance':
+            this.json_balance = res.data ;
+          break;
+          case 'large':
+            this.json_large = res.data;
+          break;
+          case 'middle':
+            this.json_middle = res.data;
+          break;
+          case 'small':
+              this.json_small = res.data;
+            break;
+        }
       })
     }
   },
   mounted:function(){
-    this.fetch();
+    this.fetch('balance');
   },
   watch:{
     category_balance:{
       handler:function(newVal,oldVal){
         this.changed_form='category_balance';
-        this.fetch();
+        this.fetch('large');
       }
     },
     category_large:{
       handler:function(newVal,oldVal){
         this.changed_form='category_large';
-        setTimeout(function () {
-          $(form).submit()
-      },10);
+        this.fetch('middle');
       }
     },
     category_middle:{
       handler:function(newVal,oldVal){
         this.changed_form='category_middle';
-        setTimeout(function () {
-          $(form).submit();
-      },10)
+        this.fetch('small');
       }
     },    
   }

@@ -52,10 +52,27 @@ class InputBookController extends Controller
         // return redirect()->action('InputBookController@input_book_get2', ['balance_code' => $balance_code]);
         return redirect('input_book'.'?balance_code='.$balance_code);
     }
-    public function json_test(Request $request){
+    //=====================================================================================
+    //　jsonを返すapi vueから呼び出し、セレクトボックスへバインドする
+    //=====================================================================================
+    public function json_balance(Request $request){
         $category_balance = SQL::select_balance();   
         $category_balance_encorded = json_encode($category_balance,JSON_UNESCAPED_UNICODE);
-        // return response()->json($category_balance_encorded);
         return $category_balance_encorded;
+    }
+    public function json_large(Request $request){
+        $category_large = SQL::select_large("1");   
+        $category_large_encorded = json_encode($category_large,JSON_UNESCAPED_UNICODE);
+        return $category_large_encorded;
+    }
+    public function json_middle(Request $request){
+        $category_middle = SQL::select_middle("1");   
+        $category_middle_encorded = json_encode($category_middle,JSON_UNESCAPED_UNICODE);
+        return $category_middle_encorded;
+    }
+    public function json_small(Request $request){
+        $category_small = SQL::select_small("1");   
+        $category_small_encorded = json_encode($category_small,JSON_UNESCAPED_UNICODE);
+        return $category_small_encorded;
     }
 }
