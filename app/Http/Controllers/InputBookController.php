@@ -75,4 +75,27 @@ class InputBookController extends Controller
         $category_small_encorded = json_encode($category_small,JSON_UNESCAPED_UNICODE);
         return $category_small_encorded;
     }
+    //=====================================================================================
+    //　jsonを返すapi vueから呼び出し、選択されたセレクトボックスの名前からコードを返す。
+    //=====================================================================================
+    public function code_balance(Request $request){
+        $balance_code = SQL::select_balance_code($request->code); 
+        $balance_code_encorded = json_encode($balance_code,JSON_UNESCAPED_UNICODE);
+        return $balance_code_encorded;
+    }
+    public function code_large(Request $request){
+        $large_code = SQL::select_large_code($request->code); 
+        $large_code_encorded = json_encode($large_code,JSON_UNESCAPED_UNICODE);
+        return $large_code_encorded;
+    }
+    public function code_middle(Request $request){
+        $middle_code = SQL::select_middle_code($request->code); 
+        $middle_code_encorded = json_encode($middle_code,JSON_UNESCAPED_UNICODE);
+        return $middle_code_encorded;
+    }
+    public function code_small(Request $request){
+        $small_code = SQL::select_small_code($request->code); 
+        $small_code_encorded = json_encode($small_code,JSON_UNESCAPED_UNICODE);
+        return $small_code_encorded;
+    }
 }

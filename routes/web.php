@@ -22,3 +22,8 @@ Route::get( 'json_balance','InputBookController@json_balance');
 Route::get( 'json_large','InputBookController@json_large');
 Route::get( 'json_middle','InputBookController@json_middle');
 Route::get( 'json_small','InputBookController@json_small');
+
+Route::get( 'get_balance_code','InputBookController@code_balance');
+Route::get( 'get_large_code','InputBookController@code_large');
+Route::get( 'get_middle_code','InputBookController@code_middle');
+Route::get( 'get_small_code','InputBookController@code_small');
