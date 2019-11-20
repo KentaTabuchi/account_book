@@ -28,7 +28,6 @@
         <div class="row" >
           <div class="container col-6 col-md-offset-2">
             <pre>@{{$data}}</pre>
-
             <label for="category_balance">収支</label>
             <select name="category_balance" class="form-control" id="category_balance" v-model="category_balance">
               <option v-for="item in json_balance">@{{item.name}}</option>

@@ -61,17 +61,18 @@ class InputBookController extends Controller
         return $category_balance_encorded;
     }
     public function json_large(Request $request){
-        $category_large = SQL::select_large("1");   
+        // dd($request->code_balance);
+        $category_large = SQL::select_large($request->code_balance);   
         $category_large_encorded = json_encode($category_large,JSON_UNESCAPED_UNICODE);
         return $category_large_encorded;
     }
     public function json_middle(Request $request){
-        $category_middle = SQL::select_middle("1");   
+        $category_middle = SQL::select_middle("1");//引数増やして分類と大コードがいる？   
         $category_middle_encorded = json_encode($category_middle,JSON_UNESCAPED_UNICODE);
         return $category_middle_encorded;
     }
     public function json_small(Request $request){
-        $category_small = SQL::select_small("1");   
+        $category_small = SQL::select_small("1"); //引数増やして分類と大コードがいる？  
         $category_small_encorded = json_encode($category_small,JSON_UNESCAPED_UNICODE);
         return $category_small_encorded;
     }
