@@ -27,7 +27,7 @@
       @csrf
         <div class="row" >
           <div class="container col-6 col-md-offset-2">
-            <pre>@{{$data}}</pre>
+            <!-- <pre>@{{$data}}</pre> -->
             <label for="category_balance">収支</label>
             <select name="category_balance" class="form-control" id="category_balance" v-model="category_balance">
               <option v-for="item in json_balance">@{{item.name}}</option>
@@ -77,6 +77,10 @@
           </div>
         </div><!--row-->
         <input type="hidden" name="changed_form" v-model="changed_form">
+        <input type="hidden" name="code_balance" v-model="code_balance">
+        <input type="hidden" name="code_large" v-model="code_large">
+        <input type="hidden" name="code_middle" v-model="code_middle">
+        <input type="hidden" name="code_small" v-model="code_small">
       </form>
     </div>
   </div><!--row-->
