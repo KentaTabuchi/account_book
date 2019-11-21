@@ -22,7 +22,7 @@ class CreateAccountBookTable extends Migration
             $table->integer('large_code');      //大分類 固定費か変動費か
             $table->integer('middle_code');     //中分類
             $table->integer('small_code');      //小分類
-            $table->string('memo');             //備考
+            $table->string('memo')->nullable(); //備考
         });
     }
 

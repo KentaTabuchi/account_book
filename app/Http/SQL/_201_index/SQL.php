@@ -4,7 +4,10 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class SQL{
-    
+    //================================================================
+    //  セレクトボックスに入れるリストを取得する
+    //
+    //================================================================
     /**
      * 分類（収支）テーブルからコードと名前を全件取得
      */
@@ -79,6 +82,10 @@ class SQL{
 
         return $result;
     }
+    //================================================================
+    //  セレクトボックスで選択された名称からコード番号を取得する
+    //
+    //================================================================
     /**
      * 分類（収支）名前を引数にコードを取得
      */
@@ -143,6 +150,46 @@ class SQL{
 
         return $result[0]->code;
     }
+    //================================================================
+    //  コード番号を引数にして入力データを登録
+    //
+    //================================================================
 
+    public static function insert_to_account_book(
+        $balance_code
+        ,$large_code
+        ,$middle_code
+        ,$small_code
+        ,$memo
+        ,$pay_day
+        ,$payment
+        ,$created_at
+    )
+    {
+        $result = DB::insert("
+            INSERT INTO 
+                account_book
+            (
+                 balance_code
+                ,large_code
+                ,middle_code
+                ,small_code
+                ,memo
+                ,pay_day
+                ,payment
+                ,created_at
+            ) 
+            VALUES(?,?,?,?,?,?,?,?)
+        ",[
+             $balance_code
+            ,$large_code
+            ,$middle_code
+            ,$small_code
+            ,$memo
+            ,$pay_day
+            ,$payment
+            ,$created_at
+        ]);
+    }
 }
 

@@ -77,10 +77,10 @@
           </div>
         </div><!--row-->
         <input type="hidden" name="changed_form" v-model="changed_form">
-        <input type="hidden" name="code_balance" v-model="code_balance">
-        <input type="hidden" name="code_large" v-model="code_large">
-        <input type="hidden" name="code_middle" v-model="code_middle">
-        <input type="hidden" name="code_small" v-model="code_small">
+        <input type="hidden" name="balance_code" v-model="code_balance">
+        <input type="hidden" name="large_code" v-model="code_large">
+        <input type="hidden" name="middle_code" v-model="code_middle">
+        <input type="hidden" name="small_code" v-model="code_small">
       </form>
     </div>
   </div><!--row-->
