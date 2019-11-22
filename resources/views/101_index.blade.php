@@ -16,11 +16,11 @@
   <div class="container mt-4">
       <h4>家計簿メニュー</h4>
   </div>
-  <ul>
+  <ol>
     <li><a href="./input_book">家計簿をつける</a></li>
+    <li><a href="./read_book">家計簿を見る</a></li>
     <li><a>費目を登録する</a></li>
-    <li><a>家計簿を見る</a></li>
     
-  <ul>
+  <ol>
 </body>
 </html>

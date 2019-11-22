@@ -11,10 +11,21 @@
 |
 */
 
-//--管理メニュー TOP
-Route::get( '','IndexController@index_get');
+/*
+|--------------------------------------------------------------------------
+| トップ画面 
+|  メニューを選択して各コンテンツに入る入り口
+|--------------------------------------------------------------------------
+*/
 
-//--家計簿入力画面 
+Route::get( '','IndexController@index_get');
+/*
+|--------------------------------------------------------------------------
+| 家計簿入力画面 
+|   入力フォームの内容をDBへ登録
+|--------------------------------------------------------------------------
+*/
+
 Route::get( 'input_book','InputBookController@input_book_get');
 Route::post( 'input_book','InputBookController@input_book_post');
 
@@ -27,3 +38,12 @@ Route::get( 'get_balance_code','InputBookController@code_balance');
 Route::get( 'get_large_code','InputBookController@code_large');
 Route::get( 'get_middle_code','InputBookController@code_middle');
 Route::get( 'get_small_code','InputBookController@code_small');
+
+/*
+|--------------------------------------------------------------------------
+| 家計簿閲覧画面 
+|   表形式で閲覧
+|--------------------------------------------------------------------------
+*/
+
+Route::get( 'read_book','ReadBookController@read_book_get');
