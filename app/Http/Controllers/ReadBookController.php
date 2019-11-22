@@ -14,8 +14,8 @@ use App\Http\SQL\_301_read_book\SQL;
 class ReadBookController extends Controller
 {
     public function read_book_get(Request $request){
-        $result = SQL::select_account_book();
-        dd($result);
-        return view('301_read_book');
+        $record = SQL::select_account_book();
+
+        return view('301_read_book',compact('record'));
     }
 }

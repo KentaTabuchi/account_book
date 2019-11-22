@@ -19,6 +19,36 @@
   <div class="row">
     <div class="container col-md-8 col-md-offset-2">
         <h4>一覧表</h4>
+        <table class="table table-dark">
+          <thead class="thead-light">
+          <tr>
+            <th>日付</th>
+            <th>収支</th>
+            <th class="d-none d-md-table-cell">大分類</th>
+            <th>中分類</th>
+            <th>小分類</th>
+            <th>メモ</th>
+            <th>金額</th>
+            <th class="d-none d-xl-table-cell">作成日</th>
+            <th class="d-none d-xl-table-cell">更新日</th>
+          </tr>
+          </thead>
+          <tbody>
+          @foreach ($record as $item)
+          <tr>
+            <td>{{$item->pay_day}}</td>
+            <td>{{$item->balance_name}}</td>
+            <td class="d-none d-md-table-cell">{{$item->large_name}}</td>
+            <td>{{$item->middle_name}}</td>
+            <td>{{$item->small_name}}</td>
+            <td>{{$item->memo}}</td>
+            <td>{{$item->payment}}</td>
+            <td class="d-none d-xl-table-cell">{{$item->created_at}}</td>
+            <td class="d-none d-xl-table-cell">{{$item->updated_at}}</td> 
+          </tr>         
+          </tbody>
+          @endforeach
+        </table>
     </div>
 
   </div><!--row-->
