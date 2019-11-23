@@ -68,12 +68,13 @@
         <div class="row">
           <div class="container col-6 col-md-offset-2">
             <label for="payment">支払額</label>
-            <input type="text" id="payment"  name="payment" class="form-control" v-model="payment">
+            <input type="text" id="payment"  name="payment" class="form-control" 
+            v-model="payment">
           </div>
         </div><!--row-->
         <div class="row mt-5">
-          <div class="container col-10 col-md-offset-1 mb-5">
-            <input type="submit" class="btn btn-block btn-primary" value="家計簿に書き込む">
+          <div class="container col-6 col-md-offset-1 mb-5">
+            <input type="submit" class="btn-lg btn-block btn-primary" value="家計簿に書き込む">
           </div>
         </div><!--row-->
         <input type="hidden" name="changed_form" v-model="changed_form">

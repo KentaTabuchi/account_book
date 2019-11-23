@@ -24,9 +24,11 @@ class category_middle_seeder extends Seeder
         $params[213] = ['code' => '213' ,'name' => 'その他の固定費','large_code' => '21'];
         //変動費
         $params[221] = ['code' => '221' ,'name' => '食費' ,'large_code' => '22'];
-        $params[222] = ['code' => '222' ,'name' => '雑貨','large_code' => '22'];
-        $params[223] = ['code' => '223' ,'name' => '通勤費','large_code' => '22'];
-        $params[224] = ['code' => '224' ,'name' => '医療費','large_code' => '22'];        
+        $params[222] = ['code' => '222' ,'name' => '雑貨・本・家具・家電等','large_code' => '22'];
+        $params[223] = ['code' => '223' ,'name' => '交通費','large_code' => '22'];
+        $params[224] = ['code' => '224' ,'name' => '医療費','large_code' => '22'];
+        $params[225] = ['code' => '225' ,'name' => 'その他サービス','large_code' => '22'];
+
         foreach($params as $param)
         {
             DB::Table('category_middle')->insert($param);

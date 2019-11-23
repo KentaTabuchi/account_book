@@ -81,6 +81,7 @@ var input_form = new Vue({
   watch:{
     category_balance:{
       handler:function(newVal,oldVal){
+        console.log("category_balanceのwatchスタート");
         this.changed_form='category_balance';
         this.get_code('balance',this.category_balance);
       }
@@ -104,6 +105,6 @@ var input_form = new Vue({
         this.get_code('small',this.category_small);
         this.changed_form='category_small';
       }
-    },    
+    },
   }
 })
