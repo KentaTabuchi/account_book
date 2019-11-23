@@ -17,7 +17,7 @@ class InputBookController extends Controller
     }
 
     public function input_book_post(Request $request){
-        // dd($request);
+        $today = Carbon::today()->toDateString();
         SQL::insert_to_account_book(
              $request->balance_code
             ,$request->large_code
@@ -28,6 +28,7 @@ class InputBookController extends Controller
             ,$request->payment
             ,Carbon::now()
         );
+        return view('202_input_book_result',compact('request','today'));
     }
     //=====================================================================================
     //　jsonを返すapi vueから呼び出し、セレクトボックスへバインドする

@@ -12,6 +12,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <link href="css/text_format.css" rel="stylesheet">
+
         <title>家計簿</title>
     </head>
 
@@ -67,14 +69,14 @@
         </div><!--row-->
         <div class="row">
           <div class="container col-6 col-md-offset-2">
-            <label for="payment">支払額</label>
+            <label for="payment">金額</label>
             <input type="text" id="payment"  name="payment" class="form-control" 
             v-model="payment">
           </div>
         </div><!--row-->
         <div class="row mt-5">
           <div class="container col-6 col-md-offset-1 mb-5">
-            <input type="submit" class="btn-lg btn-block btn-primary" value="家計簿に書き込む">
+            <input type="submit" class="btn-lg btn-block btn-primary" value="書き込む">
           </div>
         </div><!--row-->
         <input type="hidden" name="changed_form" v-model="changed_form">
