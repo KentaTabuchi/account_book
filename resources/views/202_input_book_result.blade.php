@@ -46,7 +46,7 @@
     </div>
       <div class="container col-md-8 col-md-offset-2 mt-5">
       <button type="button" onclick="location.href='input_book'" class="btn btn-primary">続けて記入</button>
-      <button type="button" onclick="location.href='/'" class="btn btn-primary">ホームへ</button>      
+      <button type="button" onclick="location.href='index.php'" class="btn btn-primary">ホームへ</button>      
     </div>
     </div>
   </div><!--row 大枠-->

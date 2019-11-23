@@ -21,6 +21,7 @@
   <div class="row">
     <div class="container col-md-8 col-md-offset-2">
         <h4>記入</h4>
+        <a href="index.php">ホームへ</a>
     </div>
   </div><!--row-->
   <div class="row">
@@ -57,7 +58,7 @@
           <div class="container col-6 col-md-offset-2">
             <label for="category_small">小分類</label>
             <select name="category_small" class="form-control" id="category_small" v-model="category_small">
-              <option v-for="item in json_small">@{{item.name}}</option>
+            <option v-for="item in json_small">@{{item.name}}</option>
           </select>
           </div>
         </div><!--row-->
@@ -76,6 +77,7 @@
             @if($errors->has('payment'))
             <p>整数を入力してください。</p>
             @endif
+
           </div>
         </div><!--row-->
         <div class="row mt-5">

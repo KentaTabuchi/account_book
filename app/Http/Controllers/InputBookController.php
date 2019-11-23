@@ -18,7 +18,12 @@ class InputBookController extends Controller
 
     public function input_book_post(Request $request){
         $request->validate([
-            'payment' => 'required|integer'
+             'payment' => 'required|integer'
+            ,'balance_code' => 'not_in: 0'
+            ,'large_code' => 'not_in: 0'
+            ,'middle_code' => 'not_in: 0'
+            ,'small_code' => 'not_in: 0'
+
         ]);
         $today = Carbon::today()->toDateString();
         SQL::insert_to_account_book(
