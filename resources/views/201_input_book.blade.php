@@ -31,7 +31,8 @@
           <div class="container col-6 col-md-offset-2">
             <!-- <pre>@{{$data}}</pre> -->
             <label for="category_balance">収支</label>
-            <select name="category_balance" class="form-control" id="category_balance" v-model="category_balance">
+            <select name="category_balance" class="form-control" 
+            id="category_balance" v-model="category_balance">
               <option v-for="item in json_balance">@{{item.name}}</option>
           </select>
           </div>
@@ -72,6 +73,9 @@
             <label for="payment">金額</label>
             <input type="text" id="payment"  name="payment" class="form-control" 
             v-model="payment">
+            @if($errors->has('payment'))
+            <p>整数を入力してください。</p>
+            @endif
           </div>
         </div><!--row-->
         <div class="row mt-5">

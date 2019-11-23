@@ -106,5 +106,10 @@ var input_form = new Vue({
         this.changed_form='category_small';
       }
     },
+    payment:{
+      handler:function(newVal,oldVal){
+        this.payment = newVal.replace(/\D/g, '');
+      }
+    },
   }
 })

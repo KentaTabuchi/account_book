@@ -17,6 +17,9 @@ class InputBookController extends Controller
     }
 
     public function input_book_post(Request $request){
+        $request->validate([
+            'payment' => 'required|integer'
+        ]);
         $today = Carbon::today()->toDateString();
         SQL::insert_to_account_book(
              $request->balance_code

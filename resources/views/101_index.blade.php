@@ -17,19 +17,22 @@
 
   <div class="container mt-4">
   </div>
-  <div class="container col-8">
+  <div class="container col-10">
     <div class="row"><!--container-->
         <div class="pnl-img col-md-4">
           <img src="images/101/money_kakeibo_ase.png">
-          <a href="./input_book">家計簿をつける</a>
+          <p>家計簿をつける</p>
+          <a href="./input_book"></a>
         </div>
         <div class="pnl-img col-md-4">
           <img src="images/101/bunbougu_note.png">
-          <a href="./read_book">家計簿を見る</a>
+          <p>家計簿を見る</p>
+          <a href="./read_book"></a>
         </div>
         <div class="pnl-img col-md-4">
           <img src="images/101/haguruma_gear_set_rittai.png">
-          <a href="./read_book">費目の設定</a>
+          <p>費目の設定</p>
+          <a href=""></a><!--開発中-->
         </div>
     </div><!--row-->
   </div><!--container-->
