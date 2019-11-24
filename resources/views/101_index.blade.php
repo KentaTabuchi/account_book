@@ -30,9 +30,9 @@
           <a href="./read_book"></a>
         </div>
         <div class="pnl-img col-md-4">
-          <img src="images/101/bunbougu_note.png">
+          <img src="images/101/document_report.png">
           <p>年表を見る</p>
-          <a href="./read_book_aggregate"></a>
+          <a href="./read_book_aggregate?table_name=category_balance"></a>
         </div>
         <div class="pnl-img col-md-4">
           <img src="images/101/haguruma_gear_set_rittai.png">

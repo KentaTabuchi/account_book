@@ -21,6 +21,13 @@
   <div class="row">
     <div class="container col-md-8 col-md-offset-2">
         <h4>一覧表</h4>
+        <div class="row mb-1">
+          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_balance"'>収支別</button>
+          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_large"'>大分類</button>
+          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_middle"'>中分類</button>
+          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_small"'>小分類</button>
+          
+        </div><!--row-->
         <table class="table table-dark" data-toggle="table" data-pagination="true">
           <thead class="thead-light">
           <tr>
@@ -57,10 +64,9 @@
             <td>{{$record['m12']}}</td><!--12月-->
           </tr>         
           @endforeach
-
           </tbody>
         </table>
-    </div>
+    </div><!--container-->
 
   </div><!--row-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
