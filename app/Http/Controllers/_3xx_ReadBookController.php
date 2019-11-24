@@ -31,9 +31,42 @@ class _3xx_ReadBookController extends Controller
 */
     public function read_book_aggregate_get(Request $request){
         $year=2020;
-        $code=2;
+        // $code=2;
+        $list = DB::table('category_balance')->get('code');
+        $record_set = array();
+        foreach($list as $item){
+            $code = $item->code;
+            $record = $this->get_record_unit($year,$code);
+            $record_set[] = $record;
+        }
+        dd($record_set);
+        return view('302_read_book_aggregate',compact('result'));
+    }
+    //コード1件分のレコードを返す。
+    private function get_record_unit($year,$code)
+    {
         $record = SQL2::select_aggregate_balance($year,$code);
-        dd($record);
-        return view('302_read_book_aggregate',compact('record'));
+        $name = DB::table('category_balance')->where('code',$code)->get('name')->first()->name;
+        $result = [
+             'name'=>''
+            ,'m1'=>0
+            ,'m2'=>0
+            ,'m3'=>0
+            ,'m4'=>0
+            ,'m5'=>0
+            ,'m6'=>0
+            ,'m7'=>0
+            ,'m8'=>0
+            ,'m9'=>0
+            ,'m10'=>0
+            ,'m11'=>0
+            ,'m12'=>0
+        ];
+        $result['name'] = $name;
+        foreach($record as $item){
+            $month = $item->target_month;
+            $result['m'.$month] = $item->sum_payment;
+        }
+        return $result;
     }
 }

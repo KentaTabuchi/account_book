@@ -12,8 +12,6 @@ class SQL2{
     //      B:category_balance
     //  射影条件:
     //      費目、1月〜12月の集計列
-    //  結合条件:
-    //      コード番号
     //  抽出条件:
     //      $year:集計する年
     //
@@ -24,7 +22,7 @@ class SQL2{
 
 					SELECT
 							  SUM(V.sum_payment) AS sum_payment
-							 ,MONTH(V.pay_day) AS sum_pay_day
+							 ,MONTH(V.pay_day) AS target_month
 					FROM
 							(
 								SELECT 
