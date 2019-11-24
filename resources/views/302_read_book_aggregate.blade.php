@@ -16,18 +16,48 @@
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
         <title>家計簿</title>
     </head>
-
 <body>
   <div class="row">
-    <div class="container col-md-8 col-md-offset-2">
+    <div class="container col-md-10 ml-5">
         <h4>一覧表</h4>
         <div class="row mb-1">
-          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_balance"'>収支別</button>
-          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_large"'>大分類</button>
-          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_middle"'>中分類</button>
-          <button class="btn btn-danger" onclick='location.href="./read_book_aggregate?table_name=category_small"'>小分類</button>
-          
+          <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_balance"'>収支別</button>
+          <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_large"'>大分類</button>
+          <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_middle"'>中分類</button>
+          <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_small"'>小分類</button>
+          <script>
+            $(function(){
+              $('#year').change(function(){
+                console.log($(this).val());
+                var currentURL = location.href;
+                console.log(currentURL);
+                var year = $(this).val();
+                URL = currentURL + '&year=' + year;
+                console.log(URL);
+                location.href = URL;
+              })
+            })
+          </script>
+          <select id="year"class="col-4">
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
+            <option value="2030">2030</option>
+        </select>
         </div><!--row-->
+        <div class="row">
         <table class="table table-dark" data-toggle="table" data-pagination="true">
           <thead class="thead-light">
           <tr>
@@ -66,6 +96,7 @@
           @endforeach
           </tbody>
         </table>
+        <div>
     </div><!--container-->
 
   </div><!--row-->

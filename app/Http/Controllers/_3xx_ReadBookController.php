@@ -30,8 +30,7 @@ class _3xx_ReadBookController extends Controller
 |--------------------------------------------------------------------------
 */
     public function read_book_aggregate_get(Request $request){
-        $year=2019;
-        // $table_name = 'category_small';
+        $year=$request->year;
         $table_name = $request->table_name;
 
         $record_set = $this->get_aggregate_table($year,$table_name);
