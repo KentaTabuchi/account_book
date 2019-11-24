@@ -40,21 +40,21 @@
           </tr>
           </thead>
           <tbody>
-          @foreach ($record as $item)
+          @foreach ($record_set as $record)
           <tr>
-            <td></td><!--費目-->
-            <td></td><!--1月-->
-            <td></td><!--2月-->
-            <td></td><!--3月-->
-            <td></td><!--4月-->
-            <td></td><!--5月-->
-            <td></td><!--6月-->
-            <td></td><!--7月-->
-            <td></td><!--8月-->
-            <td></td><!--9月-->
-            <td></td><!--10月-->
-            <td></td><!--11月-->
-            <td></td><!--12月-->
+            <td>{{$record['name']}}</td><!--費目-->
+            <td>{{$record['m1']}}</td><!--1月-->
+            <td>{{$record['m2']}}</td><!--2月-->
+            <td>{{$record['m3']}}</td><!--3月-->
+            <td>{{$record['m4']}}</td><!--4月-->
+            <td>{{$record['m5']}}</td><!--5月-->
+            <td>{{$record['m6']}}</td><!--6月-->
+            <td>{{$record['m7']}}</td><!--7月-->
+            <td>{{$record['m8']}}</td><!--8月-->
+            <td>{{$record['m9']}}</td><!--9月-->
+            <td>{{$record['m10']}}</td><!--10月-->
+            <td>{{$record['m11']}}</td><!--11月-->
+            <td>{{$record['m12']}}</td><!--12月-->
           </tr>         
           @endforeach
 

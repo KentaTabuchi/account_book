@@ -17,7 +17,7 @@ class SQL2{
     //
     //================================================================
 
-    public static function select_aggregate_balance($year,$code){
+    public static function select_aggregate_balance($year,$code,$target_code){
         $result = DB::select("
 
 					SELECT
@@ -30,7 +30,7 @@ class SQL2{
 								FROM 
 									account_book A
 								WHERE 
-									A.balance_code = :code
+									A.$target_code = :code
 								GROUP BY 
 									A.pay_day
 							) AS V
@@ -40,7 +40,9 @@ class SQL2{
 								MONTH(V.pay_day)
         ",['code' => $code,'year' => $year]);
         return $result;
-    }
+		}
+		
+
 
 }
 

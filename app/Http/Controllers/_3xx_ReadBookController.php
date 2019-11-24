@@ -30,23 +30,27 @@ class _3xx_ReadBookController extends Controller
 |--------------------------------------------------------------------------
 */
     public function read_book_aggregate_get(Request $request){
-        $year=2020;
-        // $code=2;
-        $list = DB::table('category_balance')->get('code');
+        $year=2019;
+        $table_name = 'category_small';
+        $record_set = $this->get_aggregate_table($year,$table_name);
+        return view('302_read_book_aggregate',compact('record_set'));
+    }
+    private function get_aggregate_table($year,$table_name){
+        $list = DB::table($table_name)->get('code');
         $record_set = array();
         foreach($list as $item){
             $code = $item->code;
-            $record = $this->get_record_unit($year,$code);
+            $record = $this->get_record_unit($year,$code,$table_name);
             $record_set[] = $record;
         }
-        dd($record_set);
-        return view('302_read_book_aggregate',compact('result'));
+        return $record_set;
     }
     //コード1件分のレコードを返す。
-    private function get_record_unit($year,$code)
+    private function get_record_unit($year,$code,$table_name)
     {
-        $record = SQL2::select_aggregate_balance($year,$code);
-        $name = DB::table('category_balance')->where('code',$code)->get('name')->first()->name;
+        $target_code = str_replace('category_','',$table_name) . '_code';
+        $record = SQL2::select_aggregate_balance($year,$code,$target_code);
+        $name = DB::table($table_name)->where('code',$code)->get('name')->first()->name;
         $result = [
              'name'=>''
             ,'m1'=>0
