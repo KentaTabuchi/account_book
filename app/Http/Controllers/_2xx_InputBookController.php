@@ -10,7 +10,7 @@ use App\Http\SQL\_201_index\SQL;
 | 入力画面のコントローラー
 |--------------------------------------------------------------------------
 */
-class InputBookController extends Controller
+class _2xx_InputBookController extends Controller
 {
     public function input_book_get(Request $request){
         return view('201_input_book');

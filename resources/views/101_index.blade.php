@@ -30,6 +30,11 @@
           <a href="./read_book"></a>
         </div>
         <div class="pnl-img col-md-4">
+          <img src="images/101/bunbougu_note.png">
+          <p>年表を見る</p>
+          <a href="./read_book_aggregate"></a>
+        </div>
+        <div class="pnl-img col-md-4">
           <img src="images/101/haguruma_gear_set_rittai.png">
           <p>費目の設定</p>
           <a href=""></a><!--開発中-->
