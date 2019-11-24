@@ -19,7 +19,7 @@
 <body>
   <div class="row">
     <div class="container col-md-10 ml-5">
-        <h4>一覧表</h4>
+        <h4>一覧表 {{$year}}年</h4>
         <div class="row mb-1">
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_balance"'>収支別</button>
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_large"'>大分類</button>
@@ -27,6 +27,8 @@
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_small"'>小分類</button>
           <script>
             $(function(){
+              var oldYear = $("#oldYear").val();
+              $('#year').val(oldYear);
               $('#year').change(function(){
                 console.log($(this).val());
                 var currentURL = location.href;
@@ -38,7 +40,10 @@
               })
             })
           </script>
-          <select id="year"class="col-4">
+          <form>
+            <input type="hidden" id= "oldYear" value={{$year}}>
+          </form>
+          <select id="year"class="col-2">
             <option value="2015">2015</option>
             <option value="2016">2016</option>
             <option value="2017">2017</option>

@@ -34,8 +34,10 @@ class _3xx_ReadBookController extends Controller
         $table_name = $request->table_name;
 
         $record_set = $this->get_aggregate_table($year,$table_name);
-        return view('302_read_book_aggregate',compact('record_set'));
+        return view('302_read_book_aggregate',compact('record_set','year'));
     }
+
+    //1年分の年表を返す
     private function get_aggregate_table($year,$table_name){
         $list = DB::table($table_name)->get('code');
         $record_set = array();
@@ -46,6 +48,7 @@ class _3xx_ReadBookController extends Controller
         }
         return $record_set;
     }
+
     //コード1件分のレコードを返す。
     private function get_record_unit($year,$code,$table_name)
     {
