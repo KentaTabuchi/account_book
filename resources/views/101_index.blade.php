@@ -11,7 +11,11 @@
 <link href="css/reset.css" rel="stylesheet">
 <link href="css/custom_panel.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width">
-
+<!--ホームアイコンの設定-->
+<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="./images/apple-touch-icon.png" sizes="180x180">
+<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+<link rel="icon" type="image/png" href="./images/android-touch-icon.png" sizes="192x192">
 <title>家計簿</title>
 </head>
 
