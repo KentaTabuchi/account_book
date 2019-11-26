@@ -30,6 +30,7 @@ class SQL{
 
             FROM
                 account_book A
+
             LEFT OUTER JOIN
                 category_balance B
             ON 
@@ -46,6 +47,8 @@ class SQL{
                 category_small  E
             ON
                 A.small_code = E.code
+            ORDER BY
+                A.pay_day DESC
 
         ");
         return $result;
