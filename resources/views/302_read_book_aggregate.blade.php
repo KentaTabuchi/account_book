@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <meta name="viewport" content="width=device-width">
         <title>家計簿</title>
     </head>
 <body>
@@ -25,21 +26,6 @@
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_large"'>大分類</button>
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_middle"'>中分類</button>
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_small"'>小分類</button>
-          <script>
-            $(function(){
-              var oldYear = $("#oldYear").val();
-              $('#year').val(oldYear);
-              $('#year').change(function(){
-                console.log($(this).val());
-                var currentURL = location.href;
-                console.log(currentURL);
-                var year = $(this).val();
-                URL = currentURL + '&year=' + year;
-                console.log(URL);
-                location.href = URL;
-              })
-            })
-          </script>
           <form>
             <input type="hidden" id= "oldYear" value={{$year}}>
           </form>
@@ -105,6 +91,7 @@
     </div><!--container-->
 
   </div><!--row-->
+<script type="text/javascript" src="{{ URL::asset('js/302_read_book_aggregate.js')}}"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

@@ -9,44 +9,42 @@
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
     <!-- Vue.jsのJS読み込み -->    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <meta name="viewport" content="width=device-width">
+
         <title>家計簿</title>
     </head>
 
 <body>
   <div class="row">
-    <div class="container col-md-8 col-md-offset-2">
+    <div class="container col-md-8 justify-content-around">
         <h4>一覧表</h4>
-        <table class="table table-dark" data-toggle="table" data-pagination="true">
+        <table class="table table-dark col-xs-10 col-md-12 offset-1" data-toggle="table" data-pagination="true">
           <thead class="thead-light">
           <tr>
-            <th data-sortable="true">日付</th>
-            <th data-sortable="true">収支</th>
-            <th data-sortable="true" class="d-none d-md-table-cell">大分類</th>
-            <th data-sortable="true">中分類</th>
+            <th  class="d-none d-md-table-cell" data-sortable="true">日付</th>
+            <th class="d-none d-md-table-cell" data-sortable="true">収支</th>
+            <th class="d-none d-md-table-cell" data-sortable="true" class="d-none d-md-table-cell">大分類</th>
+            <th class="d-none d-md-table-cell" data-sortable="true">中分類</th>
             <th data-sortable="true">小分類</th>
             <th>メモ</th>
             <th data-sortable="true">金額</th>
-            <th class="d-none d-xl-table-cell">作成日</th>
-            <th class="d-none d-xl-table-cell">更新日</th>
           </tr>
           </thead>
           <tbody>
           @foreach ($record as $item)
           <tr>
-            <td>{{$item->pay_day}}</td>
+            <td class="d-none d-md-table-cell">{{$item->pay_day}}</td>
             <td>{{$item->balance_name}}</td>
             <td class="d-none d-md-table-cell">{{$item->large_name}}</td>
             <td>{{$item->middle_name}}</td>
             <td>{{$item->small_name}}</td>
             <td>{{$item->memo}}</td>
             <td>{{$item->payment}}</td>
-            <td class="d-none d-xl-table-cell">{{$item->created_at}}</td>
-            <td class="d-none d-xl-table-cell">{{$item->updated_at}}</td> 
           </tr>         
           @endforeach
 
