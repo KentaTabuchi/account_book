@@ -15,10 +15,26 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
     <meta name="viewport" content="width=device-width">
-        <title>家計簿</title>
+    <link href="css/custom.css" rel="stylesheet">
+    <title>家計簿</title>
     </head>
 <body>
-  <div class="row">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
+     aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
+          <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+        </div>
+        <!--.navbar-nav-->
+      </div>
+      <!--#navmenu-->
+  </nav>
+  <div class="row mtpx-100">
     <div class="container col-md-10 ml-5">
         <h4>一覧表 {{$year}}年</h4>
         <div class="row mb-1">

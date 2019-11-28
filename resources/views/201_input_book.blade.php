@@ -12,19 +12,30 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
-  <link href="css/text_format.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width">
   <title>家計簿</title>
 </head>
 
 <body>
-  <div class="row">
-    <div class="container col-md-8 offset-md-1">
-        <h4>記入</h4>
-        <a href="index.php">ホームへ</a>
-    </div>
-  </div><!--row-->
-  <div class="row　justify-content-around">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
+    <span class="navbar-text">新規記入<span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
+     aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+          <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
+        </div>
+        <!--.navbar-nav-->
+      </div>
+      <!--#navmenu-->
+  </nav>
+
+  <div class="row　justify-content-around mtpx-100">
     <div class="container col-md-10 offset-md-1 col-lg-4 card" id="input_form">
       <form action="input_book" method="post" id="form" >
       @csrf

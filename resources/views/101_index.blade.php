@@ -9,7 +9,7 @@
 <!-- BootstrapのJS読み込み -->
 <script src="js/bootstrap.min.js"></script>
 <link href="css/reset.css" rel="stylesheet">
-<link href="css/custom_panel.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width">
 <!--ホームアイコンの設定-->
 <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
@@ -20,10 +20,23 @@
 </head>
 
 <body>
-
-  <div class="container mt-4">
-  </div>
-  <div class="container col-xs-12">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
+     aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
+          <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+          <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
+        </div>
+        <!--.navbar-nav-->
+      </div>
+      <!--#navmenu-->
+  </nav>
+  <div class="container col-xs-12 mtpx-100">
     <div class="row"><!--container-->
         <div class="pnl-img col-md-10 col-md-offset-1 container">
           <img src="images/101/money_kakeibo_ase.png">

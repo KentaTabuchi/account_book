@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.txt-currency:after {
+  content: '円';
+}
+
+.mtpx-100 {
+  margin-top: 100px;
+}
+
+.mtpx-150 {
+  margin-top: 150px;
+}
+
+.pnl-img {
+  position: relative;
+  max-width: 250px;
+  height: 250px;
+  text-align: center;
+}
+
+.pnl-img > a {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pnl-img > p {
+  position: relative;
+}
+
+.pnl-img > img {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.nav-homeicon {
+  width: 30px;
+  height: 30px;
+}
