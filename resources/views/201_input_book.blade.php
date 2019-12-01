@@ -20,7 +20,7 @@
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
-    <span class="navbar-text">新規記入<span>
+    <span class="navbar-text text-warning">新規記入<span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
      aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -39,9 +39,15 @@
     <div class="container col-md-10 offset-md-1 col-lg-4 card" id="input_form">
       <form action="input_book" method="post" id="form" >
       @csrf
+      <div class="row" >
+          <div class="container col-md-10 offset-md-1">
+            <label for="category_balance" class="txt-itemname" >日付</label>
+            <input type="text" name="pay_day" class="form-control">
+          </div>
+        </div><!--row-->
         <div class="row" >
           <div class="container col-md-10 offset-md-1">
-            <label for="category_balance">収支</label>
+            <label for="category_balance"　class="txt-itemname">収支</label>
             <select name="category_balance" class="form-control" 
             id="category_balance" v-model="category_balance">
               <option v-for="item in json_balance">@{{item.name}}</option>
@@ -50,7 +56,7 @@
         </div><!--row-->
         <div class="row">
           <div class="container col-md-10 offset-md-1">
-            <label for="category_large">大分類</label>
+            <label for="category_large"　class="txt-itemname">大分類</label>
             <select name="category_large" class="form-control" id="category_large" v-model="category_large">
               <option v-for="item in json_large">@{{item.name}}</option>
           </select>
@@ -58,7 +64,7 @@
         </div><!--row-->
         <div class="row">
           <div class="container col-md-10 offset-md-1">
-            <label for="category_middle">中分類</label>
+            <label for="category_middle"　class="txt-itemname">中分類</label>
             <select name="category_middle"  class="form-control" id="category_middle" v-model="category_middle">
               <option v-for="item in json_middle">@{{item.name}}</option>
           </select>
@@ -66,7 +72,7 @@
         </div><!--row-->
         <div class="row">
           <div class="container col-md-10 offset-md-1">
-            <label for="category_small">小分類</label>
+            <label for="category_small"　class="txt-itemname">小分類</label>
             <select name="category_small" class="form-control" id="category_small" v-model="category_small">
             <option v-for="item in json_small">@{{item.name}}</option>
           </select>
@@ -74,14 +80,14 @@
         </div><!--row-->
         <div class="row">
           <div class="container col-md-10 offset-md-1">
-            <label for="category_balance">メモ</label>
+            <label for="category_balance"　class="txt-itemname">メモ</label>
             <input type="text"  name="memo" class="form-control" id="category_balance" v-model="memo">
           </select>
           </div>
         </div><!--row-->
         <div class="row">
           <div class="container col-md-10 offset-md-1">
-            <label for="payment">金額</label>
+            <label for="payment"　class="txt-itemname">金額</label>
             <input type="text" id="payment"  name="payment" class="form-control" 
             v-model="payment">
             @if($errors->has('payment'))

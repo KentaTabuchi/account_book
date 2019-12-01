@@ -29,7 +29,7 @@ class _2xx_InputBookController extends Controller
             ,'small_code' => 'not_in: 0'
 
         ]);
-        $today = Carbon::today()->toDateString();
+        $today = isset($request->pay_day) ? $request->pay_day : Carbon::today()->toDateString();
         SQL::insert_to_account_book(
              $request->balance_code
             ,$request->large_code
