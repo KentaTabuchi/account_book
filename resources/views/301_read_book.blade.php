@@ -37,10 +37,11 @@
   </nav>
   <div class="row mtpx-100">
     <div class="container col-md-8 justify-content-around">
-        <table class="table table-dark col-xs-10 col-md-12 offset-1" data-toggle="table" data-pagination="true">
+        <table class="table table-dark col-xs-10 col-md-10 offset-1" data-toggle="table" data-pagination="true">
           <thead class="thead-light">
           <tr>
-            <th  class="d-none d-md-table-cell" data-sortable="true">日付</th>
+            <th>編集</th>
+            <th class="d-none d-md-table-cell" data-sortable="true">日付</th>
             <th class="d-none d-md-table-cell" data-sortable="true">収支</th>
             <th class="d-none d-md-table-cell" data-sortable="true" class="d-none d-md-table-cell">大分類</th>
             <th class="d-none d-md-table-cell" data-sortable="true">中分類</th>
@@ -52,6 +53,7 @@
           <tbody>
           @foreach ($record as $item)
           <tr>
+            <td><button type="button" onclick="location.href='edit_book?code={{$item->id}}'">id:{{$item->id}}</button></td>
             <td class="d-none d-md-table-cell">{{$item->pay_day}}</td>
             <td>{{$item->balance_name}}</td>
             <td class="d-none d-md-table-cell">{{$item->large_name}}</td>

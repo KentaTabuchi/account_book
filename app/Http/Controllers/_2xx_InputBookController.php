@@ -38,6 +38,38 @@ class _2xx_InputBookController extends Controller
         );
         return view('202_input_book_result',compact('request','today'));
     }
+    /*
+|--------------------------------------------------------------------------
+| 編集画面のコントローラー
+|--------------------------------------------------------------------------
+*/
+
+    public function edit_book_get(Request $request){
+        return view('211_edit_book');
+    }
+
+    public function edit_book_post(Request $request){
+        $request->validate([
+             'payment' => 'required|integer'
+            ,'balance_code' => 'not_in: 0'
+            ,'large_code' => 'not_in: 0'
+            ,'middle_code' => 'not_in: 0'
+            ,'small_code' => 'not_in: 0'
+
+        ]);
+        $today = Carbon::today()->toDateString();
+        SQL::insert_to_account_book(
+             $request->balance_code
+            ,$request->large_code
+            ,$request->middle_code
+            ,$request->small_code
+            ,$request->memo
+            ,Carbon::today()
+            ,$request->payment
+            ,Carbon::now()
+        );
+        return view('212_input_book_result',compact('request','today'));
+    }
     //=====================================================================================
     //　jsonを返すapi vueから呼び出し、セレクトボックスへバインドする
     //=====================================================================================

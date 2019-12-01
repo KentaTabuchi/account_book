@@ -29,6 +29,9 @@ Route::get( '','_1xx_IndexController@index_get');
 Route::get( 'input_book','_2xx_InputBookController@input_book_get');
 Route::post( 'input_book','_2xx_InputBookController@input_book_post');
 
+Route::get( 'edit_book','_2xx_InputBookController@edit_book_get');
+Route::post( 'edit_book','_2xx_InputBookController@edit_book_post');
+
 Route::get( 'json_balance','_2xx_InputBookController@json_balance');
 Route::get( 'json_large','_2xx_InputBookController@json_large');
 Route::get( 'json_middle','_2xx_InputBookController@json_middle');
