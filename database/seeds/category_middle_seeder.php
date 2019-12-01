@@ -15,9 +15,8 @@ class category_middle_seeder extends Seeder
         //固定給
         $params[111] = ['code' => '111' ,'name' => '給料' ,'large_code' => '11'];
         //一時金
-        $params[121] = ['code' => '121' ,'name' => '配当金','large_code' => '12'];
-        $params[122] = ['code' => '122' ,'name' => '売却益','large_code' => '12'];
-        $params[123] = ['code' => '123' ,'name' => 'お小遣い','large_code' => '12'];
+        $params[121] = ['code' => '121' ,'name' => '株式','large_code' => '12'];
+        $params[122] = ['code' => '122' ,'name' => 'お小遣い','large_code' => '12'];
         //固定費
         $params[211] = ['code' => '211' ,'name' => '税金,保険,年金' ,'large_code' => '21'];
         $params[212] = ['code' => '212' ,'name' => '公共料金,家賃','large_code' => '21'];

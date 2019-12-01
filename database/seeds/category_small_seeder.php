@@ -15,6 +15,12 @@ class category_small_seeder extends Seeder
         //給料
         $params[1111] = ['code' => '1111' ,'name' => '月給' ,'middle_code' => '111'];
         $params[1112] = ['code' => '1112' ,'name' => '賞与' ,'middle_code' => '111'];
+        //株式
+        $params[1120] = ['code' => '1120' ,'name' => '配当金' ,'middle_code' => '112'];
+        $params[1121] = ['code' => '1121' ,'name' => '売却益' ,'middle_code' => '112'];
+        //お小遣い
+        $params[1130] = ['code' => '1130' ,'name' => '配当金' ,'middle_code' => '113'];
+
         //税金・年金
         $params[2110] = ['code' => '2110' ,'name' => '住民税' ,'middle_code' => '211'];
         $params[2111] = ['code' => '2111' ,'name' => '確定拠出年金' ,'middle_code' => '211'];
@@ -45,6 +51,8 @@ class category_small_seeder extends Seeder
         //医療費
         $params[2240] = ['code' => '2240' ,'name' => '病院・診療所','middle_code' => '224'];
         $params[2241] = ['code' => '2241' ,'name' => '医薬品','middle_code' => '224'];
+        //その他サービス
+        $params[2250] = ['code' => '2250' ,'name' => '散髪代','middle_code' => '225'];
 
         foreach($params as $param)
         {
