@@ -3,3 +3,13 @@
     content: '円';
   }
 }
+
+.txt-itemname{
+  &:before{
+    content:'【';
+  }
+  &:after{
+    content:'】';
+  }
+  font-weight: bold;
+}

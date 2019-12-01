@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.txt-currency:after {
+  content: '円';
+}
+
+.txt-itemname {
+  font-weight: bold;
+}
+
+.txt-itemname:before {
+  content: '【';
+}
+
+.txt-itemname:after {
+  content: '】';
+}

@@ -53,7 +53,7 @@
           <tbody>
           @foreach ($record as $item)
           <tr>
-            <td><button type="button" onclick="location.href='edit_book?code={{$item->id}}'">id:{{$item->id}}</button></td>
+            <td><button type="button" onclick="location.href='edit_book?id={{$item->id}}'">id:{{$item->id}}</button></td>
             <td class="d-none d-md-table-cell">{{$item->pay_day}}</td>
             <td>{{$item->balance_name}}</td>
             <td class="d-none d-md-table-cell">{{$item->large_name}}</td>

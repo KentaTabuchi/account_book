@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\SQL\_201_index\SQL;
+use App\Http\SQL\_211_edit_book\SQL211;
+use Illuminate\Support\Facades\DB;
+
+
 /*
 |--------------------------------------------------------------------------
 | 入力画面のコントローラー
@@ -45,7 +49,9 @@ class _2xx_InputBookController extends Controller
 */
 
     public function edit_book_get(Request $request){
-        return view('211_edit_book');
+        $old = SQL211::select_old_data_for_label($request->id);
+        // dd($result);
+        return view('211_edit_book',compact('old'));
     }
 
     public function edit_book_post(Request $request){
@@ -57,18 +63,21 @@ class _2xx_InputBookController extends Controller
             ,'small_code' => 'not_in: 0'
 
         ]);
-        $today = Carbon::today()->toDateString();
-        SQL::insert_to_account_book(
-             $request->balance_code
-            ,$request->large_code
-            ,$request->middle_code
-            ,$request->small_code
-            ,$request->memo
-            ,Carbon::today()
-            ,$request->payment
-            ,Carbon::now()
-        );
-        return view('212_input_book_result',compact('request','today'));
+
+        DB::table('account_book')->where('id','=',$request->id)
+                                 ->update([
+                                     'pay_day' => $request->pay_day
+                                    ,'balance_code' => $request->balance_code
+                                    ,'large_code' => $request->large_code
+                                    ,'middle_code' => $request->middle_code
+                                    ,'small_code' => $request->small_code
+                                    ,'memo' => $request->memo
+                                    ,'payment' => $request->payment
+                                    ,'updated_at' => Carbon::now()
+                                    ]);
+
+        
+        return view('212_edit_book_result',compact('request'));
     }
     //=====================================================================================
     //　jsonを返すapi vueから呼び出し、セレクトボックスへバインドする
