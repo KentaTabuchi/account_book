@@ -164,6 +164,7 @@ class SQL{
         ,$pay_day
         ,$payment
         ,$created_at
+        ,$user_id
     )
     {
         $result = DB::insert("
@@ -178,8 +179,9 @@ class SQL{
                 ,pay_day
                 ,payment
                 ,created_at
+                ,user_id
             ) 
-            VALUES(?,?,?,?,?,?,?,?)
+            VALUES(?,?,?,?,?,?,?,?,?)
         ",[
              $balance_code
             ,$large_code
@@ -189,6 +191,7 @@ class SQL{
             ,$pay_day
             ,$payment
             ,$created_at
+            ,$user_id
         ]);
     }
 }

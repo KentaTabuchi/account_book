@@ -26,15 +26,21 @@
      aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
      </button>
-      <div class="collapse navbar-collapse" id="navmenu">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
-          <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
-          <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
-        </div>
-        <!--.navbar-nav-->
+    <p class="text-white d-inline">ログイン中:{{$user->name}}さん</p> 
+    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+      document.getElementById('logout-form').submit();">ログアウト</a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+    <div class="collapse navbar-collapse" id="navmenu">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
+        <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+        <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
       </div>
-      <!--#navmenu-->
+      <!--.navbar-nav-->
+    </div>
+    <!--#navmenu-->
   </nav>
   <div class="container col-xs-12 mtpx-100">
     <div class="row"><!--container-->

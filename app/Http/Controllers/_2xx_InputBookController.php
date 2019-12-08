@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\Http\SQL\_201_index\SQL;
 use App\Http\SQL\_211_edit_book\SQL211;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 
 /*
@@ -39,6 +41,7 @@ class _2xx_InputBookController extends Controller
             ,Carbon::today()
             ,$request->payment
             ,Carbon::now()
+            ,Auth::user()->id
         );
         return view('202_input_book_result',compact('request','today'));
     }

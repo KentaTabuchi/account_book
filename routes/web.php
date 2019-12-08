@@ -59,3 +59,6 @@ Route::get( 'read_book','_3xx_ReadBookController@read_book_get');
 */
 
 Route::get( 'read_book_aggregate','_3xx_ReadBookController@read_book_aggregate_get');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

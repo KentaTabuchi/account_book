@@ -16,6 +16,7 @@ class CreateAccountBookTable extends Migration
         Schema::create('account_book', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('user_id');         //ユーザーID
             $table->date('pay_day');            //支払日
             $table->integer('payment');         //支払い額
             $table->integer('balance_code');    //収入か支出か
