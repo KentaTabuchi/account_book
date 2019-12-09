@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\SQL\_301_read_book\SQL;
 use App\Http\SQL\_302_read_book_aggregate\SQL2;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | 閲覧画面のコントローラー
@@ -20,7 +22,7 @@ class _3xx_ReadBookController extends Controller
 |--------------------------------------------------------------------------
 */
     public function read_book_get(Request $request){
-        $record = SQL::select_account_book();
+        $record = SQL::select_account_book(Auth::user()->id);
 
         return view('301_read_book',compact('record'));
     }
@@ -52,8 +54,9 @@ class _3xx_ReadBookController extends Controller
     //コード1件分のレコードを返す。
     private function get_record_unit($year,$code,$table_name)
     {
+        $user_id = Auth::user()->id;
         $target_code = str_replace('category_','',$table_name) . '_code';
-        $record = SQL2::select_aggregate_balance($year,$code,$target_code);
+        $record = SQL2::select_aggregate_balance($year,$code,$target_code,$user_id);
         $name = DB::table($table_name)->where('code',$code)->get('name')->first()->name;
         $result = [
              'name'=>''

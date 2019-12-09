@@ -8,8 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css">
-<script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.js"></script>
+
     <!-- Vue.jsのJS読み込み -->    
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -45,7 +44,7 @@
           <form>
             <input type="hidden" id= "oldYear" value={{$year}}>
           </form>
-          <select id="year"class="col-2">
+          <select id="year" class="col-2 offset-md-2">
             <option value="2015">2015</option>
             <option value="2016">2016</option>
             <option value="2017">2017</option>

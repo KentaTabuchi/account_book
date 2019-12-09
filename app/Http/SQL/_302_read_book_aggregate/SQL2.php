@@ -17,7 +17,7 @@ class SQL2{
     //
     //================================================================
 
-    public static function select_aggregate_balance($year,$code,$target_code){
+    public static function select_aggregate_balance($year,$code,$target_code,$user_id){
         $result = DB::select("
 
 					SELECT
@@ -29,8 +29,14 @@ class SQL2{
 									A.pay_day As pay_day,SUM(A.payment) AS sum_payment
 								FROM 
 									account_book A
+								INNER JOIN 
+									users U
+								ON
+									A.user_id = U.id
 								WHERE 
 									A.$target_code = :code
+								AND
+									A.user_id = :user_id
 								GROUP BY 
 									A.pay_day
 							) AS V
@@ -38,7 +44,7 @@ class SQL2{
 								YEAR(V.pay_day) = :year
 					GROUP BY
 								MONTH(V.pay_day)
-        ",['code' => $code,'year' => $year]);
+        ",['code' => $code,'year' => $year,'user_id' =>$user_id]);
         return $result;
 		}
 		

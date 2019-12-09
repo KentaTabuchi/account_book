@@ -15,7 +15,7 @@ class SQL{
     //  結合条件:コード番号
     //================================================================
 
-    public static function select_account_book(){
+    public static function select_account_book($user_id){
         $result = DB::select("
             SELECT
                  A.id 
@@ -28,10 +28,8 @@ class SQL{
                 ,C.name AS large_name
                 ,D.name AS middle_name 
                 ,E.name AS small_name
-
             FROM
                 account_book A
-
             LEFT OUTER JOIN
                 category_balance B
             ON 
@@ -48,10 +46,16 @@ class SQL{
                 category_small  E
             ON
                 A.small_code = E.code
+            INNER JOIN
+                users U
+            ON
+                A.user_id = U.id
+            WHERE 
+                A.user_id = :user_id
             ORDER BY
                 A.pay_day DESC
 
-        ");
+        ",['user_id' => $user_id]);
         return $result;
     }
 
