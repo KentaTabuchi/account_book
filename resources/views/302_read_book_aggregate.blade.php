@@ -13,6 +13,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
     <meta name="viewport" content="width=device-width">
     <link href="css/custom.css" rel="stylesheet">
     <title>家計簿</title>
@@ -42,26 +43,11 @@
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_middle"'>中分類</button>
           <button class="btn btn-danger col-2" onclick='location.href="./read_book_aggregate?table_name=category_small"'>小分類</button>
           <form>
-            <input type="hidden" id= "oldYear" value={{$year}}>
+          <input type="hidden" id= "oldYear" value={{$year}}>
           </form>
-          <select id="year" class="col-2 offset-md-2">
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
-            <option value="2027">2027</option>
-            <option value="2028">2028</option>
-            <option value="2029">2029</option>
-            <option value="2030">2030</option>
-        </select>
+          <div id="app">
+            <select-year></select-year>
+          </div>
         </div><!--row-->
         <div class="row">
         <table class="table table-dark" data-toggle="table" data-pagination="true">
@@ -106,7 +92,8 @@
     </div><!--container-->
 
   </div><!--row-->
-<script type="text/javascript" src="{{ URL::asset('js/302_read_book_aggregate.js')}}"></script>
+<!-- <script type="text/javascript" src="{{ URL::asset('js/302_read_book_aggregate.js')}}"></script>   -->
+<script src="{{ URL::asset('/js/app.js')}}"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
