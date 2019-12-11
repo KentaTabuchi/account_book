@@ -1875,7 +1875,6 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     year: function year(newVal, oldVal) {
       var currentURL = location.href;
-      alert(currentURL.substr(-10, 5));
 
       if (currentURL.substr(-10, 5) == '&year') {
         currentURL = currentURL.slice(0, -10);
