@@ -1866,14 +1866,21 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Select Component mounted.');
   },
   data: function data() {
+    var currentURL = location.href;
+    var param_year = currentURL.substr(-4);
     return {
-      year: 0
+      year: param_year
     };
   },
   watch: {
     year: function year(newVal, oldVal) {
       var currentURL = location.href;
-      console.log(this.year);
+      alert(currentURL.substr(-10, 5));
+
+      if (currentURL.substr(-10, 5) == '&year') {
+        currentURL = currentURL.slice(0, -10);
+      }
+
       var newURL = currentURL + '&year=' + this.year;
       location.href = newURL;
     }
