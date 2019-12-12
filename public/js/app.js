@@ -1864,6 +1864,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Select Component mounted.');
+    var currentURL = location.href;
+    var param_year = currentURL.substr(-4);
+    var today = new Date();
+
+    if (param_year.match('[0-9]+') == null) {
+      this.year = today.getFullYear();
+    }
   },
   data: function data() {
     var currentURL = location.href;

@@ -25,6 +25,12 @@
     export default {
         mounted() {
             console.log('Select Component mounted.');
+          var currentURL = location.href;
+          var param_year = (currentURL.substr(-4));
+          var today = new Date();
+          if((param_year.match('[0-9]+')==null)){
+             this.year = today.getFullYear();
+          }
         },
         data(){
           var currentURL = location.href;
