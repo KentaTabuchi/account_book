@@ -39,10 +39,10 @@
     <div class="container col-md-10 offset-md-1 col-lg-4 card" id="input_form">
       <form action="input_book" method="post" id="form" >
       @csrf
-      <div class="row" >
+      <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="category_balance" class="txt-itemname" >日付</label>
-            <input type="text" name="pay_day" class="form-control">
+            <input type="text" name="pay_day" class="form-control" v-model="pay_day">
           </div>
         </div><!--row-->
         <div class="row" >

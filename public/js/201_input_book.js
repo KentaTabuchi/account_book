@@ -1,6 +1,7 @@
 var input_form = new Vue({
   el:'#input_form',
   data:{
+    pay_day:'',
     category_balance:'',
     category_large:'',
     category_middle:'',
@@ -73,10 +74,22 @@ var input_form = new Vue({
           break;
         }
       })
-    }
+    },
+    date_format: function(date,format){
+      var format;
+      format = format.replace(/YYYY/,date.getFullYear());
+      format = format.replace(/MM/,date.getMonth()+1);
+      format = format.replace(/DD/,date.getDate());
+      return format;
+    },
   },
   mounted:function(){
+    today = new Date();
+    console.log(today);
+    // this.pay_day = today.getFullYear() + '-' + (today.getMonth() +1) + '-' + today.getDate();
+    this.pay_day = this.date_format(today,'YYYY-MM-DD');
     this.fetch('balance');
+
   },
   watch:{
     category_balance:{
