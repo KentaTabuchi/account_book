@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\SQL\_201_index\SQL;
 use App\Http\SQL\_211_edit_book\SQL211;
+use App\Http\Requests\_201_ValidatedRequest;
+use App\Http\Requests\_211_ValidatedRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -22,15 +22,7 @@ class _2xx_InputBookController extends Controller
         return view('201_input_book');
     }
 
-    public function input_book_post(Request $request){
-        $request->validate([
-             'payment' => 'required|integer'
-            ,'balance_code' => 'not_in: 0'
-            ,'large_code' => 'not_in: 0'
-            ,'middle_code' => 'not_in: 0'
-            ,'small_code' => 'not_in: 0'
-
-        ]);
+    public function input_book_post(_201_ValidatedRequest $request){
         $today = isset($request->pay_day) ? $request->pay_day : Carbon::today()->toDateString();
         SQL::insert_to_account_book(
              $request->balance_code
@@ -53,19 +45,10 @@ class _2xx_InputBookController extends Controller
 
     public function edit_book_get(Request $request){
         $old = SQL211::select_old_data_for_label($request->id);
-        // dd($result);
         return view('211_edit_book',compact('old'));
     }
 
-    public function edit_book_post(Request $request){
-        $request->validate([
-             'payment' => 'required|integer'
-            ,'balance_code' => 'not_in: 0'
-            ,'large_code' => 'not_in: 0'
-            ,'middle_code' => 'not_in: 0'
-            ,'small_code' => 'not_in: 0'
-
-        ]);
+    public function edit_book_post(_211_ValidatedRequest $request){
 
         DB::table('account_book')->where('id','=',$request->id)
                                  ->update([
