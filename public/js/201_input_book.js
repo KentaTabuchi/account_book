@@ -1,7 +1,6 @@
 var input_form = new Vue({
   el:'#input_form',
   data:{
-    pay_day:'',
     category_balance:'',
     category_large:'',
     category_middle:'',
@@ -84,10 +83,8 @@ var input_form = new Vue({
     },
   },
   mounted:function(){
-    today = new Date();
-    this.pay_day = this.date_format(today,'YYYY-MM-DD');
-
     this.fetch('balance');
+    this.category_balance='支出';//初期値
 
   },
   watch:{
@@ -95,6 +92,10 @@ var input_form = new Vue({
       handler:function(newVal,oldVal){
         this.changed_form='category_balance';
         this.get_code('balance',this.category_balance);
+        switch (this.category_balance){
+          case '収入':this.category_large='固定給';break;
+          case '支出':this.category_large='変動費';break;
+        }
       }
     },
     category_large:{
@@ -102,6 +103,10 @@ var input_form = new Vue({
         this.changed_form='category_large';
         this.fetch('middle');
         this.get_code('large',this.category_large);
+        switch (this.category_large){
+          case '変動費':this.category_middle='食費';break;
+          case '固定費':this.category_middle='公共料金,家賃';break;
+        }
       }
     },
     category_middle:{
