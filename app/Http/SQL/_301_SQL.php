@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\SQL\_301_read_book;
+namespace App\Http\SQL;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class SQL{
+class _301_SQL{
     //================================================================
     //  account_bookテーブルから家計簿を全件取得する。
     //  

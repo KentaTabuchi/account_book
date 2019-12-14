@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\SQL\_201_index;
+namespace App\Http\SQL;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class SQL{
+class _211_SQL{
     //================================================================
     //  セレクトボックスに入れるリストを取得する
     //
@@ -151,6 +151,48 @@ class SQL{
         return $result[0]->code;
     }
     //================================================================
+    //  前回データをラベル用に取得
+    //  
+    //================================================================
+    public static function select_old_data_for_label($id)
+    {
+        $result = DB::selectone("
+            SELECT 
+				 A.id
+				,A.pay_day
+				,B.name as balance_name
+				,C.name as large_name
+				,D.name as middle_name
+				,E.name as small_name
+				,A.memo
+				,A.payment
+			FROM
+				 account_book A
+			LEFT JOIN
+				category_balance B
+			ON
+				A.balance_code = B.code
+			LEFT JOIN
+				category_large C
+			ON 
+				A.large_code = C.code
+			LEFT JOIN
+				category_middle D
+			ON 
+				A.middle_code = D.code
+			LEFT JOIN
+				category_small E
+			ON
+				A.small_code = E.code
+			WHERE
+				A.id = :id
+            ",['id' => $id]);
+
+            return $result;
+    }
+
+
+    //================================================================
     //  コード番号を引数にして入力データを登録
     //
     //================================================================
@@ -164,7 +206,6 @@ class SQL{
         ,$pay_day
         ,$payment
         ,$created_at
-        ,$user_id
     )
     {
         $result = DB::insert("
@@ -179,9 +220,8 @@ class SQL{
                 ,pay_day
                 ,payment
                 ,created_at
-                ,user_id
             ) 
-            VALUES(?,?,?,?,?,?,?,?,?)
+            VALUES(?,?,?,?,?,?,?,?)
         ",[
              $balance_code
             ,$large_code
@@ -191,7 +231,6 @@ class SQL{
             ,$pay_day
             ,$payment
             ,$created_at
-            ,$user_id
         ]);
     }
 }

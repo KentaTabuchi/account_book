@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Http\SQL\_301_read_book\SQL;
-use App\Http\SQL\_302_read_book_aggregate\SQL2;
+use App\Http\SQL\_301_SQL;
+use App\Http\SQL\_302_SQL;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -22,7 +22,7 @@ class _3xx_ReadBookController extends Controller
 |--------------------------------------------------------------------------
 */
     public function read_book_get(Request $request){
-        $record = SQL::select_account_book(Auth::user()->id);
+        $record = _301_SQL::select_account_book(Auth::user()->id);
 
         return view('301_read_book',compact('record'));
     }
@@ -56,7 +56,7 @@ class _3xx_ReadBookController extends Controller
     {
         $user_id = Auth::user()->id;
         $target_code = str_replace('category_','',$table_name) . '_code';
-        $record = SQL2::select_aggregate_balance($year,$code,$target_code,$user_id);
+        $record = _302_SQL::select_aggregate_balance($year,$code,$target_code,$user_id);
         $name = DB::table($table_name)->where('code',$code)->get('name')->first()->name;
         $result = [
              'name'=>''

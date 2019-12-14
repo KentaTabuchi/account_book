@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\SQL\_302_read_book_aggregate;
+namespace App\Http\SQL;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class SQL2{
+class _302_SQL{
     //================================================================
     //  account_bookテーブルから対象の費目(収支)の合計値を月毎に集計して返す
     //  
