@@ -85,16 +85,14 @@ var input_form = new Vue({
   },
   mounted:function(){
     today = new Date();
-    console.log(today);
-    // this.pay_day = today.getFullYear() + '-' + (today.getMonth() +1) + '-' + today.getDate();
     this.pay_day = this.date_format(today,'YYYY-MM-DD');
+
     this.fetch('balance');
 
   },
   watch:{
     category_balance:{
       handler:function(newVal,oldVal){
-        console.log("category_balanceのwatchスタート");
         this.changed_form='category_balance';
         this.get_code('balance',this.category_balance);
       }
