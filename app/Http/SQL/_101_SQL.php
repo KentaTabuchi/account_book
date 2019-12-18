@@ -19,8 +19,8 @@ class _101_SQL{
             WHERE
                 A.large_code = '22'
             AND
-                MONTH(A.pay_day) = '10'
-        ");
+                MONTH(A.pay_day) =:month
+        ",['month'=>Carbon::now()->month]);
 
         return $result;
     }
