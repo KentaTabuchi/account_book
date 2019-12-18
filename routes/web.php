@@ -19,6 +19,8 @@
 */
 
 Route::get( '','_1xx_IndexController@index_get');
+Route::get( 'json_total_cost','_1xx_IndexController@json_total_cost');
+
 /*
 |--------------------------------------------------------------------------
 | 家計簿入力画面 
