@@ -70,8 +70,8 @@
           <a href=""></a><!--開発中-->
         </div>
     </div><!--row-->
-    <div class="container col-xs-12 mtpx-50">
-    <canvas id="myChart" class="col-8 offset-2"></canvas>
+    <div class="container col-md-5 mtpx-50 mb-5">
+    <canvas id="myChart" class="col-12" width="10" height="10"></canvas>
     </div><!--row-->
  
   </div><!--container-->
