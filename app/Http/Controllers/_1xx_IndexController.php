@@ -25,8 +25,8 @@ class _1xx_IndexController extends Controller
     }
 
     public function json_total_cost(Request $requst){
-        dd(_101_SQL::select_total_variable());
-        $balance_code_encorded = json_encode($balance_code,JSON_UNESCAPED_UNICODE);
-        return $balance_code_encorded;
+        $total_cost = _101_SQL::select_total_variable();
+        $total_cost = json_encode($total_cost,JSON_UNESCAPED_UNICODE);
+        return $total_cost;
     }
 }

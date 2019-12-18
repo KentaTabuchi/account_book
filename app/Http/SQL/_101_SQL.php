@@ -11,9 +11,9 @@ class _101_SQL{
 
     public static function select_total_variable()
     {
-        $result = DB::select("
+        $result = DB::selectOne("
             SELECT 
-                SUM(A.payment)
+                SUM(A.payment) AS total_cost
             FROM
                 account_book A
             WHERE

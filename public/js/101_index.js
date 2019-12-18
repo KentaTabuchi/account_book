@@ -34,8 +34,17 @@ var myChart = new Chart(ctx, {
 
 
 $(function(){
-    
-    myChart.data.datasets[0].data[0]=999;
-    myChart.data.datasets[0].data[1]=250;
-    myChart.update();
+    asyncFunc();
 })
+/**
+ *  ajaxでjsonから変動費の合計を取得して円グラフの値に代入する
+ */
+async function asyncFunc () {
+    const res1 = await axios.get('json_total_cost');
+    console.log(res1.data.total_cost);
+    const cost = res1.data.total_cost;
+    myChart.data.datasets[0].data[0]= cost; //変動費
+    myChart.data.datasets[0].data[1]= 20000 - cost;
+    myChart.update();
+    return res1.data.total_cost;
+  }

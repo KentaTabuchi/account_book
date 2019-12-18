@@ -18,6 +18,8 @@
 <link rel="icon" type="image/png" href="./images/android-touch-icon.png" sizes="192x192">
 <!--chart.js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<!--axios-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <title>家計簿</title>
 </head>
