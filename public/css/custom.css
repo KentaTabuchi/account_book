@@ -49,6 +49,10 @@
   height: 200px;
 }
 
+.pnl-input-month label {
+  min-width: 70px;
+}
+
 .nav-homeicon {
   width: 30px;
   height: 30px;

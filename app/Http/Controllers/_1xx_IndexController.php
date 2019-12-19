@@ -14,6 +14,9 @@ use App\Http\SQL\_101_SQL;
 
 class _1xx_IndexController extends Controller
 {
+    /**
+     * トップページの表示
+     */
     public function index_get(Request $requst){
         $user = Auth::user();
         if(isset($user)){
@@ -23,7 +26,9 @@ class _1xx_IndexController extends Controller
             return redirect('login');
         }
     }
-
+    /**
+     * 当月の変動費をjsonにして返すAPI
+     */
     public function json_total_cost(Request $requst){
         $total_cost = _101_SQL::select_total_variable();
         $total_cost = json_encode($total_cost,JSON_UNESCAPED_UNICODE);

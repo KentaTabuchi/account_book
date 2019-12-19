@@ -23,3 +23,7 @@
   width: 200px;
   height: 200px;
 }
+
+.pnl-input-month label {
+  min-width: 70px;
+}

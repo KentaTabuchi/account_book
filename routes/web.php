@@ -64,3 +64,12 @@ Route::get( 'read_book_aggregate','_3xx_ReadBookController@read_book_aggregate_g
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| 変動費編集画面
+|  　月々の変動費を設定 
+|--------------------------------------------------------------------------
+*/
+
+Route::get( 'edit_budget','_4xx_EditBudgetController@edit_budget_get');
