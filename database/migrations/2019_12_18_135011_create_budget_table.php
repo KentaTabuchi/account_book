@@ -15,6 +15,7 @@ class CreateBudgetTable extends Migration
     {
         Schema::create('budget', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
             $table->integer('year');
             $table->integer('month');
             $table->integer('budget');//予算
