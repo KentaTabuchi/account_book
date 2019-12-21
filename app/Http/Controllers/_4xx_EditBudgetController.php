@@ -19,7 +19,11 @@ class _4xx_EditBudgetController extends Controller
     public function edit_budget_get(Request $request){
         $user = Auth::user();
         if(isset($user)){
+            $user_id = $user->id;
             $year = $request->year;
+            $month = 2;
+            $budget = _401_SQL::select_budget($year,$month,$user_id);
+            // dd($budget);
             return view('401_edit_budget',compact('year'));            
         }
         else{
@@ -34,8 +38,11 @@ class _4xx_EditBudgetController extends Controller
             for($i=1;$i<13;$i++){
                 $month=$i;
                 $budget= isset($request->{'budget_'.$i}) ? $request->{'budget_'.$i} : 0;
-                $result = _401_SQL::update_budget($year,$month,$budget,$user_id);
-                if($result==0){
+
+                if((_401_SQL::select_budget($year,$month,$user_id))!==null){
+                    $result = _401_SQL::update_budget($year,$month,$budget,$user_id);
+                }
+                else{
                     _401_SQL::insert_budget($year,$month,$budget,$user_id);
                 }
             }
@@ -48,7 +55,6 @@ class _4xx_EditBudgetController extends Controller
     public function edit_budget_result_get(Request $request){
         $user = Auth::user();
         if(isset($user)){
-            dd('te');
             return view('402_edit_budget_result');            
         }
         else{

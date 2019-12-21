@@ -41,8 +41,8 @@
       <form action="edit_budget" method="post" id="form" >
       @csrf
       <div id="app" class="mt-2 card bg-success">
-      <label class="txt-itemname text-white" >年代</label>
-            <select-year></select-year>
+      <label class="txt-itemname text-white col-4" >年代</label>
+            <select-year class="col-8 mb-2"></select-year>
       </div>
         <div class="form-group row mt-4" >
           <label class="txt-itemname" >1月</label>

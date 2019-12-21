@@ -4,6 +4,25 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class _401_SQL{
+			//================================================================
+    //  budgetテーブルから月毎の変動費を取り出す
+    //  
+    //================================================================
+
+    public static function select_budget($year,$month,$user_id){
+			$result = DB::selectOne("
+				SELECT
+					A.budget
+				FROM
+					budget A
+				WHERE
+						A.year = :year
+				AND A.month =:month
+				AND A.user_id =:id
+
+			",[$year,$month,$user_id]);
+			return $result;
+	}
 		//================================================================
     //  budgetテーブルに月毎の変動費を新規挿入
     //  
