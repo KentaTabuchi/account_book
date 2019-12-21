@@ -67,7 +67,7 @@
         <div class="pnl-img col-md-10 col-md-offset-1 container">
           <img src="images/101/haguruma_gear_set_rittai.png">
           <p>予算の設定</p>
-          <a href="edit_budget"></a>
+          <a href="edit_budget?"></a>
         </div>
     </div><!--row-->
     <div class="container col-md-5 mtpx-50 mb-5">

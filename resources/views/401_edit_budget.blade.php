@@ -35,79 +35,84 @@
       <!--#navmenu-->
   </nav>
 
+
   <div class="row　justify-content-around mtpx-100">
-    <div class="container col-md-10 offset-md-1 col-lg-4 card pnl-input-month" id="input_form">
+    <div class="container col-10 offset-md-1 col-lg-4 card pnl-input-month bg-light" id="input_form">
       <form action="edit_budget" method="post" id="form" >
       @csrf
+      <div id="app" class="mt-2 card bg-success">
+      <label class="txt-itemname text-white" >年代</label>
+            <select-year></select-year>
+      </div>
         <div class="form-group row mt-4" >
           <label class="txt-itemname" >1月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_1" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >2月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_2" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >3月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_3" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >4月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_4" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >5月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_5" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >6月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_6" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >7月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_7" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >8月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_8" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname">9月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_9" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname">10月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_10" class="form-control" >
           </div>
         </div><!--form-group row-->
           <div class="form-group row" >
           <label class="txt-itemname" >11月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_11" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >12月</label>
-          <div class="col-sm-10">
+          <div class="col-8">
             <input type="text" name="budget_12" class="form-control" >
           </div>
         </div><!--form-group row-->
@@ -119,7 +124,8 @@
       </form>
     </div>
   </div><!--row-->
-<script type="text/javascript" src="{{ URL::asset('js/401_input_book.js')}}"></script>
+<script src="{{ URL::asset('/js/app.js')}}"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
