@@ -53,6 +53,11 @@ class category_small_seeder extends Seeder
         $params[2241] = ['code' => '2241' ,'name' => '医薬品','middle_code' => '224'];
         //その他サービス
         $params[2250] = ['code' => '2250' ,'name' => '散髪代','middle_code' => '225'];
+        //祭事・イベント
+        $params[2260] = ['code' => '2250' ,'name' => '誕生日','middle_code' => '226'];
+        $params[2261] = ['code' => '2250' ,'name' => 'クリスマス','middle_code' => '226'];
+        $params[2262] = ['code' => '2250' ,'name' => '正月','middle_code' => '226'];
+        $params[2269] = ['code' => '2250' ,'name' => 'その他','middle_code' => '226'];
 
         foreach($params as $param)
         {
