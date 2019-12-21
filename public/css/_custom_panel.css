@@ -27,3 +27,8 @@
 .pnl-input-month label {
   min-width: 70px;
 }
+
+.card-mg-none {
+  margin-left: -15px;
+  margin-right: -15px;
+}

@@ -40,7 +40,7 @@
     <div class="container col-10 offset-md-1 col-lg-4 card pnl-input-month bg-light" id="input_form">
       <form action="edit_budget" method="post" id="form" >
       @csrf
-      <div id="app" class="mt-2 card bg-success">
+      <div id="app" class="card bg-dark card-mg-none">
       <label class="txt-itemname text-white col-4" >年代</label>
             <select-year class="col-8 mb-2"></select-year>
       </div>
