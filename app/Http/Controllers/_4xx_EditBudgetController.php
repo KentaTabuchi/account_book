@@ -7,15 +7,21 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\SQL\_401_SQL;
+use App\Http\Requests\_401_ValidatedRequest;
 
 
 /*
 |--------------------------------------------------------------------------
-| 入力画面のコントローラー
+| 月別の変動費予算を設定する画面のコントローラー
 |--------------------------------------------------------------------------
 */
 class _4xx_EditBudgetController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | 401: 月別の変動費予算を入力する画面
+    |--------------------------------------------------------------------------
+    */
     public function edit_budget_get(Request $request){
         $user = Auth::user();
         if(isset($user)){
@@ -33,7 +39,7 @@ class _4xx_EditBudgetController extends Controller
             return redirect('login');
         }
     }
-    public function edit_budget_post(Request $request){
+    public function edit_budget_post(_401_ValidatedRequest $request){
         $user = Auth::user();
         if(isset($user)){
             $year = $request->year;
@@ -55,6 +61,11 @@ class _4xx_EditBudgetController extends Controller
             return redirect('login');
         }
     }
+    /*
+    |--------------------------------------------------------------------------
+    | 402: 401で入力した結果確認を表示する画面
+    |--------------------------------------------------------------------------
+    */
     public function edit_budget_result_get(Request $request){
         $user = Auth::user();
         if(isset($user)){
