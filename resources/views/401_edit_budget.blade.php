@@ -47,73 +47,73 @@
         <div class="form-group row mt-4" >
           <label class="txt-itemname" >1月</label>
           <div class="col-8">
-            <input type="text" name="budget_1" class="form-control" >
+            <input type="text" value="{{$budgets[1]}}" name="budget_1" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >2月</label>
           <div class="col-8">
-            <input type="text" name="budget_2" class="form-control" >
+            <input type="text" value="{{$budgets[2]}}" name="budget_2" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >3月</label>
           <div class="col-8">
-            <input type="text" name="budget_3" class="form-control" >
+            <input type="text" value="{{$budgets[3]}}" name="budget_3" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >4月</label>
           <div class="col-8">
-            <input type="text" name="budget_4" class="form-control" >
+            <input type="text" value="{{$budgets[4]}}" name="budget_4" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >5月</label>
           <div class="col-8">
-            <input type="text" name="budget_5" class="form-control" >
+            <input type="text" value="{{$budgets[5]}}" name="budget_5" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >6月</label>
           <div class="col-8">
-            <input type="text" name="budget_6" class="form-control" >
+            <input type="text" value="{{$budgets[6]}}" name="budget_6" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >7月</label>
           <div class="col-8">
-            <input type="text" name="budget_7" class="form-control" >
+            <input type="text" value="{{$budgets[7]}}" name="budget_7" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >8月</label>
           <div class="col-8">
-            <input type="text" name="budget_8" class="form-control" >
+            <input type="text" value="{{$budgets[8]}}" name="budget_8" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname">9月</label>
           <div class="col-8">
-            <input type="text" name="budget_9" class="form-control" >
+            <input type="text" value="{{$budgets[9]}}" name="budget_9" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname">10月</label>
           <div class="col-8">
-            <input type="text" name="budget_10" class="form-control" >
+            <input type="text" value="{{$budgets[10]}}" name="budget_10" class="form-control" >
           </div>
         </div><!--form-group row-->
           <div class="form-group row" >
           <label class="txt-itemname" >11月</label>
           <div class="col-8">
-            <input type="text" name="budget_11" class="form-control" >
+            <input type="text" value="{{$budgets[11]}}" name="budget_11" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >
           <label class="txt-itemname" >12月</label>
           <div class="col-8">
-            <input type="text" name="budget_12" class="form-control" >
+            <input type="text" value="{{$budgets[12]}}" name="budget_12" class="form-control" >
           </div>
         </div><!--form-group row-->
         <div class="row mt-5">

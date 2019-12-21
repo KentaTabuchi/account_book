@@ -21,7 +21,7 @@ class _401_SQL{
 				AND A.user_id =:id
 
 			",[$year,$month,$user_id]);
-			return $result;
+			return isset($result) ? $result->budget : 0;
 	}
 		//================================================================
     //  budgetテーブルに月毎の変動費を新規挿入
