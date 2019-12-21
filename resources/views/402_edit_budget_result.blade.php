@@ -40,14 +40,10 @@
     <div class="container col-10 offset-md-1 col-lg-4 card pnl-input-month bg-light" id="input_form">
       <form action="edit_budget" method="post" id="form" >
       @csrf
-      <div id="app" class="mt-2 card bg-success">
-      <label class="txt-itemname text-white" >年代</label>
-            <select-year></select-year>
-      </div>
         <div class="form-group row mt-4" >
           <label class="txt-itemname" >1月</label>
           <div class="col-8">
-            <input type="text" name="budget_1" class="form-control" >
+            <p>aa</p>
           </div>
         </div><!--form-group row-->
         <div class="form-group row" >

@@ -19,12 +19,14 @@ class _1xx_IndexController extends Controller
      */
     public function index_get(Request $requst){
         $user = Auth::user();
-        if(isset($user)){
-            return view('101_index',compact('user'));
-        }
-        else{
-            return redirect('login');
-        }
+        $machine = $_SERVER['HTTP_USER_AGENT'];  
+        echo('あなたは'.$machine.'でみていますね');
+        // if(isset($user)){
+        //     return view('101_index',compact('user'));
+        // }
+        // else{
+        //     return redirect('login');
+        // }
     }
     /**
      * 当月の変動費をjsonにして返すAPI

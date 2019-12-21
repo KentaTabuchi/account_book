@@ -74,3 +74,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get( 'edit_budget','_4xx_EditBudgetController@edit_budget_get');
 Route::post( 'edit_budget','_4xx_EditBudgetController@edit_budget_post');
+Route::get( 'edit_budget_result','_4xx_EditBudgetController@edit_budget_result_get');
+
