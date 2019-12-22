@@ -4,7 +4,26 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class _401_SQL{
-			//================================================================
+		//================================================================
+    //  budgetテーブルに対象のレコードが既にあるかどうかをチェックする
+    //  
+    //================================================================
+
+    public static function check_budget($year,$month,$user_id){
+			$result = DB::selectOne("
+				SELECT
+					A.budget
+				FROM
+					budget A
+				WHERE
+						A.year = :year
+				AND A.month =:month
+				AND A.user_id =:id
+
+			",[$year,$month,$user_id]);
+			return isset($result) ? true : false;
+	}
+		//================================================================
     //  budgetテーブルから月毎の変動費を取り出す
     //  
     //================================================================

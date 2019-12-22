@@ -53,7 +53,7 @@ class _4xx_EditBudgetController extends Controller
                 $month=$i;
                 $budget= isset($request->{'budget_'.$i}) ? $request->{'budget_'.$i} : 0;
 
-                if((_401_SQL::select_budget($year,$month,$user_id))!==null){
+                if(_401_SQL::check_budget($year,$month,$user_id)){
                     $result = _401_SQL::update_budget($year,$month,$budget,$user_id);
                 }
                 else{
