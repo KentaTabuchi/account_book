@@ -31,8 +31,18 @@ class _1xx_IndexController extends Controller
      * 当月の変動費をjsonにして返すAPI
      */
     public function json_total_cost(Request $requst){
-        $total_cost = _101_SQL::select_total_variable();
+        $user = Auth::user();
+        $total_cost = _101_SQL::select_total_variable($user->id);
         $total_cost = json_encode($total_cost,JSON_UNESCAPED_UNICODE);
         return $total_cost;
+    }
+    /**
+     * 当月の変動費予算をjsonにして返すAPI
+     */
+    public function json_budget_cost(Request $request){
+        $user = Auth::user();
+        $budget_cost = _101_SQL::select_budget_variable($user->id);
+        $budget_cost = json_encode($budget_cost,JSON_UNESCAPED_UNICODE);
+        return $budget_cost;
     }
 }

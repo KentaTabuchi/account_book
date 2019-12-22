@@ -9,7 +9,7 @@ class _101_SQL{
     //
     //================================================================
 
-    public static function select_total_variable()
+    public static function select_total_variable($user_id)
     {
         $result = DB::selectOne("
             SELECT 
@@ -18,10 +18,31 @@ class _101_SQL{
                 account_book A
             WHERE
                 A.large_code = '22'
-            AND
-                MONTH(A.pay_day) =:month
-        ",['month'=>Carbon::now()->month]);
+            AND MONTH(A.pay_day) =:month
+            AND A.user_id =:user_id
 
+        ",['month'=>Carbon::now()->month,'user_id'=>$user_id]);
+
+        return $result;
+    }
+    //================================================================
+    //  当月の変動費の予算を取得する
+    //
+    //================================================================
+
+    public static function select_budget_variable($user_id)
+    {
+        $result = DB::selectOne("
+            SELECT 
+                A.budget AS budget_cost
+            FROM
+                budget A
+            WHERE
+                A.year =:year
+            AND A.month =:month
+            AND A.user_id =:user_id
+            
+        ",['year'=>Carbon::now()->year,'month'=>Carbon::now()->month,'user_id'=>$user_id]);
         return $result;
     }
 }

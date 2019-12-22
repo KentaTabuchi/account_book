@@ -39,6 +39,11 @@ class _4xx_EditBudgetController extends Controller
             return redirect('login');
         }
     }
+    /*
+    |--------------------------------------------------------------------------
+    | 401: 結果入力画面からデータを受け取り、402: 処理完了画面を表示させる。 
+    |--------------------------------------------------------------------------
+    */
     public function edit_budget_post(_401_ValidatedRequest $request){
         $user = Auth::user();
         if(isset($user)){
@@ -67,26 +72,5 @@ class _4xx_EditBudgetController extends Controller
             return redirect('login');
         }
     }
-    /*
-    |--------------------------------------------------------------------------
-    | 402: 401で入力した結果確認を表示する画面
-    |--------------------------------------------------------------------------
-    */
-    public function edit_budget_result_get(Request $request){
-        $user = Auth::user();
-        if(isset($user)){
-            $user_id = $user->id;
-            $year = $request->year;
-            $budgets = array();
-            for($i=1;$i<13;$i++){
-                $month = $i;
-                $budget = _402_SQL::select_budget($year,$month,$user_id);
-                $budgets[$i] = $budget;
-            }
-            return view('401_edit_budget',compact('year','budgets'));
-        }
-        else{
-            return redirect('login');
-        }
-    }
+
 }

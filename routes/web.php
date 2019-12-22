@@ -20,6 +20,7 @@
 
 Route::get( '','_1xx_IndexController@index_get');
 Route::get( 'json_total_cost','_1xx_IndexController@json_total_cost');
+Route::get( 'json_budget_cost','_1xx_IndexController@json_budget_cost');
 
 /*
 |--------------------------------------------------------------------------
@@ -75,4 +76,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get( 'edit_budget','_4xx_EditBudgetController@edit_budget_get');
 Route::post( 'edit_budget','_4xx_EditBudgetController@edit_budget_post');
 Route::get( 'edit_budget_result','_4xx_EditBudgetController@edit_budget_result_get');
+
 
