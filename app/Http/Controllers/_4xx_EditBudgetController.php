@@ -55,7 +55,13 @@ class _4xx_EditBudgetController extends Controller
                     _401_SQL::insert_budget($year,$month,$budget,$user_id);
                 }
             }
-            return view('402_edit_budget_result',compact('year'));          
+            for($i=1;$i<13;$i++){
+                $month = $i;
+                $budget = _401_SQL::select_budget($year,$month,$user_id);
+                $budgets[$i] = $budget;
+            }
+
+            return view('402_edit_budget_result',compact('year','budgets'));          
         }
         else{
             return redirect('login');
@@ -69,7 +75,15 @@ class _4xx_EditBudgetController extends Controller
     public function edit_budget_result_get(Request $request){
         $user = Auth::user();
         if(isset($user)){
-            return view('402_edit_budget_result');            
+            $user_id = $user->id;
+            $year = $request->year;
+            $budgets = array();
+            for($i=1;$i<13;$i++){
+                $month = $i;
+                $budget = _402_SQL::select_budget($year,$month,$user_id);
+                $budgets[$i] = $budget;
+            }
+            return view('401_edit_budget',compact('year','budgets'));
         }
         else{
             return redirect('login');
