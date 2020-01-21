@@ -33,6 +33,7 @@ class category_small_seeder extends Seeder
         $params[2124] = ['code' => '2124' ,'name' => '光回線','middle_code' => '212'];
         $params[2125] = ['code' => '2125' ,'name' => 'プロバイダ','middle_code' => '212'];
         $params[2126] = ['code' => '2126' ,'name' => 'サーバーレンタル料','middle_code' => '212'];
+        $params[2127] = ['code' => '2127' ,'name' => '電気','middle_code' => '212'];
         //その他固定
         $params[2131] = ['code' => '2131' ,'name' => '月次生活費振込','middle_code' => '213'];
         //食費
@@ -45,6 +46,7 @@ class category_small_seeder extends Seeder
         $params[2221] = ['code' => '2221' ,'name' => '本・雑誌','middle_code' => '222'];
         $params[2222] = ['code' => '2222' ,'name' => '電化製品','middle_code' => '222'];
         $params[2223] = ['code' => '2223' ,'name' => '家具','middle_code' => '222'];
+        $params[2224] = ['code' => '2224' ,'name' => '服飾','middle_code' => '222'];
         //交通費
         $params[2230] = ['code' => '2230' ,'name' => '通勤費','middle_code' => '223'];
         $params[2231] = ['code' => '2231' ,'name' => 'その他交通費','middle_code' => '223'];
@@ -55,9 +57,9 @@ class category_small_seeder extends Seeder
         $params[2250] = ['code' => '2250' ,'name' => '散髪代','middle_code' => '225'];
         //祭事・イベント
         $params[2260] = ['code' => '2250' ,'name' => '誕生日','middle_code' => '226'];
-        $params[2261] = ['code' => '2250' ,'name' => 'クリスマス','middle_code' => '226'];
-        $params[2262] = ['code' => '2250' ,'name' => '正月','middle_code' => '226'];
-        $params[2269] = ['code' => '2250' ,'name' => 'その他','middle_code' => '226'];
+        $params[2261] = ['code' => '2251' ,'name' => 'クリスマス','middle_code' => '226'];
+        $params[2262] = ['code' => '2252' ,'name' => '正月','middle_code' => '226'];
+        $params[2269] = ['code' => '2253' ,'name' => 'その他','middle_code' => '226'];
 
         foreach($params as $param)
         {
