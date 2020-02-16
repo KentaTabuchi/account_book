@@ -77,4 +77,15 @@ Route::get( 'edit_budget','_4xx_EditBudgetController@edit_budget_get');
 Route::post( 'edit_budget','_4xx_EditBudgetController@edit_budget_post');
 Route::get( 'edit_budget_result','_4xx_EditBudgetController@edit_budget_result_get');
 
+/*
+|--------------------------------------------------------------------------
+| 固定費編集画面
+|  　月々の固定費を年表形式で入力 
+|--------------------------------------------------------------------------
+*/
+
+Route::get( 'input_monthly_cost','_5xx_InputMonthlyFixiedCostController@input_monthly_cost_get');
+Route::post( 'input_monthly_cost','_5xx_InputMonthlyFixiedCostController@input_monthly_cost_post');
+
+
 
