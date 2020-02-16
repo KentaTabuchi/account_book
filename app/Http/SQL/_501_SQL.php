@@ -95,7 +95,7 @@ class _501_SQL{
                 small_code = :small_code
         ",[$user_id,$year,$month,$small_code]);
 
-        return $result->payment;
+        return isset($result->payment) ? $result->payment : "";
     }
 
 }

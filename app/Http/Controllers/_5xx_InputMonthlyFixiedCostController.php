@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\SQL\_501_SQL;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class _5xx_InputMonthlyFixiedCostController extends Controller
 {
@@ -12,10 +13,10 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
         $user = Auth::user();
 
         if(isset($user)){
-            $year = '2020';
+            $year = empty($request->year) ?  Carbon::now()->year : $request->year;
             $expenceList = _501_SQL::get_expence_list();
-            $valuesList = array();
-            //----テキストボックスの初期値に現在の値を入力するためリストを作る。--
+            $valuesList = array();//テキストボックスの初期値に現在の値を入力するためリストを作る。
+            
             foreach($expenceList as $expence){
                 $small_code = $expence->code;
                 $name = $expence->name;
@@ -38,10 +39,6 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
                 ];
                 $valuesList[] = $values;
             }
-            //   dd($valuesList);
-            
-            //----------------------------------------------------------
-            //return view('501_input_monthly_cost',compact('expenceList','year'));
             return view('501_input_monthly_cost',compact('valuesList','year'));
         }
         else{
@@ -70,8 +67,7 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
                 }
             }
         }
-        // $expenceList = _501_SQL::get_expence_list();
-        // return view('501_input_monthly_cost',compact('expenceList','year'));
+
         return redirect('input_monthly_cost');
     }
 

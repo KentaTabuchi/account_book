@@ -65,6 +65,11 @@
           <a href="./read_book_aggregate?table_name=category_balance"></a>
         </div>
         <div class="pnl-img col-md-10 col-md-offset-1 container">
+          <img src="images/101/money_kounetsuhi.png">
+          <p>固定費年表</p>
+          <a href="./input_monthly_cost"></a>
+        </div>
+        <div class="pnl-img col-md-10 col-md-offset-1 container">
           <img src="images/101/haguruma_gear_set_rittai.png">
           <p>予算の設定</p>
           <a href="edit_budget?"></a>

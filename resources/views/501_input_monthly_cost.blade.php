@@ -44,7 +44,10 @@
     <form action="input_monthly_cost" method="post" id="form" >
       @csrf
       <h1>{{$year}}年&nbsp;固定費表</h1>
+      <div class="row">
       <input type="submit" value="更新する" class="btn btn-primary col-1"/>
+      <div id="app" class="col-2"><select-years></select-years></div>
+      </div>
       <table class="table table-dark" data-toggle="table" data-pagination="true">
         <thead class="thead-light">
           <tr>
