@@ -64,21 +64,23 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($expenceList as $expence)
+          @foreach ($valuesList as $values)
           <tr>
-          <td>{{$expence->name}}</td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m1"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m2"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m3"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m4"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m5"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m6"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m7"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m8"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m9"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m10"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m11"></td>
-            <td><input type="text" class="form-control" name="code{{$expence->code}}m12"></td>
+          <td>{{$values['name']}}</td>
+
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m1" value={{$values['m_1']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m2" value={{$values['m_2']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m3" value={{$values['m_3']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m4" value={{$values['m_4']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m5" value={{$values['m_5']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m6" value={{$values['m_6']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m7" value={{$values['m_7']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m8" value={{$values['m_8']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m9" value={{$values['m_9']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m10" value={{$values['m_10']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m11" value={{$values['m_11']}}></td>
+            <td><input type="text" class="form-control" name="code{{$values['small_code']}}m12" value={{$values['m_12']}}></td>
+   
           </tr>
           @endforeach
         </tbody>

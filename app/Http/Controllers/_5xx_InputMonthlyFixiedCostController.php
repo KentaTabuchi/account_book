@@ -12,13 +12,37 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
         $user = Auth::user();
 
         if(isset($user)){
-            $expenceList = _501_SQL::get_expence_list();
             $year = '2020';
+            $expenceList = _501_SQL::get_expence_list();
+            $valuesList = array();
             //----テキストボックスの初期値に現在の値を入力するためリストを作る。--
+            foreach($expenceList as $expence){
+                $small_code = $expence->code;
+                $name = $expence->name;
+                $values = [
+                    'small_code' => $small_code
+                    ,'name' => $name
+                    , 'm_1' => _501_SQL::get_payment($user->id,$year, 1,$small_code)
+                    , 'm_2' => _501_SQL::get_payment($user->id,$year, 2,$small_code)
+                    , 'm_3' => _501_SQL::get_payment($user->id,$year, 3,$small_code)
+                    , 'm_4' => _501_SQL::get_payment($user->id,$year, 4,$small_code)
+                    , 'm_5' => _501_SQL::get_payment($user->id,$year, 5,$small_code)
+                    , 'm_6' => _501_SQL::get_payment($user->id,$year, 6,$small_code)
+                    , 'm_7' => _501_SQL::get_payment($user->id,$year, 7,$small_code)
+                    , 'm_8' => _501_SQL::get_payment($user->id,$year, 8,$small_code)
+                    , 'm_9' => _501_SQL::get_payment($user->id,$year, 9,$small_code)
+                    ,'m_10' => _501_SQL::get_payment($user->id,$year,10,$small_code)
+                    ,'m_11' => _501_SQL::get_payment($user->id,$year,11,$small_code)
+                    ,'m_12' => _501_SQL::get_payment($user->id,$year,12,$small_code)
 
-
+                ];
+                $valuesList[] = $values;
+            }
+            //   dd($valuesList);
+            
             //----------------------------------------------------------
-            return view('501_input_monthly_cost',compact('expenceList','year'));
+            //return view('501_input_monthly_cost',compact('expenceList','year'));
+            return view('501_input_monthly_cost',compact('valuesList','year'));
         }
         else{
             return redirect('login');
@@ -46,8 +70,9 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
                 }
             }
         }
-        $expenceList = _501_SQL::get_expence_list();
-        return view('501_input_monthly_cost',compact('expenceList','year'));
+        // $expenceList = _501_SQL::get_expence_list();
+        // return view('501_input_monthly_cost',compact('expenceList','year'));
+        return redirect('input_monthly_cost');
     }
 
 
