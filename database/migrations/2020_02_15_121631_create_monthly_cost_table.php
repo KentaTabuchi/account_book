@@ -20,6 +20,7 @@ class CreateMonthlyCostTable extends Migration
             $table->integer('month');           //支払い月
             $table->integer('small_code');      //小分類
             $table->integer('payment');         //支払額
+            $table->integer('user_id');         //ユーザーID
         });
     }
 

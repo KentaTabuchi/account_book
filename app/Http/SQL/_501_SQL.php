@@ -19,6 +19,8 @@ class _501_SQL{
                 code,name
             FROM
                 category_small
+            WHERE
+                middle_code in ('211','212','213')
         ");
 
         return $result;
@@ -28,20 +30,21 @@ class _501_SQL{
     //
     //================================================================
 
-    public static function insert_expence_list($payment,$small_code,$year,$month)
+    public static function insert_monthly_cost($user_id,$payment,$small_code,$year,$month)
     {
         $result = DB::insert("
             INSERT INTO
                 monthly_cost
             (
-                 payment
+                 user_id
+                ,payment
                 ,small_code
                 ,year
                 ,month
             )
             VALUES
-                (?,?,?,?)
-        ",[$payment,$small_code,$year,$month]);
+                (?,?,?,?,?)
+        ",[$user_id,$payment,$small_code,$year,$month]);
 
         return $result;
     }
@@ -51,7 +54,7 @@ class _501_SQL{
     //
     //================================================================
 
-    public static function update_expence_list($payment,$small_code,$year,$month)
+    public static function update_monthly_cost($user_id,$payment,$small_code,$year,$month)
     {
         $result = DB::update("
             UPDATE 
@@ -59,12 +62,14 @@ class _501_SQL{
             SET 
                 payment = :payment
             WHERE
+                user_id = :user_id
+              AND
                 small_code = :small_code
               AND
                 year = :year
               AND
                 month = :month
-        ",[$payment,$small_code,$year,$month]);
+        ",[$payment,$user_id,$small_code,$year,$month]);
 
         return $result;
     }
