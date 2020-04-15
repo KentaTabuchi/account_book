@@ -37,10 +37,11 @@ class category_small_seeder extends Seeder
         //その他固定
         $params[2131] = ['code' => '2131' ,'name' => '月次生活費振込','middle_code' => '213'];
         //食費
-        $params[2210] = ['code' => '2210' ,'name' => 'スーパー・コンビニ等','middle_code' => '221'];
-        $params[2211] = ['code' => '2211' ,'name' => '自動販売機','middle_code' => '221'];
-        $params[2212] = ['code' => '2212' ,'name' => '飲食店一般','middle_code' => '221'];
-        $params[2213] = ['code' => '2213' ,'name' => '会食','middle_code' => '221'];
+        $params[2210] = ['code' => '2210' ,'name' => '生鮮品','middle_code' => '221'];
+        $params[2211] = ['code' => '2211' ,'name' => '加工食品','middle_code' => '221'];
+        $params[2212] = ['code' => '2212' ,'name' => '菓子','middle_code' => '221'];
+        $params[2213] = ['code' => '2213' ,'name' => 'ソフトドリンク','middle_code' => '221'];
+        $params[2214] = ['code' => '2214' ,'name' => '酒類','middle_code' => '221'];
         //雑貨・本・家具・家電等
         $params[2220] = ['code' => '2220' ,'name' => '日用雑貨','middle_code' => '222'];
         $params[2221] = ['code' => '2221' ,'name' => '本・雑誌','middle_code' => '222'];
