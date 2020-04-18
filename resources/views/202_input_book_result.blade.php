@@ -50,7 +50,6 @@
               <tr> <td>小分類</td><td>{{$request->category_small}}</td> </tr>
               <tr> <td>メモ</td><td>{{$request->memo}}</td> </tr>
               <tr> <td>金額</td><td class="txt-currency">{{$request->payment}}</td> </tr>
-              <tr> <td>収支</td><td>{{$request->category_balance}}</td> </tr>
             </tbody>
           </table>
         </div><!--card-->

@@ -43,54 +43,61 @@
     <div class="container col-md-10 offset-md-1 col-lg-4 card" id="input_form">
       <form action="input_book" method="post" id="form" >
       @csrf
-      <div class="row">
+      {{-- 日付 --}}
+      　<div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="category_balance" class="txt-itemname" >日付</label>
             <input type="text" name="pay_day" class="form-control datetimepicker-input"
               id="datetimepicker" data-toggle="datetimepicker" data-target="#datetimepicker"
             />
           </div>
-        </div><!--row-->
+        </div>
+        {{-- 収支 --}}
         <div class="row" >
           <div class="container col-md-10 offset-md-1">
             <label for="category_balance"　class="txt-itemname">収支</label>
             <select name="category_balance" class="form-control" 
             id="category_balance" v-model="category_balance">
-              <option v-for="item in json_balance">@{{item.name}}</option>
+              <option v-for="item in json_balance" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
-        </div><!--row-->
+        </div>
+        {{-- 大分類 --}}
         <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="category_large"　class="txt-itemname">大分類</label>
             <select name="category_large" class="form-control" id="category_large" v-model="category_large">
-              <option v-for="item in json_large">@{{item.name}}</option>
+              <option v-for="item in json_large" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
-        </div><!--row-->
+        </div>
+        {{-- 中分類 --}}
         <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="category_middle"　class="txt-itemname">中分類</label>
             <select name="category_middle"  class="form-control" id="category_middle" v-model="category_middle">
-              <option v-for="item in json_middle">@{{item.name}}</option>
+              <option v-for="item in json_middle" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
-        </div><!--row-->
+        </div>
+        {{-- 小分類 --}}
         <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="category_small"　class="txt-itemname">小分類</label>
             <select name="category_small" class="form-control" id="category_small" v-model="category_small">
-            <option v-for="item in json_small">@{{item.name}}</option>
+            <option v-for="item in json_small" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
-        </div><!--row-->
+        </div>
+        {{-- メモ --}}
         <div class="row">
           <div class="container col-md-10 offset-md-1">
-            <label for="category_balance"　class="txt-itemname">メモ</label>
-            <input type="text"  name="memo" class="form-control" id="category_balance" v-model="memo">
+            <label for="memo"　class="txt-itemname">メモ</label>
+            <input type="text"  name="memo" class="form-control" id="memo" v-model="memo">
           </select>
           </div>
-        </div><!--row-->
+        </div>
+        {{-- 金額 --}}
         <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="payment"　class="txt-itemname">金額</label>
@@ -99,7 +106,6 @@
             @if($errors->has('payment'))
             <p>整数を入力してください。</p>
             @endif
-
           </div>
         </div><!--row-->
         <div class="row mt-5">
@@ -107,11 +113,6 @@
             <input type="submit" class="btn-lg btn-block btn-primary" value="書き込む">
           </div>
         </div><!--row-->
-        <input type="hidden" name="changed_form" v-model="changed_form">
-        <input type="hidden" name="balance_code" v-model="code_balance">
-        <input type="hidden" name="large_code" v-model="code_large">
-        <input type="hidden" name="middle_code" v-model="code_middle">
-        <input type="hidden" name="small_code" v-model="code_small">
       </form>
     </div>
   </div><!--row-->

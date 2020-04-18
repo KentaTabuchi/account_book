@@ -52,7 +52,7 @@
             <p class="text-success text-sm">&#40;{{$old->balance_name}}&#41;</p>
             <select name="category_balance" class="form-control" 
             id="category_balance" v-model="category_balance">
-              <option v-for="item in json_balance">@{{item.name}}</option>
+              <option v-for="item in json_balance" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
         </div><!--row-->
@@ -61,7 +61,7 @@
             <label for="category_large" class="txt-itemname">大分類</label>
             <p class="text-success text-sm">&#40;{{$old->large_name}}&#41;</p>
             <select name="category_large" class="form-control" id="category_large" v-model="category_large">
-              <option v-for="item in json_large">@{{item.name}}</option>
+              <option v-for="item in json_large" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
         </div><!--row-->
@@ -70,7 +70,7 @@
             <label for="category_middle" class="txt-itemname">中分類</label>
             <p class="text-success text-sm">&#40;{{$old->middle_name}}&#41;</p>
             <select name="category_middle"  class="form-control" id="category_middle" v-model="category_middle">
-              <option v-for="item in json_middle">@{{item.name}}</option>
+              <option v-for="item in json_middle" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
         </div><!--row-->
@@ -79,15 +79,15 @@
             <label for="category_small" class="txt-itemname">小分類</label>
             <p class="text-success text-sm">&#40;{{$old->small_name}}&#41;</p>
             <select name="category_small" class="form-control" id="category_small" v-model="category_small">
-            <option v-for="item in json_small">@{{item.name}}</option>
+            <option v-for="item in json_small" v-bind:value="item.code">@{{item.name}}</option>
           </select>
           </div>
         </div><!--row-->
         <div class="row">
           <div class="container col-md-10 offset-md-1">
-            <label for="category_balance" class="txt-itemname">メモ</label>
+            <label for="memo" class="txt-itemname">メモ</label>
             <p class="text-success text-sm">&#40;{{$old->memo}}&#41;</p>
-            <input type="text"  name="memo" class="form-control" id="category_balance" v-model="memo"
+            <input type="text"  name="memo" class="form-control" id="memo" v-model="memo"
               value = "{{$old->memo}}">
           </select>
           </div>
@@ -109,12 +109,7 @@
             <input type="submit" class="btn-lg btn-block btn-primary" value="更新する">
           </div>
         </div><!--row-->
-        <input type="hidden" name="changed_form" v-model="changed_form">
         <input type="hidden" name="id" value="{{$old->id}}">
-        <input type="hidden" name="balance_code" v-model="code_balance">
-        <input type="hidden" name="large_code" v-model="code_large">
-        <input type="hidden" name="middle_code" v-model="code_middle">
-        <input type="hidden" name="small_code" v-model="code_small">
       </form>
     </div>
   </div><!--row-->

@@ -23,18 +23,28 @@ class _2xx_InputBookController extends Controller
     }
 
     public function input_book_post(_201_ValidatedRequest $request){
+        //日付の指定がなければ当日を指定
         $today = isset($request->pay_day) ? $request->pay_day : Carbon::today()->toDateString();
+
+        //入力フォームの値をDBへ登録する
         _201_SQL::insert_to_account_book(
-             $request->balance_code
-            ,$request->large_code
-            ,$request->middle_code
-            ,$request->small_code
+             $request->category_balance
+            ,$request->category_large
+            ,$request->category_middle
+            ,$request->category_small
             ,$request->memo
             ,Carbon::today()
             ,$request->payment
             ,Carbon::now()
             ,Auth::user()->id
         );
+
+        //結果ページに名前で表示するため、分類名をコードから取得する。
+        $request->category_balance = _201_SQL::get_category_name_by_code('balance',$request->category_balance);
+        $request->category_large = _201_SQL::get_category_name_by_code('large',$request->category_large);
+        $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
+        $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
+
         return view('202_input_book_result',compact('request','today'));
     }
     /*
@@ -50,23 +60,28 @@ class _2xx_InputBookController extends Controller
 
     public function edit_book_post(_211_ValidatedRequest $request){
 
+        //入力フォームの値をDBへ登録する
         DB::table('account_book')->where('id','=',$request->id)
                                  ->update([
                                      'pay_day' => $request->pay_day
-                                    ,'balance_code' => $request->balance_code
-                                    ,'large_code' => $request->large_code
-                                    ,'middle_code' => $request->middle_code
-                                    ,'small_code' => $request->small_code
+                                    ,'balance_code' => $request->category_balance
+                                    ,'large_code' => $request->category_large
+                                    ,'middle_code' => $request->category_middle
+                                    ,'small_code' => $request->category_small
                                     ,'memo' => $request->memo
                                     ,'payment' => $request->payment
                                     ,'updated_at' => Carbon::now()
                                     ]);
 
-        
+        //結果ページに名前で表示するため、分類名をコードから取得する。
+        $request->category_balance = _201_SQL::get_category_name_by_code('balance',$request->category_balance);
+        $request->category_large = _201_SQL::get_category_name_by_code('large',$request->category_large);
+        $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
+        $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
         return view('212_edit_book_result',compact('request'));
     }
     //=====================================================================================
-    //　jsonを返すapi vueから呼び出し、セレクトボックスへバインドする
+    //　分類コードと分類名のリストをjson形式で返すAPI vue.js側から呼び出し、セレクトボックスへセットする
     //=====================================================================================
     public function json_balance(Request $request){
         $category_balance = _201_SQL::select_balance();   
@@ -74,7 +89,6 @@ class _2xx_InputBookController extends Controller
         return $category_balance_encorded;
     }
     public function json_large(Request $request){
-        // dd($request->code_balance);
         $category_large = _201_SQL::select_large($request->code_balance);   
         $category_large_encorded = json_encode($category_large,JSON_UNESCAPED_UNICODE);
         return $category_large_encorded;
@@ -88,28 +102,5 @@ class _2xx_InputBookController extends Controller
         $category_small = _201_SQL::select_small($request->code_middle); //引数増やして分類と大コードがいる？  
         $category_small_encorded = json_encode($category_small,JSON_UNESCAPED_UNICODE);
         return $category_small_encorded;
-    }
-    //=====================================================================================
-    //　jsonを返すapi vueから呼び出し、選択されたセレクトボックスの名前からコードを返す。
-    //=====================================================================================
-    public function code_balance(Request $request){
-        $balance_code = _201_SQL::select_balance_code($request->code); 
-        $balance_code_encorded = json_encode($balance_code,JSON_UNESCAPED_UNICODE);
-        return $balance_code_encorded;
-    }
-    public function code_large(Request $request){
-        $large_code = _201_SQL::select_large_code($request->code); 
-        $large_code_encorded = json_encode($large_code,JSON_UNESCAPED_UNICODE);
-        return $large_code_encorded;
-    }
-    public function code_middle(Request $request){
-        $middle_code = _201_SQL::select_middle_code($request->code); 
-        $middle_code_encorded = json_encode($middle_code,JSON_UNESCAPED_UNICODE);
-        return $middle_code_encorded;
-    }
-    public function code_small(Request $request){
-        $small_code = _201_SQL::select_small_code($request->code); 
-        $small_code_encorded = json_encode($small_code,JSON_UNESCAPED_UNICODE);
-        return $small_code_encorded;
     }
 }

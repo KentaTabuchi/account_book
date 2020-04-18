@@ -25,10 +25,10 @@ class _211_ValidatedRequest extends FormRequest
     {
         return [
             'payment' => 'required|integer'
-            ,'balance_code' => 'not_in: 0'
-            ,'large_code' => 'not_in: 0'
-            ,'middle_code' => 'not_in: 0'
-            ,'small_code' => 'not_in: 0'
+            ,'category_balance' => 'not_in: 0'
+            ,'category_large' => 'not_in: 0'
+            ,'category_middle' => 'not_in: 0'
+            ,'category_small' => 'not_in: 0'
         ];
     }
 }

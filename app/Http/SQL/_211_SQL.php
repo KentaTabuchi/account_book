@@ -83,72 +83,26 @@ class _211_SQL{
         return $result;
     }
     //================================================================
-    //  セレクトボックスで選択された名称からコード番号を取得する
+    //  セレクトボックスで選択された分類コードから分類名を取得する
     //
     //================================================================
     /**
-     * 分類（収支）名前を引数にコードを取得
+     * @param $category: 取得する分類グループ
+     * @param $code: 分類コード
+     * @result 分類名   
      */
-    public static function select_balance_code(string $name)
+    public static function get_category_name_by_code(string $category,string $code)
     {
-        $result = DB::select("
+        $result = DB::selectOne("
             SELECT 
-                code
+                name
             FROM
-                category_balance
+                category_$category
             WHERE
-                name = '$name'
-        ");
+                code = :code
+        ",['code' => $code]);
 
-        return $result[0]->code;
-    }
-    /**
-     * 分類（大）名前を引数にコードを取得
-     */
-    public static function select_large_code(string $name)
-    {
-        $result = DB::select("
-            SELECT 
-                code
-            FROM
-                category_large
-            WHERE
-                name = '$name'
-        ");
-
-        return $result[0]->code;
-    }
-    /**
-     * 分類（中）名前を引数にコードを取得
-     */
-    public static function select_middle_code(string $name)
-    {
-        $result = DB::select("
-            SELECT 
-                code
-            FROM
-                category_middle
-            WHERE
-                name = '$name'
-        ");
-
-        return $result[0]->code;
-    }
-    /**
-     * 分類（小）名前を引数にコードを取得
-     */
-    public static function select_small_code(string $name)
-    {
-        $result = DB::select("
-            SELECT 
-                code
-            FROM
-                category_small
-            WHERE
-                name = '$name'
-        ");
-
-        return $result[0]->code;
+        return $result->name;
     }
     //================================================================
     //  前回データをラベル用に取得
