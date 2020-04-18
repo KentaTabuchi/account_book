@@ -15,6 +15,13 @@
   content: '】';
 }
 
+.txt-error {
+  color: red;
+  font-size: 13px;
+  font-weight: bold;
+  display: inline;
+}
+
 .mtpx-100 {
   margin-top: 100px;
 }

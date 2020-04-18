@@ -84,6 +84,11 @@
         <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="category_small"　class="txt-itemname">小分類</label>
+            @if($errors->has('category_small'))
+              @foreach($errors->get('category_small') as $error)
+              <p class="txt-error">{{$error}}</p>
+              @endforeach
+            @endif
             <select name="category_small" class="form-control" id="category_small" v-model="category_small">
             <option v-for="item in json_small" v-bind:value="item.code">@{{item.name}}</option>
           </select>
@@ -101,11 +106,13 @@
         <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="payment"　class="txt-itemname">金額</label>
+            @if($errors->has('payment'))
+              @foreach($errors->get('payment') as $error)
+              <p class="txt-error">{{$error}}</p>
+              @endforeach
+            @endif
             <input type="text" id="payment"  name="payment" class="form-control" 
             v-model="payment">
-            @if($errors->has('payment'))
-            <p>整数を入力してください。</p>
-            @endif
           </div>
         </div><!--row-->
         <div class="row mt-5">

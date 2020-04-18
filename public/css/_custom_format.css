@@ -14,3 +14,10 @@
 .txt-itemname:after {
   content: '】';
 }
+
+.txt-error {
+  color: red;
+  font-size: 13px;
+  font-weight: bold;
+  display: inline;
+}
