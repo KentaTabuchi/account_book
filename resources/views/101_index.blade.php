@@ -14,8 +14,8 @@
 <!--ホームアイコンの設定-->
 <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="./images/apple-touch-icon.png" sizes="180x180">
-<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
-<link rel="icon" type="image/png" href="./images/android-touch-icon.png" sizes="192x192">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="icon" type="image/png" href="/android-touch-icon.png" sizes="192x192">
 <!--chart.js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 <!--axios-->
