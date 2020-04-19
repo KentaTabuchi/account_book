@@ -40,7 +40,7 @@
   </nav>
 
   <div class="row　justify-content-around mtpx-100">
-    <div class="container col-md-10 offset-md-1 col-lg-4 card" id="input_form">
+    <div class="container col-md-10 offset-md-1 col-lg-4 card bg-light" id="input_form">
       <form action="input_book" method="post" id="form" >
       @csrf
       {{-- 日付 --}}
