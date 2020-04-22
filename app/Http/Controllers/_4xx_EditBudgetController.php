@@ -17,14 +17,6 @@ use App\Http\Requests\_401_ValidatedRequest;
 */
 class _4xx_EditBudgetController extends Controller
 {
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        //ログインしていない場合ログインページにリダイレクトする。
-        $this->middleware('auth');
-    }
     /*
     |--------------------------------------------------------------------------
     | 401: 月別の変動費予算を入力する画面
@@ -71,7 +63,7 @@ class _4xx_EditBudgetController extends Controller
                 _401_SQL::insert_budget($year,$month,$budget,$user_id);
             }
         }
-        
+
         for($i=1;$i<13;$i++){
             $month = $i;
             $budget = _401_SQL::select_budget($year,$month,$user_id);

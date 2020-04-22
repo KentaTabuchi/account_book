@@ -17,14 +17,7 @@ use Illuminate\Support\Facades\Auth;
 */
 class _3xx_ReadBookController extends Controller
 {
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        //ログインしていない場合ログインページにリダイレクトする。
-        $this->middleware('auth');
-    }
+
 /*
 |--------------------------------------------------------------------------
 | 301: 1件ごとのデータ一覧を表示する画面

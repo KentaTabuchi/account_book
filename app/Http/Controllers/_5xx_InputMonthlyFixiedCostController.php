@@ -9,14 +9,6 @@ use Carbon\Carbon;
 
 class _5xx_InputMonthlyFixiedCostController extends Controller
 {
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        //ログインしていない場合ログインページにリダイレクトする。
-        $this->middleware('auth');
-    }
 
     public function input_monthly_cost_get(Request $request){
         $user = Auth::user();

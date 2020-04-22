@@ -18,14 +18,6 @@ use Illuminate\Support\Facades\Auth;
 */
 class _2xx_InputBookController extends Controller
 {
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        //ログインしていない場合ログインページにリダイレクトする。
-        $this->middleware('auth');
-    }
 
     public function input_book_get(Request $request){
         //ログイン中のユーザーを取得

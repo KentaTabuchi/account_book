@@ -14,15 +14,7 @@ use App\Http\SQL\_101_SQL;
 
 class _1xx_IndexController extends Controller
 {
-    /**
-     * @return void
-     */
-    public function __construct()
-    {
-        //ログインしていない場合ログインページにリダイレクトする。
-        $this->middleware('auth');
-    }
-    
+
     /**
      * トップページの表示
      */
