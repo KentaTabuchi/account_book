@@ -9,14 +9,22 @@ use Carbon\Carbon;
 
 class _5xx_InputMonthlyFixiedCostController extends Controller
 {
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインしていない場合ログインページにリダイレクトする。
+        $this->middleware('auth');
+    }
+
     public function input_monthly_cost_get(Request $request){
         $user = Auth::user();
 
-        if(isset($user)){
-            $year = empty($request->year) ?  Carbon::now()->year : $request->year;
-            $expenceList = _501_SQL::get_expence_list();
-            $valuesList = array();//テキストボックスの初期値に現在の値を入力するためリストを作る。
-            
+        $year = empty($request->year) ?  Carbon::now()->year : $request->year;
+        $expenceList = _501_SQL::get_expence_list();
+        $valuesList = array();//テキストボックスの初期値に現在の値を入力するためリストを作る。
+        
             foreach($expenceList as $expence){
                 $small_code = $expence->code;
                 $name = $expence->name;
@@ -40,10 +48,6 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
                 $valuesList[] = $values;
             }
             return view('501_input_monthly_cost',compact('valuesList','year'));
-        }
-        else{
-            return redirect('login');
-        }
 
     }
 
@@ -70,6 +74,4 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
 
         return redirect('input_monthly_cost');
     }
-
-
 }

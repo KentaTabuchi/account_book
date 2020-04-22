@@ -9,6 +9,7 @@ use App\Http\SQL\_301_SQL;
 use App\Http\SQL\_302_SQL;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | 閲覧画面のコントローラー
@@ -16,6 +17,14 @@ use Illuminate\Support\Facades\Auth;
 */
 class _3xx_ReadBookController extends Controller
 {
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインしていない場合ログインページにリダイレクトする。
+        $this->middleware('auth');
+    }
 /*
 |--------------------------------------------------------------------------
 | 301: 1件ごとのデータ一覧を表示する画面

@@ -18,17 +18,32 @@ use Illuminate\Support\Facades\Auth;
 */
 class _2xx_InputBookController extends Controller
 {
+    /**
+     * @return void
+     */
+    public function __construct()
+    {
+        //ログインしていない場合ログインページにリダイレクトする。
+        $this->middleware('auth');
+    }
+
     public function input_book_get(Request $request){
-        return view('201_input_book');
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        return view('201_input_book',compact('user'));
     }
 
     public function input_book_post(_201_ValidatedRequest $request){
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
         //日付の指定がなければ当日を指定
         $today = isset($request->pay_day) ? $request->pay_day : Carbon::today()->toDateString();
 
         //入力フォームの値をDBへ登録する
         _201_SQL::insert_to_account_book(
-             $request->category_balance
+            $request->category_balance
             ,$request->category_large
             ,$request->category_middle
             ,$request->category_small
@@ -45,7 +60,7 @@ class _2xx_InputBookController extends Controller
         $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
         $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
 
-        return view('202_input_book_result',compact('request','today'));
+        return view('202_input_book_result',compact('request','today','user'));
     }
     /*
 |--------------------------------------------------------------------------
