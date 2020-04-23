@@ -61,11 +61,17 @@ class _2xx_InputBookController extends Controller
 */
 
     public function edit_book_get(Request $request){
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        //編集前のデータを取得
         $old = _211_SQL::select_old_data_for_label($request->id);
-        return view('211_edit_book',compact('old'));
+        return view('211_edit_book',compact('old','user'));
     }
 
     public function edit_book_post(_211_ValidatedRequest $request){
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
 
         //入力フォームの値をDBへ登録する
         DB::table('account_book')->where('id','=',$request->id)
@@ -85,7 +91,8 @@ class _2xx_InputBookController extends Controller
         $request->category_large = _201_SQL::get_category_name_by_code('large',$request->category_large);
         $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
         $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
-        return view('212_edit_book_result',compact('request'));
+        
+        return view('212_edit_book_result',compact('request','user'));
     }
     //=====================================================================================
     //　分類コードと分類名のリストをjson形式で返すAPI vue.js側から呼び出し、セレクトボックスへセットする

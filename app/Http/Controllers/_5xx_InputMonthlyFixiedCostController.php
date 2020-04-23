@@ -11,6 +11,7 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
 {
 
     public function input_monthly_cost_get(Request $request){
+        //ログイン中のユーザ情報を取得
         $user = Auth::user();
 
         $year = empty($request->year) ?  Carbon::now()->year : $request->year;
@@ -39,13 +40,16 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
                 ];
                 $valuesList[] = $values;
             }
-            return view('501_input_monthly_cost',compact('valuesList','year'));
+            return view('501_input_monthly_cost',compact('valuesList','year','user'));
 
     }
 
     public function input_monthly_cost_post(Request $request){
+        //ログイン中のユーザ情報を取得
+        $user = Auth::user();
         $expenceList = _501_SQL::get_expence_list();
-        $user_id = Auth::user()->id;
+        
+        $user_id = $user->id;
         $year = $request->year;
         $small_code = 0;
         $payment = 0;           //支払い金額をテキストボックスからループ処理で取得
@@ -59,7 +63,7 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
                 
                 $update_num = _501_SQL::update_monthly_cost($user_id,$payment,$small_code,$year,$month);
                 if($update_num == 0) {
-                     _501_SQL::insert_monthly_cost($user_id,$payment,$small_code,$year,$month);
+                     _501_SQL::insert_monthly_cost($user_id,$payment,$small_code,$year,$month,$user);
                 }
             }
         }

@@ -1,38 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <!-- BootstrapのCSS読み込み -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- jQuery読み込み -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <!-- BootstrapのJS読み込み -->
-  <script src="js/bootstrap.min.js"></script>
-  <!-- Vue.jsのJS読み込み -->    
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
-  <link href="css/custom.css" rel="stylesheet">
-  <title>家計簿</title>
-</head>
+@extends('layouts.common_base')
 
-<body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-<a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
-     aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-     </button>
-      <div class="collapse navbar-collapse" id="navmenu">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
-          <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
-          <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
-        </div>
-        <!--.navbar-nav-->
-      </div>
-      <!--#navmenu-->
-  </nav>
+@section('navbar-current')
+  <span class="navbar-text text-warning">編集結果<span>
+@endsection
+
+@section('navbar-menu')
+  <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
+  <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+  <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
+@endsection
+
+@section('contents')
   <div class="row mtpx-100">
         <div class="card col-md-12 container">
           <table class="table">
@@ -61,10 +39,13 @@
     </div>
     </div>
   </div><!--row 大枠-->
- 
+@endsection
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-</body>
-</html>
+@section('footer_load_css')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+@endsection 
+
+@section('footer_load_javascript')
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@endsection

@@ -7,6 +7,10 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 @endsection
 
+@section('navbar-current')
+  <span class="navbar-text text-warning">ホーム<span>
+@endsection
+
 @section('navbar-menu')
   <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
   <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>

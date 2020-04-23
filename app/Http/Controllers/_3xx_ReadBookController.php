@@ -24,9 +24,12 @@ class _3xx_ReadBookController extends Controller
 |--------------------------------------------------------------------------
 */
     public function read_book_get(Request $request){
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
         $record = _301_SQL::select_account_book(Auth::user()->id);
 
-        return view('301_read_book',compact('record'));
+        return view('301_read_book',compact('record','user'));
     }
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +37,14 @@ class _3xx_ReadBookController extends Controller
 |--------------------------------------------------------------------------
 */
     public function read_book_aggregate_get(Request $request){
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
         $year=$request->year;
         $table_name = $request->table_name;
 
         $record_set = $this->get_aggregate_table($year,$table_name);
-        return view('302_read_book_aggregate',compact('record_set','year'));
+        return view('302_read_book_aggregate',compact('record_set','year','user'));
     }
 
     //1年分の年表を返す

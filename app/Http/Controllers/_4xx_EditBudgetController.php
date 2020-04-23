@@ -37,7 +37,7 @@ class _4xx_EditBudgetController extends Controller
             $budget = _401_SQL::select_budget($year,$month,$user_id);
             $budgets[$i] = $budget;
         }
-        return view('401_edit_budget',compact('year','budgets'));
+        return view('401_edit_budget',compact('year','budgets','user'));
     }
     /*
     |--------------------------------------------------------------------------
@@ -70,8 +70,7 @@ class _4xx_EditBudgetController extends Controller
             $budgets[$i] = $budget;
         }
 
-            return view('402_edit_budget_result',compact('year','budgets'));          
+            return view('402_edit_budget_result',compact('year','budgets','user'));          
         }
     }
 
-}

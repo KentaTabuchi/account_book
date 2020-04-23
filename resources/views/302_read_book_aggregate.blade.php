@@ -1,39 +1,15 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-    <meta charset="utf-8">
-    <!-- BootstrapのCSS読み込み -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery読み込み -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- BootstrapのJS読み込み -->
-    <script src="js/bootstrap.min.js"></script>
+@extends('layouts.common_base')
 
-    <!-- Vue.jsのJS読み込み -->    
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+@section('navbar-current')
+  <span class="navbar-text text-warning">集計表<span>
+@endsection
 
-    <meta name="viewport" content="width=device-width">
-    <link href="css/custom.css" rel="stylesheet">
-    <title>家計簿</title>
-    </head>
-<body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
-     aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-     </button>
-      <div class="collapse navbar-collapse" id="navmenu">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
-          <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
-        </div>
-        <!--.navbar-nav-->
-      </div>
-      <!--#navmenu-->
-  </nav>
+@section('navbar-menu')
+  <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
+  <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+@endsection
+
+@section('contents')
   <div class="row mtpx-100">
     <div class="container col-md-10 ml-5">
         <h4>一覧表 {{$year}}年</h4>
@@ -90,12 +66,15 @@
         </table>
         <div>
     </div><!--container-->
-
   </div><!--row-->
-<!-- <script type="text/javascript" src="{{ URL::asset('js/302_read_book_aggregate.js')}}"></script>   -->
-<script src="{{ URL::asset('/js/app.js')}}"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-</body>
-</html>
+@endsection
+
+@section('footer_load_css')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+@endsection 
+
+@section('footer_load_javascript')
+  <script src="{{ URL::asset('/js/app.js')}}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@endsection 
