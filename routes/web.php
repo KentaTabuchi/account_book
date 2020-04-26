@@ -45,6 +45,8 @@ Route::get( 'get_large_code','_2xx_InputBookController@code_large');
 Route::get( 'get_middle_code','_2xx_InputBookController@code_middle');
 Route::get( 'get_small_code','_2xx_InputBookController@code_small');
 
+Route::get( 'json_old','_2xx_InputBookController@json_old');
+
 /*
 |--------------------------------------------------------------------------
 | 家計簿閲覧画面 

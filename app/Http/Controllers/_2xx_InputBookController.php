@@ -10,25 +10,35 @@ use App\Http\Requests\_201_ValidatedRequest;
 use App\Http\Requests\_211_ValidatedRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+
 
 /*
 |--------------------------------------------------------------------------
-| 入力画面のコントローラー
+| 入力・編集画面のコントローラー
 |--------------------------------------------------------------------------
 */
 class _2xx_InputBookController extends Controller
 {
-
     public function input_book_get(Request $request){
         //ログイン中のユーザーを取得
         $user = Auth::user();
 
-        return view('201_input_book',compact('user'));
+        //画面モードの設定
+        $processmode = Config::get('processmode.input');
+
+        //編集用のセッションが残っているとバグるので解放する。
+        $request->session()->forget('selected_id');
+
+        return view('201_input_book',compact('user','processmode'));
     }
 
     public function input_book_post(_201_ValidatedRequest $request){
         //ログイン中のユーザーを取得
         $user = Auth::user();
+        
+        //画面モードの設定
+        $processmode = Config::get('processmode.input');
 
         //日付の指定がなければ当日を指定
         $today = isset($request->pay_day) ? $request->pay_day : Carbon::today()->toDateString();
@@ -52,26 +62,28 @@ class _2xx_InputBookController extends Controller
         $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
         $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
 
-        return view('202_input_book_result',compact('request','today','user'));
+        return view('202_input_book_result',compact('request','today','user','processmode'));
     }
-    /*
-|--------------------------------------------------------------------------
-| 編集画面のコントローラー
-|--------------------------------------------------------------------------
-*/
 
     public function edit_book_get(Request $request){
         //ログイン中のユーザーを取得
         $user = Auth::user();
 
-        //編集前のデータを取得
-        $old = _211_SQL::select_old_data_for_label($request->id);
-        return view('211_edit_book',compact('old','user'));
+        //画面モードの設定
+        $processmode = Config::get('processmode.update');
+
+        //vue.jsから呼び出す用に、編集中のレコードのIDをクラスのセッションに保持する。
+        $request->session()->put('selected_id',$request->id);
+
+        return view('201_input_book',compact('old','user','processmode'));
     }
 
-    public function edit_book_post(_211_ValidatedRequest $request){
+    public function edit_book_post(_201_ValidatedRequest $request){
         //ログイン中のユーザーを取得
         $user = Auth::user();
+        
+        //画面モードの設定
+        $processmode = Config::get('processmode.update');
 
         //入力フォームの値をDBへ登録する
         DB::table('account_book')->where('id','=',$request->id)
@@ -92,7 +104,7 @@ class _2xx_InputBookController extends Controller
         $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
         $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
         
-        return view('212_edit_book_result',compact('request','user'));
+        return view('212_edit_book_result',compact('request','user','processmode'));
     }
     //=====================================================================================
     //　分類コードと分類名のリストをjson形式で返すAPI vue.js側から呼び出し、セレクトボックスへセットする
@@ -116,5 +128,14 @@ class _2xx_InputBookController extends Controller
         $category_small = _201_SQL::select_small($request->code_middle); //引数増やして分類と大コードがいる？  
         $category_small_encorded = json_encode($category_small,JSON_UNESCAPED_UNICODE);
         return $category_small_encorded;
+    }
+
+    //=====================================================================================
+    //　現在DBに書き込まれている詳細情報をIDをキーにしてjson形式で取得する。
+    //=====================================================================================
+    public function json_old(Request $request){
+        $old = _211_SQL::get_old_data($request->session()->get('selected_id')); 
+        $old_encorded = json_encode($old,JSON_UNESCAPED_UNICODE);
+        return $old_encorded;
     }
 }

@@ -8,6 +8,7 @@ var input_form = new Vue({
     category_small:0,
     memo:'',
     payment:0,
+    id:0,
 
     //分類コードと分類名のリスト
     json_balance:[],
@@ -45,6 +46,20 @@ var input_form = new Vue({
         }
       })
     },
+    get_detail: function(){
+      //現在DBに保管されている詳細情報をjsonで取得
+      axios.get('json_old').then((res)=>{
+        if(res) {
+          this.id = res.data.id;
+          this.category_balance = res.data.balance_code;
+          this.category_large = res.data.large_code;
+          this.category_middle = res.data.middle_code;
+          this.category_small = res.data.small_code;
+          this.payment = res.data.payment;
+          this.memo = res.data.memo;
+        }
+      })
+    },
     date_format: function(date,format){
       var format;
       format = format.replace(/YYYY/,date.getFullYear());
@@ -59,6 +74,9 @@ var input_form = new Vue({
 
     //セレクトボックスのデフォルト選択肢を設定
     this.category_balance=2;
+
+    //現在DBに保管されている詳細情報をjsonで取得
+    this.get_detail();
   },
   watch:{
     category_balance:{
@@ -91,10 +109,5 @@ var input_form = new Vue({
         this.fetch('small');
       }
     }, 
-    payment:{
-      handler:function(newVal,oldVal){
-        this.payment = newVal.replace(/\D/g, '');
-      }
-    },
   }
 })

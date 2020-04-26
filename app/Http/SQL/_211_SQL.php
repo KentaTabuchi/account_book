@@ -105,41 +105,25 @@ class _211_SQL{
         return $result->name;
     }
     //================================================================
-    //  前回データをラベル用に取得
+    //  前回データを取得
     //  
     //================================================================
-    public static function select_old_data_for_label($id)
+    public static function get_old_data($id)
     {
         $result = DB::selectone("
             SELECT 
-				 A.id
-				,A.pay_day
-				,B.name as balance_name
-				,C.name as large_name
-				,D.name as middle_name
-				,E.name as small_name
-				,A.memo
-				,A.payment
+				 id
+				,pay_day
+				,balance_code
+				,large_code
+				,middle_code
+				,small_code
+				,memo
+				,payment
 			FROM
-				 account_book A
-			LEFT JOIN
-				category_balance B
-			ON
-				A.balance_code = B.code
-			LEFT JOIN
-				category_large C
-			ON 
-				A.large_code = C.code
-			LEFT JOIN
-				category_middle D
-			ON 
-				A.middle_code = D.code
-			LEFT JOIN
-				category_small E
-			ON
-				A.small_code = E.code
+				 account_book
 			WHERE
-				A.id = :id
+				id = :id
             ",['id' => $id]);
 
             return $result;
