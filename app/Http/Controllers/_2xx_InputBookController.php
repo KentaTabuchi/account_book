@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
-
 /*
 |--------------------------------------------------------------------------
 | 入力・編集画面のコントローラー
@@ -97,14 +96,13 @@ class _2xx_InputBookController extends Controller
                                     ,'payment' => $request->payment
                                     ,'updated_at' => Carbon::now()
                                     ]);
-
         //結果ページに名前で表示するため、分類名をコードから取得する。
         $request->category_balance = _201_SQL::get_category_name_by_code('balance',$request->category_balance);
         $request->category_large = _201_SQL::get_category_name_by_code('large',$request->category_large);
         $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
         $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
         
-        return view('212_edit_book_result',compact('request','user','processmode'));
+        return view('202_input_book_result',compact('request','user','processmode'));
     }
     //=====================================================================================
     //　分類コードと分類名のリストをjson形式で返すAPI vue.js側から呼び出し、セレクトボックスへセットする

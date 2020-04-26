@@ -2,6 +2,7 @@ var input_form = new Vue({
   el:'#input_form',
   data:{
     //フォームの入力値
+    pay_day:'',
     category_balance:0,
     category_large:0,
     category_middle:0,
@@ -71,7 +72,7 @@ var input_form = new Vue({
   mounted:function(){
     //収支分類リストを取得しセレクトボックスに設定する
     this.fetch('balance');
-
+    this.pay_day = moment(new Date).format('YYYY/MM/DD HH:mm');
     //セレクトボックスのデフォルト選択肢を設定
     this.category_balance=2;
 

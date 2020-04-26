@@ -1,7 +1,14 @@
 @extends('layouts.common_base')
 
 @section('navbar-current')
-  <span class="navbar-text text-warning">新規入力結果<span>
+  @switch($processmode)
+    @case(Config::get('processmode.input'))
+      <span class="navbar-text text-warning">新規入力確認<span>
+      @break
+    @case(Config::get('processmode.update'))
+      <span class="navbar-text text-warning">編集結果<span>
+      @break
+  @endswitch
 @endsection
 
 @section('navbar-menu')
@@ -21,7 +28,14 @@
           </tr>
         </thead>
         <tbody  class="table-dark">
-          <tr> <td>日付</td><td>{{$today}}</td> </tr>
+        @switch($processmode)
+          @case(Config::get('processmode.input'))
+            <tr> <td>日付</td><td>{{$today}}</td> </tr>
+            @break
+          @case(Config::get('processmode.update'))
+            <tr> <td>日付</td><td>{{$request->pay_day}}</td> </tr>
+          @break
+        @endswitch
           <tr> <td>収支</td><td>{{$request->category_balance}}</td> </tr>
           <tr> <td>大分類</td><td>{{$request->category_large}}</td> </tr>
           <tr> <td>中分類</td><td>{{$request->category_middle}}</td> </tr>
@@ -30,8 +44,8 @@
           <tr> <td>金額</td><td class="txt-currency">{{$request->payment}}</td> </tr>
         </tbody>
       </table>
-    </div><!--card-->
-  </div><!--row-->
+    </div>
+  </div>
   
   {{-- ボタン部 --}}
   <div class="container col-md-8 col-md-offset-2 mt-5">
@@ -41,7 +55,7 @@
 @endsection 
 
 @section('footer_load_css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 @endsection
 
 @section('footer_load_javascript')

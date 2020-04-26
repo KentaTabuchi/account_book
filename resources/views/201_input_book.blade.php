@@ -39,7 +39,7 @@
           <div class="container col-md-10 offset-md-1">
             <label for="category_balance" class="txt-itemname" >日付</label>
             <input type="text" name="pay_day" class="form-control datetimepicker-input"
-              id="datetimepicker" data-toggle="datetimepicker" data-target="#datetimepicker"
+              id="datetimepicker" v-model="pay_day" data-toggle="datetimepicker" data-target="#datetimepicker"
             />
           </div>
         </div>
@@ -118,7 +118,7 @@
           @endswitch
           </div>
         </div>
-        @if($processmode == Config::get('processmode.input'))
+        @if($processmode == Config::get('processmode.update'))
           <input type="hidden" name="id" v-model="id">
         @endif
       </form>
