@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use App\Http\SQL\_301_SQL;
-use App\Http\SQL\_302_SQL;
+use App\Models\Receipt;
 use Illuminate\Support\Facades\Auth;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 */
 class _3xx_ReadBookController extends Controller
 {
-
 /*
 |--------------------------------------------------------------------------
 | 301: 1件ごとのデータ一覧を表示する画面
@@ -27,7 +24,8 @@ class _3xx_ReadBookController extends Controller
         //ログイン中のユーザーを取得
         $user = Auth::user();
 
-        $record = _301_SQL::select_account_book(Auth::user()->id);
+        //レシートを全件、カテゴリー名を含めて取得する。
+        $record = Receipt::select_account_book(Auth::user()->id);
 
         return view('301_read_book',compact('record','user'));
     }
@@ -47,7 +45,9 @@ class _3xx_ReadBookController extends Controller
         return view('302_read_book_aggregate',compact('record_set','year','user'));
     }
 
-    //1年分の年表を返す
+    /**
+     *  1年分の年表を返す
+     */
     private function get_aggregate_table($year,$table_name){
         $list = DB::table($table_name)->get('code');
         $record_set = array();
@@ -59,12 +59,14 @@ class _3xx_ReadBookController extends Controller
         return $record_set;
     }
 
-    //コード1件分のレコードを返す。
+    /**
+     *  コード1件分のレコードを返す。
+     */
     private function get_record_unit($year,$code,$table_name)
     {
         $user_id = Auth::user()->id;
         $target_code = str_replace('category_','',$table_name) . '_code';
-        $record = _302_SQL::select_aggregate_balance($year,$code,$target_code,$user_id);
+        $record = Receipt::select_aggregate_balance($year,$code,$target_code,$user_id);
         $name = DB::table($table_name)->where('code',$code)->get('name')->first()->name;
         $result = [
              'name'=>''

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
-use App\Http\SQL\_201_SQL;
-use App\Http\SQL\_211_SQL;
 use App\Http\Requests\_201_ValidatedRequest;
 use App\Http\Requests\_211_ValidatedRequest;
+use App\Models\Receipt;
+use App\Models\CategoryBalance;
+use App\Models\CategoryLarge;
+use App\Models\CategoryMiddle;
+use App\Models\CategorySmall;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -43,23 +45,14 @@ class _2xx_InputBookController extends Controller
         $today = isset($request->pay_day) ? $request->pay_day : Carbon::today()->toDateString();
 
         //入力フォームの値をDBへ登録する
-        _201_SQL::insert_to_account_book(
-            $request->category_balance
-            ,$request->category_large
-            ,$request->category_middle
-            ,$request->category_small
-            ,$request->memo
-            ,Carbon::today()
-            ,$request->payment
-            ,Carbon::now()
-            ,Auth::user()->id
-        );
-
+        $recipt = new Receipt;
+        $recipt->add($request);
+        
         //結果ページに名前で表示するため、分類名をコードから取得する。
-        $request->category_balance = _201_SQL::get_category_name_by_code('balance',$request->category_balance);
-        $request->category_large = _201_SQL::get_category_name_by_code('large',$request->category_large);
-        $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
-        $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
+        $request->category_balance  = CategoryBalance::where('code',$request->category_balance)->first()->name;
+        $request->category_large = CategoryLarge::where('code',$request->category_large)->first()->name;
+        $request->category_middle = CategoryMiddle::where('code',$request->category_middle)->first()->name;
+        $request->category_small = CategorySmall::where('code',$request->category_small)->first()->name;
 
         return view('202_input_book_result',compact('request','today','user','processmode'));
     }
@@ -85,22 +78,14 @@ class _2xx_InputBookController extends Controller
         $processmode = Config::get('processmode.update');
 
         //入力フォームの値をDBへ登録する
-        DB::table('account_book')->where('id','=',$request->id)
-                                 ->update([
-                                     'pay_day' => $request->pay_day
-                                    ,'balance_code' => $request->category_balance
-                                    ,'large_code' => $request->category_large
-                                    ,'middle_code' => $request->category_middle
-                                    ,'small_code' => $request->category_small
-                                    ,'memo' => $request->memo
-                                    ,'payment' => $request->payment
-                                    ,'updated_at' => Carbon::now()
-                                    ]);
+        $recipt = Receipt::find($request->id);
+        $recipt->edit($request);
+
         //結果ページに名前で表示するため、分類名をコードから取得する。
-        $request->category_balance = _201_SQL::get_category_name_by_code('balance',$request->category_balance);
-        $request->category_large = _201_SQL::get_category_name_by_code('large',$request->category_large);
-        $request->category_middle = _201_SQL::get_category_name_by_code('middle',$request->category_middle);
-        $request->category_small = _201_SQL::get_category_name_by_code('small',$request->category_small);
+        $request->category_balance  = CategoryBalance::where('code',$request->category_balance)->first()->name;
+        $request->category_large = CategoryLarge::where('code',$request->category_large)->first()->name;
+        $request->category_middle = CategoryMiddle::where('code',$request->category_middle)->first()->name;
+        $request->category_small = CategorySmall::where('code',$request->category_small)->first()->name;
         
         return view('202_input_book_result',compact('request','user','processmode'));
     }
@@ -108,32 +93,42 @@ class _2xx_InputBookController extends Controller
     //　分類コードと分類名のリストをjson形式で返すAPI vue.js側から呼び出し、セレクトボックスへセットする
     //=====================================================================================
     public function json_balance(Request $request){
-        $category_balance = _201_SQL::select_balance();   
-        $category_balance_encorded = json_encode($category_balance,JSON_UNESCAPED_UNICODE);
+        //「収支」リストを取得
+        $category_balance_list = CategoryBalance::all();
+        $category_balance_encorded = json_encode($category_balance_list,JSON_UNESCAPED_UNICODE);
         return $category_balance_encorded;
     }
     public function json_large(Request $request){
-        $category_large = _201_SQL::select_large($request->code_balance);   
-        $category_large_encorded = json_encode($category_large,JSON_UNESCAPED_UNICODE);
+        //「大分類」リストを取得
+        $category_large_list = CategoryLarge::where('balance_code',$request->code_balance)->get();
+        $category_large_encorded = json_encode($category_large_list,JSON_UNESCAPED_UNICODE);
         return $category_large_encorded;
     }
     public function json_middle(Request $request){
-        $category_middle = _201_SQL::select_middle($request->code_large);//引数増やして分類と大コードがいる？   
-        $category_middle_encorded = json_encode($category_middle,JSON_UNESCAPED_UNICODE);
+        //「中分類」リストを取得
+        $category_middle_list = CategoryMiddle::where('large_code',$request->code_large)->get();
+        $category_middle_encorded = json_encode($category_middle_list,JSON_UNESCAPED_UNICODE);
         return $category_middle_encorded;
     }
     public function json_small(Request $request){
-        $category_small = _201_SQL::select_small($request->code_middle); //引数増やして分類と大コードがいる？  
-        $category_small_encorded = json_encode($category_small,JSON_UNESCAPED_UNICODE);
+        //「小分類」リストを取得
+        $category_small_list = CategorySmall::where('middle_code',$request->code_middle)->get();
+        $category_small_encorded = json_encode($category_small_list,JSON_UNESCAPED_UNICODE);
         return $category_small_encorded;
     }
 
-    //=====================================================================================
-    //　現在DBに書き込まれている詳細情報をIDをキーにしてjson形式で取得する。
-    //=====================================================================================
+    /**
+     *  現在DBに書き込まれている詳細情報をIDをキーにしてjson形式で取得する。
+     *  @param $request 
+     *  @return データベースに保管されている入力値
+     */
     public function json_old(Request $request){
-        $old = _211_SQL::get_old_data($request->session()->get('selected_id')); 
-        $old_encorded = json_encode($old,JSON_UNESCAPED_UNICODE);
+        //選択中のレシートを取得する。
+        $recipt = Receipt::find($request->session()->get('selected_id'));
+        
+        //文字コードをエンコードする。
+        $old_encorded = json_encode($recipt,JSON_UNESCAPED_UNICODE);
+
         return $old_encorded;
     }
 }

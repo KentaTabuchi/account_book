@@ -76,11 +76,11 @@ async function asyncFunc () {
     const res1 = await axios.get('json_total_cost');
     const res2 = await axios.get('json_budget_cost');
 
-    console.log(res1.data.total_cost);
-    console.log(res2.data.budget_cost);
+    console.log(res1.data);
+    console.log(res2.data);//予算
 
-    const cost = res1.data.total_cost;
-    const budget = res2.data.budget_cost;
+    const cost = res1.data;
+    const budget = res2.data;//予算
     myChart.data.datasets[0].data[0]= cost; //変動費
     myChart.data.datasets[0].data[1]= budget - cost; //残り予算
     myChart.update();
