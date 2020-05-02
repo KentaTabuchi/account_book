@@ -25,7 +25,12 @@ class _3xx_ReadBookController extends Controller
         $user = Auth::user();
 
         //レシートを全件、カテゴリー名を含めて取得する。
-        $record = Receipt::select_account_book(Auth::user()->id);
+        $record = Receipt::from('receipts as A')
+                    ->JoinCategoryCode()
+                    ->SelectWithCategoryName()
+                    ->where('user_id',$user->id)
+                    ->orderBy('pay_day','desc')
+                    ->get();
 
         return view('301_read_book',compact('record','user'));
     }
@@ -60,34 +65,40 @@ class _3xx_ReadBookController extends Controller
     }
 
     /**
-     *  コード1件分のレコードを返す。
+     *  年表の一行分を返す。
      */
     private function get_record_unit($year,$code,$table_name)
     {
+        //ログイン中のユーザーを取得
         $user_id = Auth::user()->id;
-        $target_code = str_replace('category_','',$table_name) . '_code';
-        $record = Receipt::select_aggregate_balance($year,$code,$target_code,$user_id);
+
+        //どの分類について集計するかを設定する。
+        $category_type = str_replace('category_','',$table_name) . '_code';
+
+        //項目名を取得する。
         $name = DB::table($table_name)->where('code',$code)->get('name')->first()->name;
-        $result = [
-             'name'=>''
-            ,'m1'=>0
-            ,'m2'=>0
-            ,'m3'=>0
-            ,'m4'=>0
-            ,'m5'=>0
-            ,'m6'=>0
-            ,'m7'=>0
-            ,'m8'=>0
-            ,'m9'=>0
-            ,'m10'=>0
-            ,'m11'=>0
-            ,'m12'=>0
-        ];
         $result['name'] = $name;
-        foreach($record as $item){
-            $month = $item->target_month;
-            $result['m'.$month] = $item->sum_payment;
+
+        //対象の分類項目の支払額を月別に集計した結果を取得する。
+        $aggregate_payment = Receipt::where('user_id',$user_id)
+                         ->where($category_type,$code)
+                         ->whereYear('pay_day',$year)
+                         ->select(DB::raw('Month(pay_day) as target_month,SUM(payment) as sum_payment'))
+                         ->groupBy(DB::raw('Month(pay_day)'))
+                         ->get();
+
+        //代入前に初期化する。
+        for($month = 1; $month < 13; $month++) {
+            $result['m'.$month] = '-';
         }
+        
+        //集計結果が存在した月の合計金額をbladeに渡す。
+        foreach($aggregate_payment as $item){
+            for($month = 1; $month < 13; $month++) {
+                $result['m'.$month] =  $month == $item->target_month ? $item->sum_payment : '-';
+            }
+        }
+        
         return $result;
     }
 }

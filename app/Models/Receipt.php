@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Receipt extends Model
 {
-    protected $table = 'account_book';
+    protected $table = 'receipts';
     protected $primaryKey = 'id';
     protected $guarded = array('id');
 
@@ -62,101 +62,26 @@ class Receipt extends Model
                      ->whereMonth('pay_day','=',Carbon::now()->month)
                      ->where('user_id',$user_id);
     }
-
-    //================================================================
-    //  account_bookテーブルから家計簿を全件取得する。
-    //  
-    //  A:account_table
-    //  B:category_balance
-    //  C:category_large
-    //  D:category_middle
-    //  E:category_small
-    //  結合条件:コード番号
-    //================================================================
-    public static function select_account_book($user_id){
-        $result = DB::select("
-            SELECT
-                 A.id 
-                ,A.created_at
-                ,A.updated_at
-                ,A.pay_day
-                ,A.payment
-                ,A.memo
-                ,B.name AS balance_name
-                ,C.name AS large_name
-                ,D.name AS middle_name 
-                ,E.name AS small_name
-            FROM
-                account_book A
-            LEFT OUTER JOIN
-                category_balance B
-            ON 
-                A.balance_code = B.code
-            LEFT OUTER JOIN
-                category_large C
-            ON
-                A.large_code = C.code
-            LEFT OUTER JOIN
-                category_middle D
-            ON
-                A.middle_code = D.code
-            LEFT OUTER JOIN
-                category_small  E
-            ON
-                A.small_code = E.code
-            INNER JOIN
-                users U
-            ON
-                A.user_id = U.id
-            WHERE 
-                A.user_id = :user_id
-            ORDER BY
-                A.pay_day DESC
-
-        ",['user_id' => $user_id]);
-        return $result;
+    /**
+     *  各種 category table を連結する。
+     */
+    public function scopeJoinCategoryCode($query)
+    {
+        return $query->join('category_balance as B','A.balance_code','=','B.code')
+                     ->join('category_large as C','A.large_code','=','C.code')
+                     ->join('category_middle as D','A.middle_code','=','D.code')
+                     ->join('category_small as E','A.small_code','=','E.code');
     }
-    
-    //================================================================
-    //  account_bookテーブルから対象の費目(収支)の合計値を月毎に集計して返す
-    //  
-    //  対象テーブル
-    //      A:account_table
-    //      B:category_balance
-    //  射影条件:
-    //      費目、1月〜12月の集計列
-    //  抽出条件:
-    //      $year:集計する年
-    //
-    //================================================================
-    public static function select_aggregate_balance($year,$code,$target_code,$user_id){
-        $result = DB::select("
 
-					SELECT
-							  SUM(V.sum_payment) AS sum_payment
-							 ,MONTH(V.pay_day) AS target_month
-					FROM
-							(
-								SELECT 
-									A.pay_day As pay_day,SUM(A.payment) AS sum_payment
-								FROM 
-									account_book A
-								INNER JOIN 
-									users U
-								ON
-									A.user_id = U.id
-								WHERE 
-									A.$target_code = :code
-								AND
-									A.user_id = :user_id
-								GROUP BY 
-									A.pay_day
-							) AS V
-					WHERE
-								YEAR(V.pay_day) = :year
-					GROUP BY
-								MONTH(V.pay_day)
-        ",['code' => $code,'year' => $year,'user_id' =>$user_id]);
-        return $result;
-		}
+    /**
+     *  分類コードに対応する名前をエイリアスとしてカラムに追加する。
+     */
+    public function scopeSelectWithCategoryName($query)
+    {
+        return $query->select('*'
+                             ,'B.name as balance_name'
+                             ,'C.name as large_name'
+                             ,'D.name as middle_name'
+                             ,'E.name as small_name');
+    }
 }

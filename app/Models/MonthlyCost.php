@@ -26,27 +26,3 @@ class MonthlyCost extends Model
                      ->where('small_code',$small_code);
     }
 }
-    //================================================================
-    //  月額固定費を取得する。
-    //  条件：ユーザID , 年　の一致
-    //================================================================
-
-    // public static function get_payment($user_id,$year,$month,$small_code)
-    // {
-    //     $result = DB::selectOne("
-    //         SELECT 
-    //             payment
-    //         FROM
-    //             monthly_cost
-    //         WHERE
-    //             user_id = :user_id
-    //           AND
-    //             year = :year
-    //           AND
-    //             month = :month
-    //           AND
-    //             small_code = :small_code
-    //     ",[$user_id,$year,$month,$small_code]);
-
-    //     return isset($result->payment) ? $result->payment : "";
-    // }

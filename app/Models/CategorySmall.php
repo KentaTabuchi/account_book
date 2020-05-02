@@ -20,26 +20,10 @@ class CategorySmall extends Model
     }
 
     /**
-     * 
+     *  固定費に属する小分類のリストを取得する。
      */
     public function scopeFixedCost($query)
     {
         return $query->whereIn('middle_code',[211,212,213]);
     }
-    //     /**
-    //  * 分類（小）テーブルからコードと名前を全件取得
-    //  */
-    // public static function get_expence_list()
-    // {
-    //     $result = DB::select("
-    //         SELECT 
-    //             code,name
-    //         FROM
-    //             category_small
-    //         WHERE
-    //             middle_code in ('211','212','213')
-    //     ");
-
-    //     return $result;
-    // }
 }
