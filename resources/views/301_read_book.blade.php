@@ -15,27 +15,25 @@
         <table class="table table-dark col-xs-10 col-md-10 offset-1" data-toggle="table" data-pagination="true">
           <thead class="thead-light">
           <tr>
-            <th>編集</th>
             <th class="d-none d-md-table-cell" data-sortable="true">日付</th>
             <th class="d-none d-md-table-cell" data-sortable="true">収支</th>
             <th class="d-none d-md-table-cell" data-sortable="true" class="d-none d-md-table-cell">大分類</th>
             <th class="d-none d-md-table-cell" data-sortable="true">中分類</th>
             <th data-sortable="true">小分類</th>
-            <th>メモ</th>
             <th data-sortable="true">金額</th>
+            <th>詳細</th>
           </tr>
           </thead>
           <tbody>
           @foreach ($record as $item)
           <tr>
-            <td><button type="button" onclick="location.href='edit_book?id={{$item->id}}'">id:{{$item->id}}</button></td>
             <td class="d-none d-md-table-cell">{{$item->pay_day}}</td>
             <td>{{$item->balance_name}}</td>
             <td class="d-none d-md-table-cell">{{$item->large_name}}</td>
             <td>{{$item->middle_name}}</td>
             <td>{{$item->small_name}}</td>
-            <td>{{$item->memo}}</td>
             <td>{{$item->payment}}</td>
+            <td><button type="button" onclick="location.href='comfirm_receipt?id={{$item->id}}'">詳細</button></td>
           </tr>         
           @endforeach
           </tbody>

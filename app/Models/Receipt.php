@@ -78,7 +78,10 @@ class Receipt extends Model
      */
     public function scopeSelectWithCategoryName($query)
     {
-        return $query->select('*'
+        return $query->select('A.id as id'
+                             ,'A.memo'
+                             ,'A.payment'
+                             ,'A.pay_day'
                              ,'B.name as balance_name'
                              ,'C.name as large_name'
                              ,'D.name as middle_name'

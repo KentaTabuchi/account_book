@@ -9,7 +9,9 @@
     */
   
     return [
-     'input' => 1
+     'input'  => 1
     ,'update' => 2
+    ,'delete' => 3
+    ,'detail' => 4
   ];
 ?>

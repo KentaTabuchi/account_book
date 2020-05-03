@@ -65,6 +65,14 @@
   margin-right: -15px;
 }
 
+/** 
+* ページ下部の画面遷移ボタンを配置するdiv用パネル
+*/
+.panel-button-group {
+  border: solid 3px purple;
+  background-color: silver;
+}
+
 .nav-homeicon {
   width: 30px;
   height: 30px;
