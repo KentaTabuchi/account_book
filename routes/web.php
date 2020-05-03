@@ -56,6 +56,10 @@ Route::get( 'json_old','_2xx_InputBookController@json_old');
 
 Route::get( 'comfirm_receipt','ComfirmReceiptController@comfirm_receipt_get');
 
+//変更するボタン押下
+Route::post( 'comfirm_update','ComfirmReceiptController@comfirm_update_post');
+
+
 /*
 |--------------------------------------------------------------------------
 | 家計簿閲覧画面 

@@ -26,27 +26,35 @@ class ComfirmReceiptController extends Controller
         $processmode = Config::get('processmode.detail');
 
         //選択中のレシートを取得する。
-        // $receipt = Receipt::find($request->id);
         $receipt = Receipt::from('receipts as A')
                            ->JoinCategoryCode()
                            ->SelectWithCategoryName()
                            ->where('user_id',$user->id)
                            ->where('A.id',$request->id)
                            ->first();
-                // //レシートを全件、カテゴリー名を含めて取得する。
-                // $record = Receipt::from('receipts as A')
-                // ->JoinCategoryCode()
-                // ->SelectWithCategoryName()
-                // ->where('user_id',$user->id)
-                // ->orderBy('pay_day','desc')
-                // ->get();
-        // dd($receipt);
-        // //結果ページに名前で表示するため、分類名をコードから取得する。
-        // $request->category_balance  = CategoryBalance::where('code',$request->category_balance)->first()->name;
-        // $request->category_large = CategoryLarge::where('code',$request->category_large)->first()->name;
-        // $request->category_middle = CategoryMiddle::where('code',$request->category_middle)->first()->name;
-        // $request->category_small = CategorySmall::where('code',$request->category_small)->first()->name;
 
         return view('comfirm_receipt',compact('user','receipt','processmode'));
+    }
+
+    /**
+     *  変更登録のアクション 変更するボタン押下時
+     */
+    public function comfirm_update_post(Request $request)
+    {
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        //画面モードの設定
+        $processmode = Config::get('processmode.update');
+
+        //json化してhiddenに渡したフォームを復元する
+        $decoded_request = json_decode($request->hidden_request);
+
+        //変更をDBへ登録する。
+        $receipt = Receipt::find($decoded_request->id);
+        $receipt->fillForm($decoded_request);
+        $receipt->save();
+
+        return view('complete_receipt',compact('user','receipt','processmode'));
     }
 }

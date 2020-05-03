@@ -22,6 +22,11 @@
   display: inline;
 }
 
+.txt-message {
+  font-size: 22px;
+  font-weight: bold;
+}
+
 .mtpx-100 {
   margin-top: 100px;
 }
@@ -71,6 +76,14 @@
 .panel-button-group {
   border: solid 3px purple;
   background-color: silver;
+}
+
+/** 
+* ページ上部のメッセージを配置するdiv用パネル
+*/
+.panel-message {
+  border: solid 3px purple;
+  background-color: beige;
 }
 
 .nav-homeicon {

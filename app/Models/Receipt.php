@@ -16,6 +16,11 @@ class Receipt extends Model
     protected $primaryKey = 'id';
     protected $guarded = array('id');
 
+    private $balance_name;
+    private $large_name;
+    private $middle_name;
+    private $small_name;
+
     /**
      *  家計簿テーブルに新規レシートを登録する。
      *  @param $form リクエストパラメータ等から受け取ったフォームの入力値
@@ -36,21 +41,25 @@ class Receipt extends Model
     }
 
     /**
-     *  家計簿テーブルのレシートを編集する。
-     *  @param $form DBから受け取ったフォームの入力値
+     *  フォームの入力値をReceiptインスタンスへ詰め込む
+     *  @param $form フォームの入力値
      *  @return void
      */
-    public function edit($form)
+    public function fillForm($form)
     {
+        $this->id = $form->id;
         $this->pay_day = $form->pay_day;
-        $this->balance_code = $form->category_balance;
-        $this->large_code = $form->category_large;
-        $this->middle_code = $form->category_middle;
-        $this->small_code = $form->category_small;
+        $this->balance_code = isset($form->category_balance) ? $form->category_balance :$form->balance_code;
+        $this->large_code = isset($form->category_balance) ? $form->category_large :$form->large_code;
+        $this->middle_code = isset($form->category_balance) ? $form->category_middle :$form->middle_code;
+        $this->small_code = isset($form->category_balance) ? $form->category_small :$form->small_code;
+        
+        // $this->large_code = $form->category_large;
+        // $this->middle_code = $form->category_middle;
+        // $this->small_code = $form->category_small;
         $this->memo = $form->memo;
         $this->payment = $form->payment;
         $this->updated_at = Carbon::now();
-        $this->save();
     }
 
     /**

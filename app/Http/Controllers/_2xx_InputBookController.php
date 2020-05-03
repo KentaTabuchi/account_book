@@ -69,7 +69,9 @@ class _2xx_InputBookController extends Controller
 
         return view('201_input_book',compact('old','user','processmode'));
     }
-
+    /**
+     *  編集画面で入力値をPOSTした時のAction
+     */
     public function edit_book_post(_201_ValidatedRequest $request){
         //ログイン中のユーザーを取得
         $user = Auth::user();
@@ -77,17 +79,17 @@ class _2xx_InputBookController extends Controller
         //画面モードの設定
         $processmode = Config::get('processmode.update');
 
-        //入力フォームの値をDBへ登録する
-        $recipt = Receipt::find($request->id);
-        $recipt->edit($request);
+        //フォームからの入力値をReceiptインスタンスへ詰める
+        $receipt = new Receipt;
+        $receipt->fillForm($request);
 
         //結果ページに名前で表示するため、分類名をコードから取得する。
-        $request->category_balance  = CategoryBalance::where('code',$request->category_balance)->first()->name;
-        $request->category_large = CategoryLarge::where('code',$request->category_large)->first()->name;
-        $request->category_middle = CategoryMiddle::where('code',$request->category_middle)->first()->name;
-        $request->category_small = CategorySmall::where('code',$request->category_small)->first()->name;
-        
-        return view('202_input_book_result',compact('request','user','processmode'));
+        $receipt->balance_name  = CategoryBalance::where('code',$receipt->balance_code)->first()->name;
+        $receipt->large_name = CategoryLarge::where('code',$receipt->large_code)->first()->name;
+        $receipt->middle_name = CategoryMiddle::where('code',$receipt->middle_code)->first()->name;
+        $receipt->small_name = CategorySmall::where('code',$receipt->small_code)->first()->name;
+       
+        return view('comfirm_receipt',compact('user','receipt','processmode'));
     }
     //=====================================================================================
     //　分類コードと分類名のリストをjson形式で返すAPI vue.js側から呼び出し、セレクトボックスへセットする
