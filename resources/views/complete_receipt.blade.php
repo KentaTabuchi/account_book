@@ -43,12 +43,10 @@
       {{-- ボタン部 --}}
       <div class="my-3 py-3 panel-button-group">
       @switch($processmode)
-        @case(Config::get('processmode.detail'))
+          @case(Config::get('processmode.input'))
           <div class="container col-md-4 col-md-offset-8">
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">一覧へ戻る</button>
-            <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
-            <button type="button" onclick="location.href='edit_book?id={{$receipt->id}}'" class="btn btn-light">編集する</button>
-            <button type="button" onclick="location.href='index.php'" class="btn btn-light">削除する</button>
+            <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ戻る</button>
+            <button type="button" onclick="location.href='input_book'" class="btn btn-light">続けて登録する</button>
           </div>
           @break
         @case(Config::get('processmode.update'))
@@ -56,8 +54,7 @@
           <form action="comfirm_update" method="post" id="form" >
           @csrf
             <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">編集へ戻る</button>
-            <input type="submit" class="btn btn-light" value="変更する">
+            <input type="submit" class="btn btn-light" value="詳細へ戻る">
             <input type="hidden" name="hidden_request" value="{{$receipt}}">
           </form>
         </div>

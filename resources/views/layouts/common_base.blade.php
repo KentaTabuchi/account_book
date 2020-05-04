@@ -24,7 +24,7 @@
   <title>家計簿</title>
   </head>
   
-  <body>
+  <body style="background-image: url('images/common/background.jpg')">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
     @yield('navbar-current')
