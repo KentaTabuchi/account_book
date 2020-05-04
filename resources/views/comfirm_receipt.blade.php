@@ -29,10 +29,16 @@
     {{-- 上部メッセージ部 --}}
       <div class="my-3 pt-4 pb-3 panel-message">
       @switch($processmode)
-      @case(Config::get('processmode.update'))
-        <div class="container col-md-4 col-md-offset-8">
-          <p class="txt-message">以下の内容に変更します。よろしいですか？</p>
-        </div>
+        @case(Config::get('processmode.update'))
+          <div class="container col-md-4 col-md-offset-8">
+            <p class="txt-message">{{Config::get('messages.update_comfirm')}}</p>
+          </div>
+          @break
+        @case(Config::get('processmode.delete'))
+          <div class="container col-md-4 col-md-offset-8">
+            <p class="txt-message">{{Config::get('messages.delete_comfirm')}}</p>
+          </div>
+          @break
       @endswitch
       </div>
       <table class="table">
@@ -68,15 +74,25 @@
             <button type="button" onclick="location.href='read_book'" class="btn btn-light">一覧へ戻る</button>
             <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
             <button type="button" onclick="location.href='edit_book?id={{$receipt->id}}'" class="btn btn-light">編集する</button>
-            <button type="button" onclick="location.href='index.php'" class="btn btn-light">削除する</button>
+            <button type="button" onclick="location.href='comfirm_delete?id={{$receipt->id}}'" class="btn btn-light">削除する</button>
           </div>
           @break
         @case(Config::get('processmode.update'))
         <div class="container col-md-4 col-md-offset-8">
           <form action="comfirm_update" method="post" id="form" >
           @csrf
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">編集へ戻る</button>
+            <button type="button" onclick="location.href='read_book'" class="btn btn-light">編集へ戻る(未完)</button>
             <input type="submit" class="btn btn-light" value="変更する">
+            <input type="hidden" name="hidden_request" value="{{$receipt}}">
+          </form>
+        </div>
+        @break
+        @case(Config::get('processmode.delete'))
+        <div class="container col-md-4 col-md-offset-8">
+          <form action="comfirm_delete" method="post" id="form" >
+          @csrf
+            <button type="button" onclick="location.href='read_book'" class="btn btn-light">詳細へ戻る(未完)</button>
+            <input type="submit" class="btn btn-light" value="削除する">
             <input type="hidden" name="hidden_request" value="{{$receipt}}">
           </form>
         </div>

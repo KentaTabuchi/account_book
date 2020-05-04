@@ -31,7 +31,7 @@
       @switch($processmode)
         @case(Config::get('processmode.update'))
           <div class="container col-md-4 col-md-offset-8">
-            <p class="txt-message">変更が完了しました。</p>
+            <p class="txt-message">{{Config::get('messages.update_complete')}}</p>
           </div>
           @break
       @endswitch
@@ -52,6 +52,7 @@
         <div class="container col-md-4 col-md-offset-8">
           <form action="comfirm_update" method="post" id="form" >
           @csrf
+            <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
             <button type="button" onclick="location.href='read_book'" class="btn btn-light">編集へ戻る</button>
             <input type="submit" class="btn btn-light" value="変更する">
             <input type="hidden" name="hidden_request" value="{{$receipt}}">
