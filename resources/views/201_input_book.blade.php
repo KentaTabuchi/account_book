@@ -113,7 +113,7 @@
               <input type="submit" class="btn-lg btn-block btn-primary" value="書き込む">
               @break
             @case(Config::get('processmode.update'))
-            <input type="submit" class="btn-lg btn-block btn-primary" value="更新する">
+            <input type="submit" class="btn-lg btn-block btn-primary" value="確認へ進む">
               @break
           @endswitch
           </div>

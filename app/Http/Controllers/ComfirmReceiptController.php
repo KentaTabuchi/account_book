@@ -59,6 +59,26 @@ class ComfirmReceiptController extends Controller
     }
 
     /**
+     *  変更登録のアクション 変更するボタン押下時
+     */
+    public function back_update_post(Request $request)
+    {
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        //画面モードの設定
+        $processmode = Config::get('processmode.update');
+
+        //json化してhiddenに渡したフォームを復元する
+        $decoded_request = json_decode($request->hidden_request);
+
+        //vue.jsから呼び出す用に、編集中のレコードのIDをクラスのセッションに保持する。
+        $request->session()->put('restore_edit',$decoded_request);
+                
+        return view('201_input_book',compact('user','processmode'));
+    }
+
+    /**
      *  レシート削除確認のアクション 詳細画面で削除するボタン押下時
      */
     public function comfirm_delete_get(Request $request)

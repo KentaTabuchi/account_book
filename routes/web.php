@@ -58,6 +58,8 @@ Route::get( 'json_old','_2xx_InputBookController@json_old');
 Route::get( 'comfirm_receipt','ComfirmReceiptController@comfirm_receipt_get');
 //変更するボタン押下
 Route::post( 'comfirm_update','ComfirmReceiptController@comfirm_update_post');
+//編集へ戻るボタン押下
+Route::post( 'back_update','ComfirmReceiptController@back_update_post');
 //削除するボタン押下 (削除確認へ進む)
 Route::get( 'comfirm_delete','ComfirmReceiptController@comfirm_delete_get');
 //削除するボタン押下 (削除完了へ進む)

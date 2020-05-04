@@ -43,7 +43,7 @@ class _3xx_ReadBookController extends Controller
         //ログイン中のユーザーを取得
         $user = Auth::user();
 
-        $year=$request->year;
+        $year = $request->year;
         $table_name = $request->table_name;
 
         $record_set = $this->get_aggregate_table($year,$table_name);
@@ -98,7 +98,7 @@ class _3xx_ReadBookController extends Controller
                 $result['m'.$month] =  $month == $item->target_month ? $item->sum_payment : '-';
             }
         }
-        
+
         return $result;
     }
 }

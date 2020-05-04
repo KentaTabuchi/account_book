@@ -12,7 +12,7 @@
       <span class="navbar-text text-warning">削除確認<span>
       @break
     @case(Config::get('processmode.detail'))
-      <span class="navbar-text text-warning">詳細確認<span>
+      <span class="navbar-text text-warning">詳細閲覧<span>
       @break
   @endswitch
 @endsection
@@ -27,20 +27,24 @@
   <div class="row mtpx-100">
     <div class="card col-md-10 container">
     {{-- 上部メッセージ部 --}}
-      <div class="my-3 pt-4 pb-3 panel-message">
+      
       @switch($processmode)
         @case(Config::get('processmode.update'))
-          <div class="container col-md-4 col-md-offset-8">
-            <p class="txt-message">{{Config::get('messages.update_comfirm')}}</p>
+          <div class="my-3 pt-4 pb-3 panel-message">
+            <div class="container col-md-4 col-md-offset-8">
+              <p class="txt-message">{{Config::get('messages.update_comfirm')}}</p>
+            </div>
           </div>
           @break
         @case(Config::get('processmode.delete'))
-          <div class="container col-md-4 col-md-offset-8">
-            <p class="txt-message">{{Config::get('messages.delete_comfirm')}}</p>
+          <div class="my-3 pt-4 pb-3 panel-message">
+            <div class="container col-md-4 col-md-offset-8">
+              <p class="txt-message">{{Config::get('messages.delete_comfirm')}}</p>
+            </div>
           </div>
           @break
       @endswitch
-      </div>
+      
       <table class="table">
         <thead class="table-light">
           <tr>
@@ -79,9 +83,13 @@
           @break
         @case(Config::get('processmode.update'))
         <div class="container col-md-4 col-md-offset-8">
-          <form action="comfirm_update" method="post" id="form" >
-          @csrf
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">編集へ戻る(未完)</button>
+          <form action="back_update" method="post" id="update_back_form" >
+            @csrf
+            <input type="submit" class="btn btn-light" value="編集へ戻る(未完)">
+            <input type="hidden" name="hidden_request" value="{{$receipt}}">
+          </form>
+          <form action="comfirm_update" method="post" id="update_form" >
+            @csrf
             <input type="submit" class="btn btn-light" value="変更する">
             <input type="hidden" name="hidden_request" value="{{$receipt}}">
           </form>
@@ -91,7 +99,7 @@
         <div class="container col-md-4 col-md-offset-8">
           <form action="comfirm_delete" method="post" id="form" >
           @csrf
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">詳細へ戻る(未完)</button>
+            <button type="button" onclick="location.href='comfirm_receipt?id={{$receipt->id}}'" class="btn btn-light">詳細へ戻る</button>
             <input type="submit" class="btn btn-light" value="削除する">
             <input type="hidden" name="hidden_request" value="{{$receipt}}">
           </form>

@@ -121,16 +121,37 @@ class _2xx_InputBookController extends Controller
 
     /**
      *  現在DBに書き込まれている詳細情報をIDをキーにしてjson形式で取得する。
+     *  編集確認から戻ってきた場合sessionに退避した入力値から復元する。
      *  @param $request 
      *  @return データベースに保管されている入力値
      */
     public function json_old(Request $request){
-        //選択中のレシートを取得する。
-        $recipt = Receipt::find($request->session()->get('selected_id'));
-        
-        //文字コードをエンコードする。
-        $old_encorded = json_encode($recipt,JSON_UNESCAPED_UNICODE);
 
+        $old_encorded = null;
+
+        if(($request->session()->has('restore_edit'))){
+            //編集確認から編集へ戻る押下した場合(セッションからoldを復元)
+            
+            //セッションから復元する
+            $restore_receipt = $request->session()->get('restore_edit');
+
+            //jsで読み込むためオブジェクトからjson形式に変換する。
+            $old_encorded = json_encode($restore_receipt,JSON_UNESCAPED_UNICODE);
+
+            //セッションキーの存在がデータ取得のフラグになるため読み終えたら消去する。
+            $request->session()->forget('restore_edit');
+
+        } else {
+            //詳細から編集画面に来た場合(DBからoldを復元)
+            
+            //選択中のレシートを取得する。
+            $recipt = Receipt::find($request->session()->get('selected_id'));
+        
+            //文字コードをエンコードする。
+            $old_encorded = json_encode($recipt,JSON_UNESCAPED_UNICODE);
+
+        }
+        
         return $old_encorded;
     }
 }
