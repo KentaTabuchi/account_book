@@ -56,7 +56,11 @@ Route::get( 'json_old','_2xx_InputBookController@json_old');
 
 //詳細ボタン押下
 Route::get( 'comfirm_receipt','ComfirmReceiptController@comfirm_receipt_get');
-//変更するボタン押下
+//新規登録確認画面で登録するボタン押下
+Route::post( 'comfirm_input','ComfirmReceiptController@comfirm_input_post');
+//入力へ戻るボタン押下 新規登録確認から戻る
+Route::post( 'back_input','ComfirmReceiptController@back_input_post');
+//変更確認画面で変更するボタン押下
 Route::post( 'comfirm_update','ComfirmReceiptController@comfirm_update_post');
 //編集へ戻るボタン押下
 Route::post( 'back_update','ComfirmReceiptController@back_update_post');

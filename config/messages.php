@@ -9,9 +9,10 @@
     */
   
     return [
-     'input'  => 1
+     'input_comfirm' => '以下の内容で登録します。よろしいですか？'
     ,'update_comfirm' => '以下の内容に変更します。よろしいですか？'
     ,'delete_comfirm' => '以下のレシートを削除します。よろしいですか？'
+    ,'input_complete' => '登録が完了しました。'
     ,'update_complete' => '変更が完了しました。'
     ,'delete_complete' => '削除完了しました。'
   ];

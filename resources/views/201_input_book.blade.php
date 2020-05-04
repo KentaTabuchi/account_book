@@ -110,7 +110,7 @@
           <div class="container col-6 col-md-offset-1 mb-5">
           @switch($processmode)
             @case(Config::get('processmode.input'))
-              <input type="submit" class="btn-lg btn-block btn-primary" value="書き込む">
+              <input type="submit" class="btn-lg btn-block btn-primary" value="確認へ進む">
               @break
             @case(Config::get('processmode.update'))
             <input type="submit" class="btn-lg btn-block btn-primary" value="確認へ進む">

@@ -27,8 +27,14 @@
   <div class="row mtpx-100">
     <div class="card col-md-10 container">
     {{-- 上部メッセージ部 --}}
-      
-      @switch($processmode)
+    @switch($processmode)
+        @case(Config::get('processmode.input'))
+          <div class="my-3 pt-4 pb-3 panel-message">
+            <div class="container col-md-4 col-md-offset-8">
+              <p class="txt-message">{{Config::get('messages.input_comfirm')}}</p>
+            </div>
+          </div>
+          @break
         @case(Config::get('processmode.update'))
           <div class="my-3 pt-4 pb-3 panel-message">
             <div class="container col-md-4 col-md-offset-8">
@@ -61,7 +67,10 @@
             <tr> <td>日付</td><td>{{$receipt->pay_day}}</td> </tr>
           @break
         @endswitch
-          <tr> <td>ID</td><td>{{$receipt->id}}</td> </tr>
+          @if($processmode == Config::get('processmode.update') ||
+                $processmode == Config::get('processmode.detail'))
+            <tr> <td>ID</td><td>{{$receipt->id}}</td> </tr>
+          @endif
           <tr> <td>収支</td><td>{{$receipt->balance_name}}</td> </tr>
           <tr> <td>大分類</td><td>{{$receipt->large_name}}</td> </tr>
           <tr> <td>中分類</td><td>{{$receipt->middle_name}}</td> </tr>
@@ -81,14 +90,28 @@
             <button type="button" onclick="location.href='comfirm_delete?id={{$receipt->id}}'" class="btn btn-light">削除する</button>
           </div>
           @break
+        @case(Config::get('processmode.input'))
+          <div class="container col-md-4 col-md-offset-8">
+            <form action="back_input" method="post" id="update_back_form" style="display:inline">
+              @csrf
+              <input type="submit" class="btn btn-light" value="入力へ戻る(未完)">
+              <input type="hidden" name="hidden_request" value="{{$receipt}}">
+            </form>
+            <form action="comfirm_input" method="post" id="update_form" style="display:inline">
+              @csrf
+              <input type="submit" class="btn btn-light" value="登録する">
+              <input type="hidden" name="hidden_request" value="{{$receipt}}">
+            </form>
+          </div>
+          @break
         @case(Config::get('processmode.update'))
         <div class="container col-md-4 col-md-offset-8">
-          <form action="back_update" method="post" id="update_back_form" >
+          <form action="back_update" method="post" id="update_back_form" style="display:inline">
             @csrf
-            <input type="submit" class="btn btn-light" value="編集へ戻る(未完)">
+            <input type="submit" class="btn btn-light" value="編集へ戻る">
             <input type="hidden" name="hidden_request" value="{{$receipt}}">
           </form>
-          <form action="comfirm_update" method="post" id="update_form" >
+          <form action="comfirm_update" method="post" id="update_form" style="display:inline">
             @csrf
             <input type="submit" class="btn btn-light" value="変更する">
             <input type="hidden" name="hidden_request" value="{{$receipt}}">

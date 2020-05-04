@@ -28,13 +28,16 @@
     <div class="card col-md-10 container">
     {{-- メッセージ部 --}}
       <div class="my-3 pt-4 pb-3 panel-message">
+        <div class="container col-md-4 col-md-offset-8">
       @switch($processmode)
+        @case(Config::get('processmode.input'))
+            <p class="txt-message">{{Config::get('messages.input_complete')}}</p>
+          @break
         @case(Config::get('processmode.update'))
-          <div class="container col-md-4 col-md-offset-8">
             <p class="txt-message">{{Config::get('messages.update_complete')}}</p>
-          </div>
           @break
       @endswitch
+        </div>
       </div>
       
       {{-- ボタン部 --}}
