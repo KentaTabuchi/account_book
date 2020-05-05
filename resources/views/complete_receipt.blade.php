@@ -28,34 +28,31 @@
     <div class="card col-md-10 container">
     {{-- メッセージ部 --}}
       <div class="my-3 pt-4 pb-3 panel-message">
-        <div class="container col-md-4 col-md-offset-8">
       @switch($processmode)
         @case(Config::get('processmode.input'))
-            <p class="txt-message">{{Config::get('messages.input_complete')}}</p>
+          <p class="txt-message text-center">{{Config::get('messages.input_complete')}}</p>
           @break
         @case(Config::get('processmode.update'))
-            <p class="txt-message">{{Config::get('messages.update_complete')}}</p>
+          <p class="txt-message text-center">{{Config::get('messages.update_complete')}}</p>
           @break
       @endswitch
-        </div>
       </div>
       
       {{-- ボタン部 --}}
       <div class="my-3 py-3 panel-button-group">
       @switch($processmode)
           @case(Config::get('processmode.input'))
-          <div class="container col-md-4 col-md-offset-8">
+          <div class="mx-auto" style="width:300px;">
             <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ戻る</button>
             <button type="button" onclick="location.href='input_book'" class="btn btn-light">続けて登録する</button>
           </div>
           @break
         @case(Config::get('processmode.update'))
-        <div class="container col-md-4 col-md-offset-8">
-          <form action="comfirm_update" method="post" id="form" >
+        <div class="mx-auto" style="width:300px;">
+          <form action="back_detail" method="post" id="form" >
           @csrf
             <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
-            <input type="submit" class="btn btn-light" value="詳細へ戻る">
-            <input type="hidden" name="hidden_request" value="{{$receipt}}">
+            <button type="button" onclick="location.href='comfirm_receipt?id={{$receipt->id}}'" class="btn btn-light">詳細へ戻る</button>
           </form>
         </div>
         @break

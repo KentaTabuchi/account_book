@@ -8,7 +8,7 @@ use App\Models\MonthlyCost;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class _5xx_InputMonthlyFixiedCostController extends Controller
+class InputMonthlyFixiedCostController extends Controller
 {
 
     public function input_monthly_cost_get(Request $request){
@@ -39,7 +39,7 @@ class _5xx_InputMonthlyFixiedCostController extends Controller
                 $valuesList[] = $values;
             }
 
-            return view('501_input_monthly_cost',compact('valuesList','year','user'));
+            return view('input_monthly_cost',compact('valuesList','year','user'));
     }
 
     public function input_monthly_cost_post(Request $request){

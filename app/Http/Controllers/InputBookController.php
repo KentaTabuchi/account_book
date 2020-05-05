@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Config;
 | 入力・編集画面のコントローラー
 |--------------------------------------------------------------------------
 */
-class _2xx_InputBookController extends Controller
+class InputBookController extends Controller
 {
     /**
      * 目次画面などから新規入力を押下した場合のアクション
@@ -34,7 +34,7 @@ class _2xx_InputBookController extends Controller
         //編集用のセッションが残っているとバグるので解放する。
         $request->session()->forget('selected_id');
 
-        return view('201_input_book',compact('user','processmode'));
+        return view('input_book',compact('user','processmode'));
     }
     
     /**
@@ -52,7 +52,7 @@ class _2xx_InputBookController extends Controller
         
         //入力フォームの値をReceiptインスタンスに詰める。
         $receipt = new Receipt;
-        $receipt->fillForm($request);
+        $receipt->add($request);
 
         //結果確認ページに名前で表示するため、分類名をコードから取得する。
         $receipt->balance_name  = CategoryBalance::where('code',$receipt->balance_code)->first()->name;
@@ -76,7 +76,7 @@ class _2xx_InputBookController extends Controller
         //vue.jsから呼び出す用に、編集中のレコードのIDをクラスのセッションに保持する。
         $request->session()->put('selected_id',$request->id);
 
-        return view('201_input_book',compact('user','processmode'));
+        return view('input_book',compact('user','processmode'));
     }
 
     /**

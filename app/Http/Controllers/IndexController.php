@@ -13,7 +13,7 @@ use App\Models\Budget;
 |--------------------------------------------------------------------------
 */
 
-class _1xx_IndexController extends Controller
+class IndexController extends Controller
 {
 
     /**
@@ -23,7 +23,7 @@ class _1xx_IndexController extends Controller
         //ログイン中のユーザ情報を取得
         $user = Auth::user();
 
-        return view('101_index',compact('user'));
+        return view('index',compact('user'));
 
     }
     /**

@@ -15,7 +15,7 @@ use App\Http\Requests\_401_ValidatedRequest;
 | 月別の変動費予算を設定する画面のコントローラー
 |--------------------------------------------------------------------------
 */
-class _4xx_EditBudgetController extends Controller
+class EditBudgetController extends Controller
 {
     /**
      *  401: 月別の変動費予算を入力する画面のアクション
@@ -42,7 +42,7 @@ class _4xx_EditBudgetController extends Controller
             $budgets[$i] = $budget_price;
         }
 
-        return view('401_edit_budget',compact('year','budgets','user'));
+        return view('edit_budget',compact('year','budgets','user'));
     }
 
     /**
@@ -84,7 +84,7 @@ class _4xx_EditBudgetController extends Controller
             $budgets[$i] = $budget->budget;
         }
 
-            return view('402_edit_budget_result',compact('year','budgets','user'));          
+            return view('edit_budget_result',compact('year','budgets','user'));          
         }
     }
 

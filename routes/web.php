@@ -18,9 +18,9 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get( '','_1xx_IndexController@index_get');
-Route::get( 'json_total_cost','_1xx_IndexController@json_total_cost');
-Route::get( 'json_budget_cost','_1xx_IndexController@json_budget_cost');
+Route::get( '','IndexController@index_get');
+Route::get( 'json_total_cost','IndexController@json_total_cost');
+Route::get( 'json_budget_cost','IndexController@json_budget_cost');
 
 /*
 |--------------------------------------------------------------------------
@@ -29,23 +29,23 @@ Route::get( 'json_budget_cost','_1xx_IndexController@json_budget_cost');
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'input_book','_2xx_InputBookController@input_book_get');
-Route::post( 'input_book','_2xx_InputBookController@input_book_post');
+Route::get( 'input_book','InputBookController@input_book_get');
+Route::post( 'input_book','InputBookController@input_book_post');
 
-Route::get( 'edit_book','_2xx_InputBookController@edit_book_get');
-Route::post( 'edit_book','_2xx_InputBookController@edit_book_post');
+Route::get( 'edit_book','InputBookController@edit_book_get');
+Route::post( 'edit_book','InputBookController@edit_book_post');
 
-Route::get( 'json_balance','_2xx_InputBookController@json_balance');
-Route::get( 'json_large','_2xx_InputBookController@json_large');
-Route::get( 'json_middle','_2xx_InputBookController@json_middle');
-Route::get( 'json_small','_2xx_InputBookController@json_small');
+Route::get( 'json_balance','InputBookController@json_balance');
+Route::get( 'json_large','InputBookController@json_large');
+Route::get( 'json_middle','InputBookController@json_middle');
+Route::get( 'json_small','InputBookController@json_small');
 
-Route::get( 'get_balance_code','_2xx_InputBookController@code_balance');
-Route::get( 'get_large_code','_2xx_InputBookController@code_large');
-Route::get( 'get_middle_code','_2xx_InputBookController@code_middle');
-Route::get( 'get_small_code','_2xx_InputBookController@code_small');
+Route::get( 'get_balance_code','InputBookController@code_balance');
+Route::get( 'get_large_code','InputBookController@code_large');
+Route::get( 'get_middle_code','InputBookController@code_middle');
+Route::get( 'get_small_code','InputBookController@code_small');
 
-Route::get( 'json_old','_2xx_InputBookController@json_old');
+Route::get( 'json_old','InputBookController@json_old');
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ Route::post( 'comfirm_delete','ComfirmReceiptController@comfirm_delete_post');
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'read_book','_3xx_ReadBookController@read_book_get');
+Route::get( 'read_book','ReadBookController@read_book_get');
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ Route::get( 'read_book','_3xx_ReadBookController@read_book_get');
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'read_book_aggregate','_3xx_ReadBookController@read_book_aggregate_get');
+Route::get( 'read_book_aggregate','ReadBookController@read_book_aggregate_get');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -98,9 +98,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'edit_budget','_4xx_EditBudgetController@edit_budget_get');
-Route::post( 'edit_budget','_4xx_EditBudgetController@edit_budget_post');
-Route::get( 'edit_budget_result','_4xx_EditBudgetController@edit_budget_result_get');
+Route::get( 'edit_budget','EditBudgetController@edit_budget_get');
+Route::post( 'edit_budget','EditBudgetController@edit_budget_post');
+Route::get( 'edit_budget_result','EditBudgetController@edit_budget_result_get');
 
 /*
 |--------------------------------------------------------------------------
@@ -109,8 +109,8 @@ Route::get( 'edit_budget_result','_4xx_EditBudgetController@edit_budget_result_g
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'input_monthly_cost','_5xx_InputMonthlyFixiedCostController@input_monthly_cost_get');
-Route::post( 'input_monthly_cost','_5xx_InputMonthlyFixiedCostController@input_monthly_cost_post');
+Route::get( 'input_monthly_cost','InputMonthlyFixiedCostController@input_monthly_cost_get');
+Route::post( 'input_monthly_cost','InputMonthlyFixiedCostController@input_monthly_cost_post');
 
 
 

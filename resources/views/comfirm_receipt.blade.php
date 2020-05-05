@@ -30,23 +30,17 @@
     @switch($processmode)
         @case(Config::get('processmode.input'))
           <div class="my-3 pt-4 pb-3 panel-message">
-            <div class="container col-md-4 col-md-offset-8">
-              <p class="txt-message">{{Config::get('messages.input_comfirm')}}</p>
-            </div>
+              <p class="txt-message text-center">{{Config::get('messages.input_comfirm')}}</p>
           </div>
           @break
         @case(Config::get('processmode.update'))
           <div class="my-3 pt-4 pb-3 panel-message">
-            <div class="container col-md-4 col-md-offset-8">
-              <p class="txt-message">{{Config::get('messages.update_comfirm')}}</p>
-            </div>
+            <p class="txt-message text-center">{{Config::get('messages.update_comfirm')}}</p>
           </div>
           @break
         @case(Config::get('processmode.delete'))
           <div class="my-3 pt-4 pb-3 panel-message">
-            <div class="container col-md-4 col-md-offset-8">
-              <p class="txt-message">{{Config::get('messages.delete_comfirm')}}</p>
-            </div>
+              <p class="txt-message text-center">{{Config::get('messages.delete_comfirm')}}</p>
           </div>
           @break
       @endswitch
@@ -83,7 +77,7 @@
       <div class="my-3 py-3 panel-button-group">
       @switch($processmode)
         @case(Config::get('processmode.detail'))
-          <div class="container col-md-4 col-md-offset-8">
+          <div class="mx-auto" style="width:400px;">
             <button type="button" onclick="location.href='read_book'" class="btn btn-light">一覧へ戻る</button>
             <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
             <button type="button" onclick="location.href='edit_book?id={{$receipt->id}}'" class="btn btn-light">編集する</button>
@@ -91,43 +85,43 @@
           </div>
           @break
         @case(Config::get('processmode.input'))
-          <div class="container col-md-4 col-md-offset-8">
-            <form action="back_input" method="post" id="update_back_form" style="display:inline">
+          <div class="mx-auto" style="width:400px;">
+              <form action="back_input" method="post" id="update_back_form" style="display:inline">
+                @csrf
+                <input type="submit" class="btn btn-light" value="入力へ戻る">
+                <input type="hidden" name="hidden_request" value="{{$receipt}}">
+              </form>
+              <form action="comfirm_input" method="post" id="update_form" style="display:inline">
+                @csrf
+                <input type="submit" class="btn btn-light" value="登録する">
+                <input type="hidden" name="hidden_request" value="{{$receipt}}">
+              </form>
+            </div>
+            @break
+        @case(Config::get('processmode.update'))
+          <div class="mx-auto" style="width:400px;">
+            <form action="back_update" method="post" id="update_back_form" style="display:inline-block">
               @csrf
-              <input type="submit" class="btn btn-light" value="入力へ戻る(未完)">
+              <input type="submit" class="btn btn-light" value="編集へ戻る">
               <input type="hidden" name="hidden_request" value="{{$receipt}}">
             </form>
-            <form action="comfirm_input" method="post" id="update_form" style="display:inline">
+            <form action="comfirm_update" method="post" id="update_form" style="display:inline-block">
               @csrf
-              <input type="submit" class="btn btn-light" value="登録する">
+              <input type="submit" class="btn btn-light" value="変更する">
               <input type="hidden" name="hidden_request" value="{{$receipt}}">
             </form>
           </div>
           @break
-        @case(Config::get('processmode.update'))
-        <div class="container col-md-4 col-md-offset-8">
-          <form action="back_update" method="post" id="update_back_form" style="display:inline">
-            @csrf
-            <input type="submit" class="btn btn-light" value="編集へ戻る">
-            <input type="hidden" name="hidden_request" value="{{$receipt}}">
-          </form>
-          <form action="comfirm_update" method="post" id="update_form" style="display:inline">
-            @csrf
-            <input type="submit" class="btn btn-light" value="変更する">
-            <input type="hidden" name="hidden_request" value="{{$receipt}}">
-          </form>
-        </div>
-        @break
         @case(Config::get('processmode.delete'))
-        <div class="container col-md-4 col-md-offset-8">
-          <form action="comfirm_delete" method="post" id="form" >
-          @csrf
-            <button type="button" onclick="location.href='comfirm_receipt?id={{$receipt->id}}'" class="btn btn-light">詳細へ戻る</button>
-            <input type="submit" class="btn btn-light" value="削除する">
-            <input type="hidden" name="hidden_request" value="{{$receipt}}">
-          </form>
-        </div>
-        @break
+          <div class="mx-auto" style="width:400px;">
+            <form action="comfirm_delete" method="post" id="form" >
+            @csrf
+              <button type="button" onclick="location.href='comfirm_receipt?id={{$receipt->id}}'" class="btn btn-light">詳細へ戻る</button>
+              <input type="submit" class="btn btn-light" value="削除する">
+              <input type="hidden" name="hidden_request" value="{{$receipt}}">
+            </form>
+          </div>
+          @break
       @endswitch
       </div>
     </div>

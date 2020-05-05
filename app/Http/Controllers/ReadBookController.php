@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 | 閲覧画面のコントローラー
 |--------------------------------------------------------------------------
 */
-class _3xx_ReadBookController extends Controller
+class ReadBookController extends Controller
 {
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ class _3xx_ReadBookController extends Controller
                     ->orderBy('pay_day','desc')
                     ->get();
 
-        return view('301_read_book',compact('record','user'));
+        return view('read_book',compact('record','user'));
     }
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@ class _3xx_ReadBookController extends Controller
         $table_name = $request->table_name;
 
         $record_set = $this->get_aggregate_table($year,$table_name);
-        return view('302_read_book_aggregate',compact('record_set','year','user'));
+        return view('read_book_aggregate',compact('record_set','year','user'));
     }
 
     /**
