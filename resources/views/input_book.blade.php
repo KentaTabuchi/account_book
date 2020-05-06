@@ -106,14 +106,17 @@
             v-model="payment">
           </div>
         </div>
-        <div class="row mt-5">
-          <div class="container col-6 col-md-offset-1 mb-5">
+        {{-- ボタン部 --}}
+        <div class="my-3 py-3 panel-button-group">
+          <div class="mx-auto" style="width:250px;">
           @switch($processmode)
             @case(Config::get('processmode.input'))
-              <input type="submit" class="btn-lg btn-block btn-primary" value="確認へ進む">
+              <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
+              <input type="submit" class="btn btn-light" value="確認へ進む">
               @break
             @case(Config::get('processmode.update'))
-            <input type="submit" class="btn-lg btn-block btn-primary" value="確認へ進む">
+              <button type="button" onclick="location.href='comfirm_receipt?id={{$request->id}}'" class="btn btn-light">詳細へ戻る</button>
+              <input type="submit" class="btn btn-light" value="確認へ進む">
               @break
           @endswitch
           </div>

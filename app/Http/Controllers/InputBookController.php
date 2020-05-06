@@ -76,7 +76,7 @@ class InputBookController extends Controller
         //vue.jsから呼び出す用に、編集中のレコードのIDをクラスのセッションに保持する。
         $request->session()->put('selected_id',$request->id);
 
-        return view('input_book',compact('user','processmode'));
+        return view('input_book',compact('user','processmode','request'));
     }
 
     /**
