@@ -87,8 +87,8 @@ var input_form = new Vue({
         
         //セレクトボックスのデフォルト選択肢を設定
         switch (this.category_balance){
-          case 1:this.category_large=11;break;
-          case 2:this.category_large=22;break;
+          case 1:this.category_large=1;break;
+          case 2:this.category_large=3;break;
         }
       }
     },
@@ -99,8 +99,8 @@ var input_form = new Vue({
 
         //セレクトボックスのデフォルト選択肢を設定
         switch (this.category_large){
-          case 11:this.category_middle=111;break;
-          case 22:this.category_middle=221;break;
+          case 1:this.category_middle=1;break;
+          case 3:this.category_middle=4;break;
         }
       }
     },
