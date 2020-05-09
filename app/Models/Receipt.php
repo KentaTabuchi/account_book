@@ -37,7 +37,6 @@ class Receipt extends Model
         $this->payment = $form->payment;
         $this->created_at = Carbon::now();
         $this->user_id = Auth::user()->id;
-        $this->save();
     }
 
     /**
