@@ -152,7 +152,7 @@ class ComfirmReceiptController extends Controller
         $user = Auth::user();
 
         //画面モードの設定
-        $processmode = Config::get('processmode.update');
+        $processmode = Config::get('processmode.delete');
 
         //json化してhiddenに渡したフォームを復元する
         $decoded_request = json_decode($request->hidden_request);

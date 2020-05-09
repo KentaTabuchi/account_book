@@ -16,6 +16,6 @@ class CategoryLarge extends Model
      */
     public function category_balance()
     {
-        return $this->belongsTo('App\Models\CategoryBalance');
+        return $this->belongsTo('App\Models\CategoryBalance','balance_code','code');
     }
 }

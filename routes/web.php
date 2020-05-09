@@ -112,5 +112,13 @@ Route::get( 'edit_budget_result','EditBudgetController@edit_budget_result_get');
 Route::get( 'input_monthly_cost','InputMonthlyFixiedCostController@input_monthly_cost_get');
 Route::post( 'input_monthly_cost','InputMonthlyFixiedCostController@input_monthly_cost_post');
 
+/*
+|--------------------------------------------------------------------------
+| システム管理画面
+|  　システムメニュー 
+|--------------------------------------------------------------------------
+*/
 
+Route::get( 'system/system_menu','SystemManageController@system_menu_get');
+Route::get( 'system/manage_category','SystemManageController@manage_category_get');
 

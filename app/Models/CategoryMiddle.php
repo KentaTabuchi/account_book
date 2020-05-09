@@ -14,8 +14,8 @@ class CategoryMiddle extends Model
      * CategoryMiddleとリレーションシップする。
      * @return CategoryBlanceとの連携データ
      */
-    public function category_middle()
+    public function category_large()
     {
-        return $this->belongsTo('App\Models\CategoryMiddle');
+        return $this->belongsTo('App\Models\CategoryLarge','large_code','code');
     }
 }

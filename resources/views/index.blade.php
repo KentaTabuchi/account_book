@@ -21,35 +21,40 @@
   <div class="container col-xs-12 mtpx-100">
     <div class="row"><!--container-->
         <div class="pnl-img col-md-10 col-md-offset-1 container">
-          <img src="images/101/money_kakeibo_ase.png">
+          <img src="images/index/money_kakeibo_ase.png">
           <p>家計簿をつける</p>
           <a href="./input_book"></a>
         </div>
         <div class="pnl-img col-md-10 col-md-offset-1 container">
-          <img src="images/101/bunbougu_note.png">
+          <img src="images/index/bunbougu_note.png">
           <p>家計簿を見る</p>
           <a href="./read_book"></a>
         </div>
         <div class="pnl-img col-md-10 col-md-offset-1 container">
-          <img src="images/101/document_report.png">
+          <img src="images/index/document_report.png">
           <p>年表を見る</p>
           <a href="./read_book_aggregate?table_name=category_balance"></a>
         </div>
         <div class="pnl-img col-md-10 col-md-offset-1 container">
-          <img src="images/101/money_kounetsuhi.png">
+          <img src="images/index/money_kounetsuhi.png">
           <p>固定費年表</p>
           <a href="./input_monthly_cost"></a>
         </div>
         <div class="pnl-img col-md-10 col-md-offset-1 container">
-          <img src="images/101/haguruma_gear_set_rittai.png">
+          <img src="images/index/mokuhyou5_kongetsu.png">
           <p>予算の設定</p>
           <a href="edit_budget?"></a>
         </div>
-    </div><!--row-->
+        <div class="pnl-img col-md-10 col-md-offset-1 container">
+          <img src="images/index/haguruma_gear_set_rittai.png">
+          <p>システム設定</p>
+          <a href="system/system_menu"></a>
+        </div>
+    </div>
     <div class="container col-md-5 mtpx-50 mb-5">
     <canvas id="myChart" class="col-12" width="10" height="10"></canvas>
-    </div><!--row-->
-  </div><!--container-->
+    </div>
+  </div>
 @endsection
 
 @section('footer_load_javascript')

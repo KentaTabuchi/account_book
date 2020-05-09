@@ -14,9 +14,9 @@ class CategorySmall extends Model
      * CategorySmallとリレーションシップする。
      * @return CategorySmallとの連携データ
      */
-    public function category_small()
+    public function category_middle()
     {
-        return $this->belongsTo('App\Models\CategorySmall');
+        return $this->belongsTo('App\Models\CategorySmall','middle_code','code');
     }
 
     /**
