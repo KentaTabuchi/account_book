@@ -45,17 +45,15 @@ class Receipt extends Model
      *  @return void
      */
     public function fillForm($form)
-    {
-        $this->id = $form->id;
+    {   
+        if(isset($form->id)) {
+            $this->id = $form->id;
+        }
         $this->pay_day = $form->pay_day;
         $this->balance_code = isset($form->category_balance) ? $form->category_balance :$form->balance_code;
         $this->large_code = isset($form->category_balance) ? $form->category_large :$form->large_code;
         $this->middle_code = isset($form->category_balance) ? $form->category_middle :$form->middle_code;
-        $this->small_code = isset($form->category_balance) ? $form->category_small :$form->small_code;
-        
-        // $this->large_code = $form->category_large;
-        // $this->middle_code = $form->category_middle;
-        // $this->small_code = $form->category_small;
+        $this->small_code = isset($form->category_balance) ? $form->category_small :$form->small_code; 
         $this->memo = $form->memo;
         $this->payment = $form->payment;
         $this->updated_at = Carbon::now();
