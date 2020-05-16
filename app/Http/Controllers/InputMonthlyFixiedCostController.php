@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CategorySmall;
+use App\Models\CategoryMiddle;
 use App\Models\MonthlyCost;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -16,10 +17,25 @@ class InputMonthlyFixiedCostController extends Controller
         $user = Auth::user();
 
         $year = empty($request->year) ?  Carbon::now()->year : $request->year;
-        
+//****** Delete Start 2020/05/16 分類編集機能追加対応
         //小分類から固定費の費目を取得する。
-        $expenceList = CategorySmall::FixedCost()->get();
+        // $expenceList = CategorySmall::FixedCost()->get();
+        // dd($expenceList);
+//****** Delete   End 2020/05/16 分類編集機能追加対応
         
+        //小分類を一旦全て取得する。
+        $smallCategoryList = CategorySmall::all();
+        $expenceList = [];
+
+        //large_codeが固定費の小分類だけを取り出してリストに詰め直す。
+        foreach($smallCategoryList as $smallCategory) {
+            $middleCategory = CategoryMiddle::where('code',$smallCategory->middle_code)->first();
+
+            if($middleCategory != null && $middleCategory->large_code == 3) {
+                $expenceList[] = $smallCategory;
+            }
+        }
+
         $valuesList = array();//テキストボックスの初期値に現在の値を入力するためリストを作る。
         
             //固定費の小分類ごとに繰り返し(一覧表の縦軸)
@@ -31,9 +47,12 @@ class InputMonthlyFixiedCostController extends Controller
                 //対象の小分類の１２ヶ月分の固定費を取得する。(一覧表の横軸)
                 for($month = 1 ; $month < 13; $month++) {
                     //1月分の支払い金額を取得して、HTMLのname属性用にキーを生成して代入する。
-                    $values['m_'.$month] = 
-                      MonthlyCost::Cell($user->id,$year,$month,$expence->code)->first()->payment;
+                    
+                    //   MonthlyCost::Cell($user->id,$year,$month,$expence->code)->first()->payment;
+                    $monthly_cost = MonthlyCost::Cell($user->id,$year,$month,$expence->code)->first();
+                    $values['m_'.$month] = $monthly_cost != null ? $monthly_cost->payment : 0;  
                 }
+                // dd($values);
 
                 //完成した横一行分のデータを一覧表に追加する。
                 $valuesList[] = $values;
