@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <!-- BootstrapのCSS読み込み -->
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- jQuery読み込み -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- BootstrapのJS読み込み -->
-  <script src="/js/bootstrap.min.js"></script>
-  <link href="/css/reset.css" rel="stylesheet">
-  <link href="/css/custom.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/reset.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
   <!-- Vue.jsのJS読み込み -->    
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
