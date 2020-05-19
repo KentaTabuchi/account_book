@@ -18,4 +18,18 @@ class CategoryMiddle extends Model
     {
         return $this->belongsTo('App\Models\CategoryLarge','large_code','code');
     }
+
+    /**
+     *  フォームの入力値をCategoryMiddleインスタンスへ詰め込む
+     *  @param $form フォームの入力値
+     *  @return void
+     */
+    public function fillForm($form)
+    {   
+        if(isset($form->code)) {
+            $this->code = $form->code;
+        }
+        $this->large_code = $form->category_large;
+        $this->category_name = $form->category_name; 
+    }
 }

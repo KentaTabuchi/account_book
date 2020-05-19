@@ -119,6 +119,16 @@ Route::post( 'input_monthly_cost','InputMonthlyFixiedCostController@input_monthl
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'system/system_menu','SystemManageController@system_menu_get');
-Route::get( 'system/manage_category','SystemManageController@manage_category_get');
+Route::get( 'system/system_menu','System\SystemManageController@system_menu_get');
+Route::get( 'system/manage_category','System\SystemManageController@manage_category_get');
+
+/*
+|--------------------------------------------------------------------------
+| システム管理画面
+|  　カテゴリー入力 
+|--------------------------------------------------------------------------
+*/
+
+Route::get( 'system/input_category','System\InputCategoryController@input_category_get');
+Route::post( 'system/input_category','System\InputCategoryController@input_category_post');
 

@@ -1,4 +1,4 @@
-@extends('layouts.common_base')
+@extends('layouts.system_base')
 
 @section('load_javascript')
 @endsection
@@ -15,7 +15,7 @@
 
 @section('contents')
 <div class="container col-xs-12 mtpx-100">
-  <h1>{{Config::get('categoryname.'.$category_name)}}</h1>
+  <h1>{{Config::get('categoryname.'.$category_mode)}}</h1>
 
   <div class="form-group">
     {{-- 項目名 --}}
@@ -28,9 +28,12 @@
         <option value="{{$parents->code}}">{{$parents->name}}</option>
       @endforeach
     </select>
+    {{--　検索ボタン --}}
+    <input type="submit" value="検索" class="btn btn-dark">
     {{--　追加ボタン --}}
-    <input type="submit" value="追加" class="btn btn-dark">
+    <button type="button" class="btn btn-dark" onclick="location.href='input_category?category_mode={{$category_mode}}'">新規追加</button>
     
+    {{--　区切り線 --}}
     <hr style="height:5px; background-color:brown">
     
     {{-- 現在登録されているリスト --}}
@@ -39,21 +42,21 @@
         <th>コード</th>
         <th>項目名</th>
         <th>親分類</th>
-        <th>削除</th>
+        <th>詳細</th>
       </thead>
       <tbody>
         @foreach($carrent_list as $carrent)
         <tr>
           <td>{{$carrent->code}}</td>
           <td>{{$carrent->name}}</td>
-          @switch($category_name)
-            @case('large')
+          @switch($category_mode)
+            @case(Config::get('categorymode.large'))
               <td>{{$carrent->category_balance->name}}</td>
               @break
-            @case('middle')
+            @case(Config::get('categorymode.middle'))
               <td>{{$carrent->category_large->name}}</td>
               @break
-            @case('small')
+            @case(Config::get('categorymode.small'))
               <td>{{$carrent->category_middle->name}}</td>
               @break
           @endswitch

@@ -26,4 +26,18 @@ class CategorySmall extends Model
     {
         return $query->whereIn('middle_code',[211,212,213]);
     }
+
+    /**
+     *  フォームの入力値をCategorySmallインスタンスへ詰め込む
+     *  @param $form フォームの入力値
+     *  @return void
+     */
+    public function fillForm($form)
+    {   
+        if(isset($form->code)) {
+            $this->code = $form->code;
+        }
+        $this->middle_code = $form->category_middle;
+        $this->category_name = $form->category_name; 
+    }
 }

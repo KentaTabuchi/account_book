@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <!-- BootstrapのCSS読み込み -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
   <!-- jQuery読み込み -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- BootstrapのJS読み込み -->
-  <script src="js/bootstrap.min.js"></script>
-  <link href="css/reset.css" rel="stylesheet">
-  <link href="css/custom.css" rel="stylesheet">
+  <script src="../js/bootstrap.min.js"></script>
+  <link href="../css/reset.css" rel="stylesheet">
+  <link href="../css/custom.css" rel="stylesheet">
   <!-- Vue.jsのJS読み込み -->    
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -24,9 +24,9 @@
   <title>家計簿</title>
   </head>
   
-  <body style="background-image: url('/images/common/background.jpg')">
+  <body style="background-image: url('../images/common/background.jpg')">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="index.php"><img src="images/common/home_icon.png" class="nav-homeicon bg-white"><a>
+    <a class="navbar-brand" href="index.php"><img src="../images/common/home_icon.png" class="nav-homeicon bg-white"><a>
     @yield('navbar-current')
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
      aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">
