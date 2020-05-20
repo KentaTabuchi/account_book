@@ -66,7 +66,7 @@
           </tr>
           <tr>
             <td>分類名</td>
-            <td>{{$category->category_name}}</td>
+            <td>{{$category->name}}</td>
           </tr>
         </tbody>
       </table>
@@ -88,10 +88,11 @@
                 <input type="submit" class="btn btn-light" value="入力へ戻る">
                 <input type="hidden" name="hidden_request" value="{{$category}}">
               </form>
-              <form action="comfirm_input" method="post" id="update_form" style="display:inline">
+              <form action="comfirm_category" method="post" id="update_form" style="display:inline">
                 @csrf
                 <input type="submit" class="btn btn-light" value="登録する">
                 <input type="hidden" name="hidden_request" value="{{$category}}">
+                <input type="hidden" name="category_mode" value="{{$category_mode}}">
               </form>
             </div>
             @break

@@ -132,3 +132,12 @@ Route::get( 'system/manage_category','System\SystemManageController@manage_categ
 Route::get( 'system/input_category','System\InputCategoryController@input_category_get');
 Route::post( 'system/input_category','System\InputCategoryController@input_category_post');
 
+/*
+|--------------------------------------------------------------------------
+| システム管理画面
+|  　カテゴリー確認 
+|--------------------------------------------------------------------------
+*/
+
+Route::post( 'system/comfirm_category','System\ComfirmCategoryController@comfirm_category_post');
+

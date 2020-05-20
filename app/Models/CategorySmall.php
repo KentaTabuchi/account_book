@@ -8,8 +8,7 @@ class CategorySmall extends Model
 {
     protected $table = 'category_small';
     protected $primaryKey = 'code';
-    protected $guarded = array('id');
-
+    protected $guarded = array('id','code');
     /**
      * CategorySmallとリレーションシップする。
      * @return CategorySmallとの連携データ
@@ -37,7 +36,8 @@ class CategorySmall extends Model
         if(isset($form->code)) {
             $this->code = $form->code;
         }
-        $this->middle_code = $form->category_middle;
-        $this->category_name = $form->category_name; 
+        $this->middle_code = $form->middle_code;
+        $this->code = self::all()->last()->code + 1;
+        $this->name = $form->name;
     }
 }
