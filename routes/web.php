@@ -139,5 +139,8 @@ Route::post( 'system/input_category','System\InputCategoryController@input_categ
 |--------------------------------------------------------------------------
 */
 
+//分類詳細画面へ進む
+Route::get ( 'system/comfirm_category','System\ComfirmCategoryController@comfirm_category_get');
+//新規分類登録へ進む
 Route::post( 'system/comfirm_category','System\ComfirmCategoryController@comfirm_category_post');
 

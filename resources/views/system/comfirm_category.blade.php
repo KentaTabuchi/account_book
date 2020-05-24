@@ -74,9 +74,20 @@
       <div class="my-3 py-3 panel-button-group">
       @switch($processmode)
         @case(Config::get('processmode.detail'))
-          <div class="mx-auto" style="width:400px;">
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">一覧へ戻る</button>
-            <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
+          <div class="mx-auto" style="width:500px;">
+          @switch($category_mode)
+            @case(Config::get('categorymode.middle'))
+              <button type="button" 
+                onclick="location.href='manage_category?category_mode={{Config::get('categorymode.middle')}}'" 
+                class="btn btn-light">一覧へ戻る</button>
+              @break
+            @case(Config::get('categorymode.small'))
+              <button type="button" 
+                onclick="location.href='manage_category?category_mode={{Config::get('categorymode.small')}}'" 
+                class="btn btn-light">一覧へ戻る</button>
+              @break
+          @endswitch
+            <button type="button" onclick="location.href='system_menu'" class="btn btn-light">システムメニューへ</button>
             <button type="button" onclick="location.href='edit_book?id={{$category->code}}'" class="btn btn-light">編集する</button>
             <button type="button" onclick="location.href='comfirm_delete?id={{$category->code}}'" class="btn btn-light">削除する</button>
           </div>

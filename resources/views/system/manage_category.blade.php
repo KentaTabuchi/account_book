@@ -31,7 +31,8 @@
     {{--　検索ボタン --}}
     <input type="submit" value="検索" class="btn btn-dark">
     {{--　追加ボタン --}}
-    <button type="button" class="btn btn-dark" onclick="location.href='input_category?category_mode={{$category_mode}}'">新規追加</button>
+    <button type="button" class="btn btn-dark" 
+      onclick="location.href='input_category?category_mode={{$category_mode}}'">新規追加</button>
     
     {{--　区切り線 --}}
     <hr style="height:5px; background-color:brown">
@@ -60,6 +61,11 @@
               <td>{{$carrent->category_middle->name}}</td>
               @break
           @endswitch
+          <td>
+            <button type="button" 
+              onclick="location.href='comfirm_category?code={{$carrent->code}}&category_mode={{$category_mode}}'">
+              詳細</button>
+          </td>
         </tr>
         @endforeach
       </tbody>
