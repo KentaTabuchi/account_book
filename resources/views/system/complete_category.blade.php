@@ -35,6 +35,9 @@
         @case(Config::get('processmode.update'))
           <p class="txt-message text-center">{{Config::get('messages.update_complete')}}</p>
           @break
+        @case(Config::get('processmode.delete'))
+          <p class="txt-message text-center">{{Config::get('messages.delete_complete')}}</p>
+          @break
       @endswitch
       </div>
       

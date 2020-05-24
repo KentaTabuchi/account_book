@@ -39,7 +39,7 @@
         <div class="row">
           <div class="container col-md-10 offset-md-1">
             <label for="memo"　class="txt-itemname">分類名</label>
-            <input type="text" name="category_name" class="form-control">
+            <input type="text" name="name" class="form-control">
           </div>
         </div>
         @switch($category_mode)

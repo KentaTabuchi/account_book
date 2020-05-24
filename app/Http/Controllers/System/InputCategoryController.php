@@ -79,7 +79,7 @@ class InputCategoryController extends Controller
                 $category->parent_name = CategoryMiddle::where('code',$category->middle_code)->first()->name;
                 break;
         }
-        // dd($category);
+        // dd($request);
         //確認画面へ遷移させる 次のアクションで使うためリクエストパラメータをhiddenに埋め込む
         return view('system/comfirm_category',compact('user','request','processmode','category','category_mode'));
 

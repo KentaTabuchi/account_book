@@ -89,7 +89,7 @@
           @endswitch
             <button type="button" onclick="location.href='system_menu'" class="btn btn-light">システムメニューへ</button>
             <button type="button" onclick="location.href='edit_book?id={{$category->code}}'" class="btn btn-light">編集する</button>
-            <button type="button" onclick="location.href='comfirm_delete?id={{$category->code}}'" class="btn btn-light">削除する</button>
+            <button type="button" onclick="location.href='comfirm_delete?code={{$category->code}}&category_mode={{$category_mode}}'" class="btn btn-light">削除する</button>
           </div>
           @break
         @case(Config::get('processmode.input'))
@@ -125,7 +125,7 @@
           <div class="mx-auto" style="width:400px;">
             <form action="comfirm_delete" method="post" id="form" >
             @csrf
-              <button type="button" onclick="location.href='comfirm_category?id={{$category->code}}'" class="btn btn-light">詳細へ戻る</button>
+              <button type="button" onclick="location.href='comfirm_category?code={{$category->code}}'" class="btn btn-light">詳細へ戻る</button>
               <input type="submit" class="btn btn-light" value="削除する">
               <input type="hidden" name="hidden_request" value="{{$category}}">
             </form>

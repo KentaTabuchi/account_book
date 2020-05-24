@@ -80,4 +80,67 @@ class ComfirmCategoryController extends Controller
         //完了画面へ遷移する。
         return view('system/complete_category',compact('user','category','processmode'));
     }
+
+    public function comfirm_delete_get(Request $request)
+    {
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        //画面モードの設定
+        $processmode = Config::get('processmode.delete');
+
+        //カテゴリーモードの取得
+        $category_mode = $request->category_mode;
+
+        //DBから該当のcodeのレコードと親分類の名前を取り出してをCategoryインスタンスに詰める。
+        $category = null;
+        switch ($category_mode) {
+            case Config::get('categorymode.middle'):
+                $category = CategoryMiddle::where('code',$request->code)->get()->first();
+                $category->parent_name = CategoryLarge::where('code',$category->large_code)->first()->name;
+                break;
+            case Config::get('categorymode.small'):
+                $category = CategorySmall::where('code',$request->code)->get()->first();
+                $category->parent_name = CategoryMiddle::where('code',$category->middle_code)->first()->name;
+                break;
+        }
+
+        //確認画面へ遷移させる 次のアクションで使うためリクエストパラメータをhiddenに埋め込む
+        return view('system/comfirm_category',compact('user','request','processmode','category','category_mode'));
+    }
+
+    /**
+     *  削除実行のアクション 削除確認画面で削除するボタン押下時
+     */
+    public function comfirm_delete_post(Request $request)
+    {
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        //画面モードの設定
+        $processmode = Config::get('processmode.delete');
+
+        //カテゴリーモードの取得
+        $category_mode = $request->category_mode;
+
+        //json化してhiddenに渡したフォームを復元する
+        $decoded_request = json_decode($request->hidden_request);
+
+        //DBから該当のcodeのレコードを削除する。
+        $category = null;
+        switch ($category_mode) {
+            case Config::get('categorymode.middle'):
+                $category = CategoryMiddle::find($decoded_request->code);
+                break;
+            case Config::get('categorymode.small'):
+                $category = CategorySmall::find($decoded_request->code);
+                break;
+        }
+        //DBから削除する。
+        $category = CategorySmall::find($decoded_request->code);
+        $category->delete();
+
+        //削除完了画面へ進む
+        return view('system/complete_category',compact('user','receipt','processmode'));
+    }
 }
