@@ -144,6 +144,9 @@ Route::get ( 'system/comfirm_category','System\ComfirmCategoryController@comfirm
 //新規分類登録へ進む
 Route::post( 'system/comfirm_category','System\ComfirmCategoryController@comfirm_category_post');
 
+//入力へ戻るボタン押下 新規登録確認から戻る
+Route::post( 'system/back_input','System\ComfirmCategoryController@back_input_post');
+
 //削除するボタン押下 (削除確認へ進む)
 Route::get( 'system/comfirm_delete','System\ComfirmCategoryController@comfirm_delete_get');
 //削除するボタン押下 (削除完了へ進む)

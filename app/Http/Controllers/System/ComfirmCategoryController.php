@@ -143,4 +143,47 @@ class ComfirmCategoryController extends Controller
         //削除完了画面へ進む
         return view('system/complete_category',compact('user','receipt','processmode'));
     }
+
+    /**
+     *  入力へ戻る実行のアクション 分類新規登録確認画面で入力へ戻るボタン押下時
+     */
+    public function back_input_post(Request $request)
+    {
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        //画面モードの設定
+        $processmode = Config::get('processmode.input');
+
+        //json化してhiddenに渡したフォームを復元する
+        $decoded_request = json_decode($request->hidden_request);
+
+        //カテゴリーモードの取得
+        $category_mode = $request->category_mode;
+
+        //入力中の分類名を復元する。
+        $category_name = $decoded_request->name;
+
+        //親カテゴリーをリストを取得。さらに、選択中の親カテゴリーを取得し復元する。
+        switch($category_mode) {
+            case Config::get('categorymode.large'):
+                $parents_list = CategoryBalance::all();
+                break;
+            case Config::get('categorymode.middle'):
+                $parents_list = CategoryLarge::where('code',$decoded_request->large_code)->first();
+                break;
+            case Config::get('categorymode.small'):
+                $parents_list = CategoryMiddle::all();
+                $selected_parent = CategoryMiddle::where('code',$decoded_request->middle_code)->first();
+                break;
+        }
+
+        //編集用のセッションが残っているとバグるので解放する。
+        $request->session()->forget('selected_id');
+
+        //vue.jsから呼び出す用に、編集中のレコードのIDをクラスのセッションに保持する。
+        $request->session()->put('restore_edit',$decoded_request);
+
+        return view('system/input_category',compact('user','processmode','category_mode','parents_list','selected_parent','category_name'));
+    }
 }

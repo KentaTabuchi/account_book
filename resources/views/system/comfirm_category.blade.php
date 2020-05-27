@@ -98,6 +98,7 @@
                 @csrf
                 <input type="submit" class="btn btn-light" value="入力へ戻る">
                 <input type="hidden" name="hidden_request" value="{{$category}}">
+                <input type="hidden" name="category_mode" value="{{$category_mode}}">
               </form>
               <form action="comfirm_category" method="post" id="update_form" style="display:inline">
                 @csrf
