@@ -13,7 +13,7 @@
 
 @section('navbar-menu')
   <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
-  <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+  <a class="nav-item nav-link" href="./receipt_list">家計簿を見る</a>
   <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
 @endsection
 
@@ -28,7 +28,7 @@
         <div class="pnl-img col-md-10 col-md-offset-1 container">
           <img src="images/index/bunbougu_note.png">
           <p>家計簿を見る</p>
-          <a href="./read_book"></a>
+          <a href="./receipt_list"></a>
         </div>
         <div class="pnl-img col-md-10 col-md-offset-1 container">
           <img src="images/index/document_report.png">

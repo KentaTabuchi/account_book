@@ -19,7 +19,7 @@
 
 @section('navbar-menu')
   <a class="nav-item nav-link" href="./input_book">家計簿をつける</a>
-  <a class="nav-item nav-link" href="./read_book">家計簿を見る</a>
+  <a class="nav-item nav-link" href="./receipt_list">家計簿を見る</a>
   <a class="nav-item nav-link" href="./read_book_aggregate?table_name=category_balance">年表を見る</a>
 @endsection
 
@@ -78,7 +78,7 @@
       @switch($processmode)
         @case(Config::get('processmode.detail'))
           <div class="mx-auto" style="width:400px;">
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">一覧へ戻る</button>
+            <button type="button" onclick="location.href='receipt_list'" class="btn btn-light">一覧へ戻る</button>
             <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ</button>
             <button type="button" onclick="location.href='edit_book?id={{$receipt->id}}'" class="btn btn-light">編集する</button>
             <button type="button" onclick="location.href='comfirm_delete?id={{$receipt->id}}'" class="btn btn-light">削除する</button>

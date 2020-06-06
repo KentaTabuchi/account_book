@@ -15,25 +15,29 @@ use Illuminate\Support\Facades\Auth;
 */
 class ReadBookController extends Controller
 {
-/*
-|--------------------------------------------------------------------------
-| 301: 1件ごとのデータ一覧を表示する画面
-|--------------------------------------------------------------------------
-*/
-    public function read_book_get(Request $request){
-        //ログイン中のユーザーを取得
-        $user = Auth::user();
 
-        //レシートを全件、カテゴリー名を含めて取得する。
-        $record = Receipt::from('receipts as A')
-                    ->JoinCategoryCode()
-                    ->SelectWithCategoryName()
-                    ->where('user_id',$user->id)
-                    ->orderBy('pay_day','desc')
-                    ->get();
+// Delete Start 2020/06/05 [Receipt/ReceiptListControllerへ移転]
+// /*
+// |--------------------------------------------------------------------------
+// | 301: 1件ごとのデータ一覧を表示する画面
+// |--------------------------------------------------------------------------
+// */
+//     public function read_book_get(Request $request){
+//         //ログイン中のユーザーを取得
+//         $user = Auth::user();
 
-        return view('read_book',compact('record','user'));
-    }
+//         //レシートを全件、カテゴリー名を含めて取得する。
+//         $record = Receipt::from('receipts as A')
+//                     ->JoinCategoryCode()
+//                     ->SelectWithCategoryName()
+//                     ->where('user_id',$user->id)
+//                     ->orderBy('pay_day','desc')
+//                     ->get();
+
+//         return view('read_book',compact('record','user'));
+//     }
+// Delete   End 2020/06/05 [Receipt/ReceiptListControllerへ移転]
+
 /*
 |--------------------------------------------------------------------------
 | 302:月毎に集計した年表を表示する画面

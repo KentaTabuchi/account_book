@@ -18,9 +18,9 @@
 |--------------------------------------------------------------------------
 */
 
-Route::get( '','IndexController@index_get');
-Route::get( 'json_total_cost','IndexController@json_total_cost');
-Route::get( 'json_budget_cost','IndexController@json_budget_cost');
+Route::get ( '','IndexController@index_get');
+Route::get ( 'json_total_cost','IndexController@json_total_cost');
+Route::get ( 'json_budget_cost','IndexController@json_budget_cost');
 
 /*
 |--------------------------------------------------------------------------
@@ -29,23 +29,23 @@ Route::get( 'json_budget_cost','IndexController@json_budget_cost');
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'input_book','InputBookController@input_book_get');
-Route::post( 'input_book','InputBookController@input_book_post');
+Route::get ( 'input_book','Receipt\InputBookController@input_book_get');
+Route::post( 'input_book','Receipt\InputBookController@input_book_post');
 
-Route::get( 'edit_book','InputBookController@edit_book_get');
-Route::post( 'edit_book','InputBookController@edit_book_post');
+Route::get ( 'edit_book','Receipt\InputBookController@edit_book_get');
+Route::post( 'edit_book','Receipt\InputBookController@edit_book_post');
 
-Route::get( 'json_balance','InputBookController@json_balance');
-Route::get( 'json_large','InputBookController@json_large');
-Route::get( 'json_middle','InputBookController@json_middle');
-Route::get( 'json_small','InputBookController@json_small');
+Route::get ( 'json_balance','Receipt\InputBookController@json_balance');
+Route::get ( 'json_large','Receipt\InputBookController@json_large');
+Route::get ( 'json_middle','Receipt\InputBookController@json_middle');
+Route::get ( 'json_small','Receipt\InputBookController@json_small');
 
-Route::get( 'get_balance_code','InputBookController@code_balance');
-Route::get( 'get_large_code','InputBookController@code_large');
-Route::get( 'get_middle_code','InputBookController@code_middle');
-Route::get( 'get_small_code','InputBookController@code_small');
+Route::get ( 'get_balance_code','Receipt\InputBookController@code_balance');
+Route::get ( 'get_large_code','Receipt\InputBookController@code_large');
+Route::get ( 'get_middle_code','Receipt\InputBookController@code_middle');
+Route::get ( 'get_small_code','Receipt\InputBookController@code_small');
 
-Route::get( 'json_old','InputBookController@json_old');
+Route::get( 'json_old','Receipt\InputBookController@json_old');
 
 /*
 |--------------------------------------------------------------------------
@@ -55,29 +55,29 @@ Route::get( 'json_old','InputBookController@json_old');
 */
 
 //詳細ボタン押下
-Route::get( 'comfirm_receipt','ComfirmReceiptController@comfirm_receipt_get');
+Route::get ( 'comfirm_receipt','Receipt\ComfirmReceiptController@comfirm_receipt_get');
 //新規登録確認画面で登録するボタン押下
-Route::post( 'comfirm_input','ComfirmReceiptController@comfirm_input_post');
+Route::post( 'comfirm_input','Receipt\ComfirmReceiptController@comfirm_input_post');
 //入力へ戻るボタン押下 新規登録確認から戻る
-Route::post( 'back_input','ComfirmReceiptController@back_input_post');
+Route::post( 'back_input','Receipt\ComfirmReceiptController@back_input_post');
 //変更確認画面で変更するボタン押下
-Route::post( 'comfirm_update','ComfirmReceiptController@comfirm_update_post');
+Route::post( 'comfirm_update','Receipt\ComfirmReceiptController@comfirm_update_post');
 //編集へ戻るボタン押下
-Route::post( 'back_update','ComfirmReceiptController@back_update_post');
+Route::post( 'back_update','Receipt\ComfirmReceiptController@back_update_post');
 //削除するボタン押下 (削除確認へ進む)
-Route::get( 'comfirm_delete','ComfirmReceiptController@comfirm_delete_get');
+Route::get ( 'comfirm_delete','Receipt\ComfirmReceiptController@comfirm_delete_get');
 //削除するボタン押下 (削除完了へ進む)
-Route::post( 'comfirm_delete','ComfirmReceiptController@comfirm_delete_post');
+Route::post( 'comfirm_delete','Receipt\ComfirmReceiptController@comfirm_delete_post');
 
 
 /*
 |--------------------------------------------------------------------------
-| 家計簿閲覧画面 
+| レシート一覧画面 
 |  　1レコード単位で出力した表 
 |--------------------------------------------------------------------------
 */
 
-Route::get( 'read_book','ReadBookController@read_book_get');
+Route::get ( 'receipt_list','Receipt\ReceiptListController@receipt_list_get');
 
 /*
 |--------------------------------------------------------------------------
