@@ -25,14 +25,17 @@ class ReceiptListController extends Controller
         //ログイン中のユーザーを取得
         $user = Auth::user();
 
+        //1ページに表示するレコード数を取得
+        $page_size = $request->page_size;
+        
         //レシートを全件、カテゴリー名を含めて取得する。
-        $record = Receipt::from('receipts as A')
+        $receipts = Receipt::from('receipts as A')
                     ->JoinCategoryCode()
                     ->SelectWithCategoryName()
                     ->where('user_id',$user->id)
                     ->orderBy('pay_day','desc')
-                    ->get();
+                    ->Paginate($page_size);
 
-        return view('receipt_list',compact('record','user'));
+        return view('receipt_list',compact('receipts','user'));
     }
 }
