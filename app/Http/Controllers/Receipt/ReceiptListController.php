@@ -36,7 +36,7 @@ class ReceiptListController extends Controller
                     ->where('user_id',$user->id)
                     ->orderBy('pay_day','desc')
                     ->Paginate($page_size);
-
+                    
         return view('receipt_list',compact('receipts','user','page_size'));
     }
 }

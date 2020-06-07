@@ -77,7 +77,10 @@ Route::post( 'comfirm_delete','Receipt\ComfirmReceiptController@comfirm_delete_p
 |--------------------------------------------------------------------------
 */
 
+//レシート一覧の表示
 Route::get ( 'receipt_list','Receipt\ReceiptListController@receipt_list_get');
+//CSVダウンロードを押下した時
+Route::get ( 'csv_download','Csv\CsvDownloadController@export');
 
 /*
 |--------------------------------------------------------------------------

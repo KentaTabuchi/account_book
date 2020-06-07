@@ -13,7 +13,10 @@
   <div class="row mtpx-100">
     <div class="container col-md-8 justify-content-around">
     <h1>レシート一覧</h1>
-
+        {{-- CSVボタン --}}
+        <div>
+          <button onclick="location.href='csv_download'" class="btn btn-outline-dark bg-light">CSVダウンロード</button>
+        </div>
         {{-- 1ページの表示数 --}}
         <div>
           <p style="display:inline-block;font-weight:bold">表示数</p>
