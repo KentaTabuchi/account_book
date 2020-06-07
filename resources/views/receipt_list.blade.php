@@ -48,9 +48,9 @@
           @endforeach
           </tbody>
         </table>
-        {{$receipts->links()}}
+        {{$receipts->appends(['page_size'=>$page_size])->links()}}
     </div>
-  </div><!--row-->
+  </div>
 @endsection
 
 @section('footer_load_css')

@@ -26,6 +26,7 @@ class ReceiptListController extends Controller
         $user = Auth::user();
 
         //1ページに表示するレコード数を取得
+        $page_size = 20;
         $page_size = $request->page_size;
         
         //レシートを全件、カテゴリー名を含めて取得する。
@@ -36,6 +37,6 @@ class ReceiptListController extends Controller
                     ->orderBy('pay_day','desc')
                     ->Paginate($page_size);
 
-        return view('receipt_list',compact('receipts','user'));
+        return view('receipt_list',compact('receipts','user','page_size'));
     }
 }
