@@ -12,7 +12,7 @@ use App\Models\CategorySmall;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-// use Symfony\Component\HttpFoundation\StreamedResponse;
+use Carbon\Carbon;
 
 /**
  *  CSV形式でデータをダウンローするクラス
@@ -34,20 +34,16 @@ class CsvDownloadController extends Controller
                 ,'中分類'
                 ,'小分類'
                 ,'金額'
+                ,'メモ'
              ];
 
-             // エクセル用に文字コードを変換する。
-             mb_convert_variables('SJIS-win','UTF-8',$head);
+            // エクセル用に文字コードを変換する。
+            mb_convert_variables('SJIS-win','UTF-8',$head);
 
-             // ストリームにヘッダ部分を書き込む
-             fputcsv($stream, $head);
+            // ストリームにヘッダ部分を書き込む
+            fputcsv($stream, $head);
 
-             //ここにデータ本体を書き込む処理を入れる。
-
-            //  $body = [
-            //      '10'
-            //      ,'5000'
-            //  ];
+            // DBからデータセットを取り出す。
             $receipts = $this->getReceiptList();
 
             foreach ($receipts as $receipt) {
@@ -72,10 +68,13 @@ class CsvDownloadController extends Controller
         };
 
         $http_response = \Illuminate\Http\Response::HTTP_OK;
+
+        //ファイル名を生成
+        $file_name = 'receipt_list_' . Carbon::now()->format('Ymd');
         
         $headers = [
              'Content-Type' => 'text/csv'
-            ,'Content-Disposition' => 'attachment;filename="test.csv"'
+            ,'Content-Disposition' => 'attachment;filename=' . $file_name
         ];
 
         return response()->stream($callback,$http_response,$headers);

@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Config;
  */
 class ReceiptListController extends Controller
 {
+    const INITIAL_PAGE_SIZE = 10;
+
     /**
      *  条件に合致するレシート一覧を出力する。
      */
@@ -25,9 +27,9 @@ class ReceiptListController extends Controller
         //ログイン中のユーザーを取得
         $user = Auth::user();
 
+        //表示件数の初期値を設定
         //1ページに表示するレコード数を取得
-        $page_size = 20;
-        $page_size = $request->page_size;
+        $page_size = $request->page_size ? $request->page_size : self::INITIAL_PAGE_SIZE;
         
         //レシートを全件、カテゴリー名を含めて取得する。
         $receipts = Receipt::from('receipts as A')
