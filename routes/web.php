@@ -123,7 +123,7 @@ Route::post( 'input_monthly_cost','InputMonthlyFixiedCostController@input_monthl
 */
 
 Route::get( 'system/system_menu','System\SystemManageController@system_menu_get');
-Route::get( 'system/manage_category','System\SystemManageController@manage_category_get');
+Route::get( 'system/category_list','System\SystemManageController@category_list_get');
 
 /*
 |--------------------------------------------------------------------------

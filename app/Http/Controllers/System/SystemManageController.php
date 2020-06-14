@@ -29,7 +29,7 @@ class SystemManageController extends Controller
     /**
      * 分類項目管理画面の表示
      */
-    public function manage_category_get(Request $request){
+    public function category_list_get(Request $request){
         //ログイン中のユーザ情報を取得
         $user = Auth::user();
 
@@ -54,6 +54,6 @@ class SystemManageController extends Controller
                 break;
         }
 
-        return view('system/manage_category',compact('user','category_mode','parents_list','carrent_list'));
+        return view('system/category_list',compact('user','category_mode','parents_list','carrent_list'));
     }
 }

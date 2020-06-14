@@ -17,9 +17,9 @@
   <div class="container col-xs-12 mtpx-100">
     <div class="row">
       <ul>
-          <li><a href="manage_category?category_mode={{Config::get('categorymode.large')}}">大分類を設定する</a></li>
-          <li><a href="manage_category?category_mode={{Config::get('categorymode.middle')}}">中分類を設定する</a><li>
-          <li><a href="manage_category?category_mode={{Config::get('categorymode.small')}}">小分類を設定する</a><li>
+          <li><a href="category_list?category_mode={{Config::get('categorymode.large')}}">大分類を設定する</a></li>
+          <li><a href="category_list?category_mode={{Config::get('categorymode.middle')}}">中分類を設定する</a><li>
+          <li><a href="category_list?category_mode={{Config::get('categorymode.small')}}">小分類を設定する</a><li>
       </ul>
   </div>
 @endsection
