@@ -52,9 +52,17 @@
             <div class="row">
               <div class="container col-md-10 offset-md-1">
                 <label for="category_large"　class="txt-itemname">大分類</label>
-                <select name="category_large" class="form-control" id="category_large">
+                <select name="large_code" class="form-control">
                   @foreach($parents_list as $item)
+                  @if(isset($selected_parent))
+                    @if($item->code == $selected_parent->code)
+                      <option value="{{$item->code}}" selected>{{$item->name}}</option>
+                    @else
+                      <option value="{{$item->code}}">{{$item->name}}</option>
+                    @endif
+                  @else
                     <option value="{{$item->code}}">{{$item->name}}</option>
+                  @endif
                   @endforeach
                 </select>
               </div>
@@ -87,7 +95,7 @@
           <div class="mx-auto" style="width:250px;">
           @switch($processmode)
             @case(Config::get('processmode.input'))
-              <button type="button" onclick="location.href='manage_category?category_mode={{Config::get('categorymode.small')}}'" class="btn btn-light">一覧へ戻る</button>
+              <button type="button" onclick="location.href='manage_category?category_mode={{$category_mode}}'" class="btn btn-light">一覧へ戻る</button>
               <input type="submit" class="btn btn-light" value="確認へ進む">
               @break
             @case(Config::get('processmode.update'))

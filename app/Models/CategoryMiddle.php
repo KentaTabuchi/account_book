@@ -29,7 +29,8 @@ class CategoryMiddle extends Model
         if(isset($form->code)) {
             $this->code = $form->code;
         }
-        $this->large_code = $form->category_large;
-        $this->category_name = $form->category_name; 
+        $this->large_code = $form->large_code;
+        $this->code = self::all()->last()->code + 1;
+        $this->name = $form->name; 
     }
 }
