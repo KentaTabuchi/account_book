@@ -47,7 +47,7 @@
           @case(Config::get('processmode.input'))
           <div class="mx-auto" style="width:300px;">
             <button type="button" onclick="location.href='system_menu'" class="btn btn-light">メニューへ戻る</button>
-            <button type="button" onclick="location.href='input_book'" class="btn btn-light">続けて登録する</button>
+            <button type="button" onclick="location.href='input_category?category_mode={{$category_mode}}'" class="btn btn-light">続けて登録する</button>
           </div>
           @break
         @case(Config::get('processmode.update'))

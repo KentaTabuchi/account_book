@@ -78,7 +78,7 @@ class ComfirmCategoryController extends Controller
         $category->save();
 
         //完了画面へ遷移する。
-        return view('system/complete_category',compact('user','category','processmode'));
+        return view('system/complete_category',compact('user','category','processmode','category_mode'));
     }
 
     public function comfirm_delete_get(Request $request)
@@ -136,8 +136,7 @@ class ComfirmCategoryController extends Controller
                 $category = CategorySmall::find($decoded_request->code);
                 break;
         }
-        //DBから削除する。
-        $category = CategorySmall::find($decoded_request->code);
+
         $category->delete();
 
         //削除完了画面へ進む
