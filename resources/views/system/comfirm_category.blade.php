@@ -129,6 +129,7 @@
               <button type="button" onclick="location.href='comfirm_category?code={{$category->code}}'" class="btn btn-light">詳細へ戻る</button>
               <input type="submit" class="btn btn-light" value="削除する">
               <input type="hidden" name="hidden_request" value="{{$category}}">
+              <input type="hidden" name="category_mode" value="{{$category_mode}}">
             </form>
           </div>
           @break

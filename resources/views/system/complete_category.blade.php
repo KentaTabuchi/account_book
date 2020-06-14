@@ -60,11 +60,11 @@
         </div>
         @break
         @case(Config::get('processmode.delete'))
-        <div class="mx-auto" style="width:300px;">
+        <div class="mx-auto" style="width:400px;">
           <form action="back_detail" method="post" id="form" >
           @csrf
             <button type="button" onclick="location.href='system_menu'" class="btn btn-light">システムメニューへ戻る</button>
-            <button type="button" onclick="location.href='read_book'" class="btn btn-light">詳細一覧へ戻る</button>
+            <button type="button" onclick="location.href='system/comfirm_category'" class="btn btn-light">詳細一覧へ戻る</button>
           </form>
         </div>
         @break

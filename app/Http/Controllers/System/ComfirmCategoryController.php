@@ -141,7 +141,7 @@ class ComfirmCategoryController extends Controller
         $category->delete();
 
         //削除完了画面へ進む
-        return view('system/complete_category',compact('user','receipt','processmode'));
+        return view('system/complete_category',compact('user','processmode'));
     }
 
     /**

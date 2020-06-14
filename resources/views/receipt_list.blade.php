@@ -14,11 +14,10 @@
     <div class="container col-md-8 justify-content-around">
     <h1>レシート一覧</h1>
         {{-- CSVボタン --}}
-        <div>
+        <div class="col-xs-10 col-md-10 offset-8">
           <button onclick="location.href='csv_download'" class="btn btn-outline-dark bg-light">CSVダウンロード</button>
-        </div>
+        
         {{-- 1ページの表示数 --}}
-        <div>
           <p style="display:inline-block;font-weight:bold">表示数</p>
           <a href="receipt_list?page_size=10">10</a>
           <a href="receipt_list?page_size=20">20</a>
@@ -51,7 +50,9 @@
           @endforeach
           </tbody>
         </table>
-        {{$receipts->appends(['page_size'=>$page_size])->links()}}
+        <div class="col-xs-10 col-md-10 offset-1">
+          {{$receipts->appends(['page_size'=>$page_size])->links()}}
+        </div>
     </div>
   </div>
 @endsection
