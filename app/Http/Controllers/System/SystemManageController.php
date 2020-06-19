@@ -36,24 +36,29 @@ class SystemManageController extends Controller
         //どの分類の設定にするかを取得
         $category_mode = $request->category_mode;
         
+        //表示件数の初期値を設定
+        //1ページに表示するレコード数を取得
+        $page_size = $request->page_size ? $request->page_size : 10;
+
         //対象のリストと親分類のリストを取得
         $current_list = null;
         $parents_list = null;
         switch($category_mode) {
             case Config::get('categorymode.large'):
-                $carrent_list = CategoryLarge::all();
+                $current_list = CategoryLarge::all();
                 $parents_list = CategoryBalance::all();
                 break;
             case Config::get('categorymode.middle'):
-                $carrent_list = CategoryMiddle::all();
+                $current_list = CategoryMiddle::Paginate($page_size);
                 $parents_list = CategoryLarge::all();
                 break;
             case Config::get('categorymode.small'):
-                $carrent_list = CategorySmall::all();
+                $current_list = CategorySmall::Paginate($page_size);
                 $parents_list = CategoryMiddle::all();
                 break;
         }
-        return view('system/category_list',compact('user','category_mode','parents_list','carrent_list'));
+        
+        return view('system/category_list',compact('user','category_mode','parents_list','current_list','page_size'));
     }
     /**
      *  検索ボタン押下時の処理
@@ -66,6 +71,9 @@ class SystemManageController extends Controller
         //どの分類の設定にするかを取得
         $category_mode = $request->category_mode;
 
+        //表示件数の初期値を設定
+        //1ページに表示するレコード数を取得
+        $page_size = $request->page_size ? $request->page_size : 10;
         //検索用パラメータマップを生成
         $param = [
             'item_name' => $request->item_title
@@ -93,6 +101,6 @@ class SystemManageController extends Controller
                 $parents_list = CategoryMiddle::all();
                 break;
         }
-        return view('system/category_list',compact('user','category_mode','parents_list','carrent_list'));
+        return view('system/category_list',compact('user','category_mode','parents_list','carrent_list','page_size'));
     }
 }

@@ -42,9 +42,7 @@
       <div class="navbar-nav">
         @yield('navbar-menu')
       </div>
-      <!--.navbar-nav-->
     </div>
-    <!--#navmenu-->
   </nav>
   @yield('contents')
 

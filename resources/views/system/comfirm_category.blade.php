@@ -78,12 +78,12 @@
           @switch($category_mode)
             @case(Config::get('categorymode.middle'))
               <button type="button" 
-                onclick="location.href='manage_category?category_mode={{Config::get('categorymode.middle')}}'" 
+                onclick="location.href='category_list?category_mode={{Config::get('categorymode.middle')}}'" 
                 class="btn btn-light">一覧へ戻る</button>
               @break
             @case(Config::get('categorymode.small'))
               <button type="button" 
-                onclick="location.href='manage_category?category_mode={{Config::get('categorymode.small')}}'" 
+                onclick="location.href='category_list?category_mode={{Config::get('categorymode.small')}}'" 
                 class="btn btn-light">一覧へ戻る</button>
               @break
           @endswitch
