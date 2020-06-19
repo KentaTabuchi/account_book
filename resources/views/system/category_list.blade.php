@@ -18,22 +18,25 @@
   <h1>{{Config::get('categoryname.'.$category_mode)}}</h1>
 
   <div class="form-group">
-    {{-- 項目名 --}}
-    <label for="item_title" class="txt-itemname">項目名</label>
-    <input type="text" name="item_title" class="form-control col-6">
-    {{-- 選択中の項目の上位分類 --}}
-    <label for="parent_category" class="txt-itemname">所属する親分類</label>
-    <select name="parent_category" class="form-control col-6">
-      @foreach($parents_list as $parents)
-        <option value="{{$parents->code}}">{{$parents->name}}</option>
-      @endforeach
-    </select>
-    {{--　検索ボタン --}}
-    <input type="submit" value="検索" class="btn btn-dark">
-    {{--　追加ボタン --}}
-    <button type="button" class="btn btn-dark" 
-      onclick="location.href='input_category?category_mode={{$category_mode}}'">新規追加</button>
-    
+    <form method="post" action="find_category">
+      @csrf
+      {{-- 項目名 --}}
+      <label for="item_title" class="txt-itemname">項目名</label>
+      <input type="text" name="item_title" class="form-control col-6">
+      {{-- 選択中の項目の上位分類 --}}
+      <label for="parent_category" class="txt-itemname">所属する親分類</label>
+      <select name="parent_category" class="form-control col-6">
+        @foreach($parents_list as $parents)
+          <option value="{{$parents->code}}">{{$parents->name}}</option>
+        @endforeach
+      </select>
+      {{--　検索ボタン --}}
+      <input type="submit" value="検索" class="btn btn-dark">
+      {{--　追加ボタン --}}
+      <button type="button" class="btn btn-dark" 
+        onclick="location.href='input_category?category_mode={{$category_mode}}'">新規追加</button>
+      <input type="hidden" name="category_mode" value="{{$category_mode}}">
+    </form>
     {{--　区切り線 --}}
     <hr style="height:5px; background-color:brown">
     
@@ -58,7 +61,7 @@
               <td>{{$carrent->category_large->name}}</td>
               @break
             @case(Config::get('categorymode.small'))
-              <td>{{$carrent->category_middle->name}}</td>
+            <td>{{$carrent->category_middle->name}}</td>
               @break
           @endswitch
           <td>

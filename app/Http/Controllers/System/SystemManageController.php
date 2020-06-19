@@ -53,7 +53,46 @@ class SystemManageController extends Controller
                 $parents_list = CategoryMiddle::all();
                 break;
         }
+        return view('system/category_list',compact('user','category_mode','parents_list','carrent_list'));
+    }
+    /**
+     *  検索ボタン押下時の処理
+     */
+    public function find_category_post (Request $request)
+    {
+        //ログイン中のユーザ情報を取得
+        $user = Auth::user();
 
+        //どの分類の設定にするかを取得
+        $category_mode = $request->category_mode;
+
+        //検索用パラメータマップを生成
+        $param = [
+            'item_name' => $request->item_title
+            ,'parent_code' => $request->parent_category
+        ];
+
+        //対象のリストと親分類のリストを取得
+        $current_list = null;
+        $parents_list = null;
+        switch($category_mode) {
+            case Config::get('categorymode.large'):
+                $carrent_list = CategoryLarge::all();
+                $parents_list = CategoryBalance::all();
+                break;
+            case Config::get('categorymode.middle'):
+                $carrent_list = CategoryMiddle::all();
+                $parents_list = CategoryLarge::all();
+                break;
+            case Config::get('categorymode.small'):
+                if(empty($param['item_name'])) {
+                    $carrent_list = CategorySmall::all();
+                } else {
+                    $carrent_list = CategorySmall::where('name',$param['item_name'])->get();
+                }
+                $parents_list = CategoryMiddle::all();
+                break;
+        }
         return view('system/category_list',compact('user','category_mode','parents_list','carrent_list'));
     }
 }

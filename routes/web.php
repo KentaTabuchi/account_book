@@ -124,7 +124,7 @@ Route::post( 'input_monthly_cost','InputMonthlyFixiedCostController@input_monthl
 
 Route::get( 'system/system_menu','System\SystemManageController@system_menu_get');
 Route::get( 'system/category_list','System\SystemManageController@category_list_get');
-
+Route::post( 'system/find_category','System\SystemManageController@find_category_post');
 /*
 |--------------------------------------------------------------------------
 | システム管理画面

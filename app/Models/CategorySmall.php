@@ -8,14 +8,14 @@ class CategorySmall extends Model
 {
     protected $table = 'category_small';
     protected $primaryKey = 'code';
-    protected $guarded = array('id','code');
+    protected $guarded = array('id');
     /**
      * CategorySmallとリレーションシップする。
      * @return CategorySmallとの連携データ
      */
     public function category_middle()
     {
-        return $this->belongsTo('App\Models\CategorySmall','middle_code','code');
+        return $this->belongsTo('App\Models\CategoryMiddle','middle_code','code');
     }
 
     /**
