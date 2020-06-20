@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\QueryException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,20 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        //ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        // SQLでエラーが起きた場合、用意したエラー画面へ飛ばす。
+        if ($exception instanceof QueryException) {
+            $sql_error_code = $exception->errorInfo[0];
+            $error_message = "SQLでエラーが発生しました。";
+            switch ($sql_error_code) {
+                case 23000 : $error_message = "整合性制約違反です。";
+            }
+
+            return response()->view('error/system_error',compact('error_message','user'));
+        }
+
         return parent::render($request, $exception);
     }
 }

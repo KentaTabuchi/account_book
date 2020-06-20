@@ -128,6 +128,7 @@ class ComfirmCategoryController extends Controller
 
         //DBから該当のcodeのレコードを削除する。
         $category = null;
+
         switch ($category_mode) {
             case Config::get('categorymode.middle'):
                 $category = CategoryMiddle::find($decoded_request->code);
@@ -136,9 +137,9 @@ class ComfirmCategoryController extends Controller
                 $category = CategorySmall::find($decoded_request->code);
                 break;
         }
-
+        
         $category->delete();
-
+        
         //削除完了画面へ進む
         return view('system/complete_category',compact('user','processmode','category_mode'));
     }
