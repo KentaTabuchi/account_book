@@ -26,7 +26,7 @@
   
   <body style="background-image: url('../images/common/background.jpg')">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="index.php"><img src="../images/common/home_icon.png" class="nav-homeicon bg-white"><a>
+    <a class="navbar-brand" href="../index.php"><img src="../images/common/home_icon.png" class="nav-homeicon bg-white"><a>
     @yield('navbar-current')
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navmenu"
      aria-controls="navmenu" area-expanded="false" aria-label="Toggle navigation">

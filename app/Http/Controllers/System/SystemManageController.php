@@ -10,6 +10,7 @@ use App\Models\CategoryLarge;
 use App\Models\CategoryMiddle;
 use App\Models\CategorySmall;
 use Illuminate\Support\Facades\Config;
+use App\Define;
 
 /**
  *  各種設定を行う
@@ -38,7 +39,7 @@ class SystemManageController extends Controller
         
         //表示件数の初期値を設定
         //1ページに表示するレコード数を取得
-        $page_size = $request->page_size ? $request->page_size : 10;
+        $page_size = $request->page_size ? $request->page_size : Define::INITIAL_PAGE_SIZE;
 
         //対象のリストと親分類のリストを取得
         $current_list = null;
@@ -57,7 +58,7 @@ class SystemManageController extends Controller
                 $parents_list = CategoryMiddle::all();
                 break;
         }
-        
+
         return view('system/category_list',compact('user','category_mode','parents_list','current_list','page_size'));
     }
     /**
@@ -85,22 +86,26 @@ class SystemManageController extends Controller
         $parents_list = null;
         switch($category_mode) {
             case Config::get('categorymode.large'):
-                $carrent_list = CategoryLarge::all();
+                $current_list = CategoryLarge::all();
                 $parents_list = CategoryBalance::all();
                 break;
             case Config::get('categorymode.middle'):
-                $carrent_list = CategoryMiddle::all();
+                if(empty($param['item_name'])) {
+                    $current_list = CategoryMiddle::Paginate($page_size);
+                } else {
+                    $current_list = CategoryMiddle::where('name',$param['item_name'])->Paginate($page_size);
+                }
                 $parents_list = CategoryLarge::all();
                 break;
             case Config::get('categorymode.small'):
                 if(empty($param['item_name'])) {
-                    $carrent_list = CategorySmall::all();
+                    $current_list = CategorySmall::Paginate($page_size);
                 } else {
-                    $carrent_list = CategorySmall::where('name',$param['item_name'])->get();
+                    $current_list = CategorySmall::where('name',$param['item_name'])->Paginate($page_size);
                 }
                 $parents_list = CategoryMiddle::all();
                 break;
         }
-        return view('system/category_list',compact('user','category_mode','parents_list','carrent_list','page_size'));
+        return view('system/category_list',compact('user','category_mode','parents_list','current_list','page_size'));
     }
 }

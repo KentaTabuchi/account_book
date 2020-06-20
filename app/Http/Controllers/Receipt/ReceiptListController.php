@@ -12,14 +12,13 @@ use App\Models\CategorySmall;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use App\Define;
 
 /**
  *  レシート一覧を閲覧するクラス
  */
 class ReceiptListController extends Controller
 {
-    const INITIAL_PAGE_SIZE = 10;
-
     /**
      *  条件に合致するレシート一覧を出力する。
      */
@@ -29,7 +28,7 @@ class ReceiptListController extends Controller
 
         //表示件数の初期値を設定
         //1ページに表示するレコード数を取得
-        $page_size = $request->page_size ? $request->page_size : self::INITIAL_PAGE_SIZE;
+        $page_size = $request->page_size ? $request->page_size : Define::INITIAL_PAGE_SIZE;
         
         //レシートを全件、カテゴリー名を含めて取得する。
         $receipts = Receipt::from('receipts as A')

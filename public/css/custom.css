@@ -86,6 +86,44 @@
   background-color: beige;
 }
 
+/**
+* システムメニュー画面用のパネル
+*/
+.panel-system-menu {
+  position: relative;
+  margin: 2em 0;
+  padding: 0.5em 1em;
+  width: 300px;
+  background-color: white;
+  border: solid 3px #95ccff;
+  border-radius: 8px;
+}
+
+.panel-system-menu > p {
+  position: absolute;
+  display: inline-block;
+  top: -13px;
+  left: 10px;
+  padding: 0 9px;
+  line-height: 1;
+  font-size: 30px;
+  background: darkseagreen;
+  color: black;
+  font-weight: bold;
+  border: solid 3px #95ccff;
+  border-radius: 8px;
+}
+
+.panel-system-menu li:nth-child(2) {
+  margin-top: 25px;
+}
+
+.panel-system-menu a {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+
 .nav-homeicon {
   width: 30px;
   height: 30px;

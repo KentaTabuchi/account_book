@@ -16,7 +16,8 @@
 @section('contents')
   <div class="container col-xs-12 mtpx-100">
     <div class="row">
-      <ul>
+      <ul class="panel-system-menu">
+        <p>カテゴリー設定</p>
           <li><a href="category_list?category_mode={{Config::get('categorymode.large')}}">大分類を設定する</a></li>
           <li><a href="category_list?category_mode={{Config::get('categorymode.middle')}}">中分類を設定する</a><li>
           <li><a href="category_list?category_mode={{Config::get('categorymode.small')}}">小分類を設定する</a><li>

@@ -13,21 +13,21 @@ class category_middle_seeder extends Seeder
     {
         DB::table('category_middle')->delete();
         //固定給
-        $params[111] = ['code' => '111' ,'name' => '給料' ,'large_code' => '11'];
+        $params[1] = ['code' => '1' ,'name' => '給料' ,'large_code' => '1'];
         //一時金
-        $params[121] = ['code' => '121' ,'name' => '株式','large_code' => '12'];
-        $params[122] = ['code' => '122' ,'name' => 'お小遣い','large_code' => '12'];
+        $params[2] = ['code' => '2' ,'name' => '株式','large_code' => '2'];
+        $params[3] = ['code' => '3' ,'name' => 'お小遣い','large_code' => '2'];
         //固定費
-        $params[211] = ['code' => '211' ,'name' => '税金 保険 年金' ,'large_code' => '21'];
-        $params[212] = ['code' => '212' ,'name' => '公共料金 家賃','large_code' => '21'];
-        $params[213] = ['code' => '213' ,'name' => 'その他の固定費','large_code' => '21'];
+        $params[4] = ['code' => '4' ,'name' => '税金 保険 年金' ,'large_code' => '3'];
+        $params[5] = ['code' => '5' ,'name' => '公共料金 家賃','large_code' => '3'];
+        $params[6] = ['code' => '6' ,'name' => 'その他の固定費','large_code' => '3'];
         //変動費
-        $params[221] = ['code' => '221' ,'name' => '食費' ,'large_code' => '22'];
-        $params[222] = ['code' => '222' ,'name' => '雑貨・本・家具・家電等','large_code' => '22'];
-        $params[223] = ['code' => '223' ,'name' => '交通費','large_code' => '22'];
-        $params[224] = ['code' => '224' ,'name' => '医療費','large_code' => '22'];
-        $params[225] = ['code' => '225' ,'name' => 'その他サービス','large_code' => '22'];
-        $params[226] = ['code' => '226' ,'name' => '祭事 イベント','large_code' => '22'];
+        $params[7] = ['code' => '7' ,'name' => '食費' ,'large_code' => '4'];
+        $params[8] = ['code' => '8' ,'name' => '雑貨・本・家具・家電等','large_code' => '4'];
+        $params[9] = ['code' => '9' ,'name' => '交通費','large_code' => '4'];
+        $params[10] = ['code' => '10' ,'name' => '医療費','large_code' => '4'];
+        $params[11] = ['code' => '11' ,'name' => 'その他サービス','large_code' => '4'];
+        $params[12] = ['code' => '12' ,'name' => '祭事 イベント','large_code' => '4'];
 
 
         foreach($params as $param)
