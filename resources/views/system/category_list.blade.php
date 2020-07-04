@@ -81,11 +81,11 @@
       {{$current_list->appends(['page_size'=>$page_size,'category_mode'=>$category_mode])->links()}}
     </div>
     {{-- ボタン部 --}}
-        <div class="my-3 py-3 panel-button-group">
-          <div class="mx-auto" style="width:250px;">
-            <button type="button" onclick="location.href='system_menu'" class="btn btn-light">システムメニューへ戻る</button>
-          </div>
-        </div>
+    <div class="my-3 py-3 panel-button-group">
+      <div class="mx-auto" style="width:250px;">
+        <button type="button" onclick="location.href='system_menu'" class="btn btn-light">システムメニューへ戻る</button>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

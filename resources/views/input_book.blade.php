@@ -24,6 +24,17 @@
 
 @section('contents')
   <div class="row　justify-content-around mtpx-100">
+    <div class="col-md-10 offset-md-1 col-lg-4">
+      
+      @switch($processmode)
+      @case(Config::get('processmode.input'))
+        <h1>新規レシート入力</h1>
+        @break
+      @case(Config::get('processmode.update'))
+        <h1>レシート編集</h1>
+        @break
+    @endswitch
+    </div>
     <div class="container col-md-10 offset-md-1 col-lg-4 card bg-light" id="input_form">
     @switch($processmode)
       @case(Config::get('processmode.input'))

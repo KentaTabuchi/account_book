@@ -1,4 +1,10 @@
 @charset "UTF-8";
+h1 {
+  border-left: 15px solid blue;
+  border-bottom: 2px solid blue;
+  padding-left: 5px;
+}
+
 .txt-currency:after {
   content: '円';
 }

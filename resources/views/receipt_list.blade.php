@@ -53,6 +53,12 @@
         <div class="col-xs-10 col-md-10 offset-1">
           {{$receipts->appends(['page_size'=>$page_size])->links()}}
         </div>
+        {{-- ボタン部 --}}
+    <div class="my-3 py-3 panel-button-group">
+      <div class="mx-auto" style="width:200px;">
+        <button type="button" onclick="location.href='index.php'" class="btn btn-light">ホームへ戻る</button>
+      </div>
+    </div>
     </div>
   </div>
 @endsection
